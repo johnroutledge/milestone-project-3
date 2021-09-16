@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="row">
+        <form class="col s6 m6 offset-m3" method="POST" action="{{ url_for('register') }}">
+            <div class="card grey darken-3">
+                <div class="card-image">
+                    <img src="images/sample-1.jpg">
+                    <!-- <span class="card-title">Register</span> -->
+                </div>
+                <div class="card-content">
+                    <!--first and last name-->
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="first_name" name="first_name" type="text" pattern="^[A-Za-z]$"
+                                class="validate" required>
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="last_name" name="last_name" type="text" pattern="^[A-Za-z]$"
+                                class="validate" required>
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <!--email-->
+                    <div class="row">
+                        <div class="input-field col s12">
+                          <input id="email" name="email" type="email" class="validate">
+                          <label for="email">Email</label>
+                        </div>
+                      </div>
+                    <!--password-->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" name="password" type="password" minlength="5"
+                                maxlength="15" pattern="^[A-Za-z0-9]{5,15}$" class="validate" required>
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <!--register button-->
+                    <div class="row">
+                        <button type="submit" class="col s12 btn-large">
+                            Register <i class="fas fa-sign-in-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#">Sign in</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
