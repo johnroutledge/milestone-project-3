@@ -47,6 +47,8 @@ def register():
         # put the new user into session cookie
         session["user"] = request.form.get("email").lower()
         flash("Registration Successful")
+        return redirect(url_for("portfolio", username=session["user"]))
+
     return render_template("register.html")
 
 
@@ -62,7 +64,10 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("email").lower()
-                    flash("Hi {}".format(existing_user["first_name"].capitalize()))
+                    flash("Hi {}".format(
+                        existing_user["first_name"].capitalize()))
+                    return redirect(url_for(
+                        "portfolio", username=session["user"]))
             else:
                 # incorrect password
                 flash("Incorrect email and/or password")
@@ -74,6 +79,15 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/portfolio/<username>", methods=["GET", "POST"])
+def portfolio(username):
+    # get users first name from db
+    username = mongo.db.users.find_one(
+        {"email": session["user"]})["first_name"]
+    return render_template("portfolio.html", username=username)
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
