@@ -86,7 +86,19 @@ def portfolio(username):
     # get users first name from db
     username = mongo.db.users.find_one(
         {"email": session["user"]})["first_name"]
-    return render_template("portfolio.html", username=username)
+    
+    if session["user"]:
+        return render_template("portfolio.html", username=username)
+
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    # delete user from session cookies
+    flash("Log out successful")
+    session.pop("user")
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
