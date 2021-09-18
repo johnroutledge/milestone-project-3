@@ -1,4 +1,5 @@
 import os
+import requests
 from flask import (
     Flask, flash, render_template, redirect,
     request, session, url_for)
@@ -14,6 +15,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MOGNO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+coin_market_cap_key = os.environ.get("COIN_MARKET_CAP_KEY")
 
 mongo = PyMongo(app)
 
@@ -27,7 +29,26 @@ def home():
 @app.route("/get_currencies")
 def get_currencies():
     currencies = mongo.db.currencies.find()
-    return render_template("currencies.html", currencies = currencies)
+
+    headers = {
+        'X-CMC_PRO_API_KEY' : coin_market_cap_key,
+        'Accepts' : 'application/json'
+    }
+
+    params = {
+        'start' : '1',
+        'limit' : '20',
+        'convert' : 'USD'
+    }
+
+    url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+
+    json = requests.get(url, params=params, headers=headers).json()
+
+    coins = json['data']
+
+
+    return render_template("currencies.html", currencies = currencies, coins = coins)
 
 
 @app.route("/register", methods = ["GET", "POST"])

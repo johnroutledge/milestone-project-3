@@ -3,7 +3,12 @@
 
     {% for currency in currencies %}
         {{ currency.currency_name }}<br>
-        {{ currency.currency_desc }}
+        {{ currency.currency_desc }}<br>
+    {% endfor %}
+
+    {% for coin in coins %}
+        {{ coin['symbol'] }}
+        {{ coin['quote']['USD']['price'] }}<br>
     {% endfor %}
 
 {% endblock %}
