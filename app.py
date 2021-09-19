@@ -30,6 +30,8 @@ def home():
 def get_currencies():
     currencies = mongo.db.currencies.find()
 
+    # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
+    # 'How to Use an API in Python to get Bitcoin's Price Live - Along with other Cryptocurrencies'
     headers = {
         'X-CMC_PRO_API_KEY' : coin_market_cap_key,
         'Accepts' : 'application/json'
@@ -42,11 +44,8 @@ def get_currencies():
     }
 
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-
     json = requests.get(url, params=params, headers=headers).json()
-
     coins = json['data']
-
 
     return render_template("currencies.html", currencies = currencies, coins = coins)
 
