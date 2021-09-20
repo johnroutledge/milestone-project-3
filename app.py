@@ -19,7 +19,6 @@ coin_market_cap_key = os.environ.get("COIN_MARKET_CAP_KEY")
 
 mongo = PyMongo(app)
 
-
 @app.route("/")
 @app.route("/home")
 def home():
@@ -113,7 +112,31 @@ def portfolio(username):
         {"email": session["user"]})["first_name"]
     
     if session["user"]:
-        return render_template("portfolio.html", username=username)
+        # calculate portfolio balance
+        balances = mongo.db.balances.find_one(
+            {"email": session["user"]})
+
+        currencies = mongo.db.currencies.find()
+
+        # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
+        # 'How to Use an API in Python to get Bitcoin's Price Live - Along with other Cryptocurrencies'
+        headers = {
+            'X-CMC_PRO_API_KEY' : coin_market_cap_key,
+            'Accepts' : 'application/json'
+        }
+
+        params = {
+            'start' : '1',
+            'limit' : '20',
+            'convert' : 'USD'
+        }
+
+        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+        json = requests.get(url, params=params, headers=headers).json()
+        coins = json['data']
+
+        return render_template(
+            "portfolio.html", username=username, currencies=currencies, balances=balances, coins=coins)
 
     return redirect(url_for("login"))
 

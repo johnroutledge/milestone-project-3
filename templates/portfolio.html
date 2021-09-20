@@ -12,6 +12,22 @@
                         {{ username }}'s Portfolio
                     </h6>
                     <p>Current balance: </p>
+                    <p>{{ balances }}</p>
+                    {% for currency in currencies %}
+                        {% for balance in balances %}
+                            {% for coin in coins %}
+                                {% if coin['symbol'] == balance.upper() %}    
+                                    <div class="crypto-prices">
+                                        {{ coin['name'] }} {{ coin['symbol'] }}    
+                                        <img src="{{ currency.image_source }}" alt="Profile image for {{ currency.currency_name }}">
+                                        <!--credit to kite.com for formatting tips - how to print float with 2 decimal places-->
+                                        {{ "{:.2f}".format(coin['quote']['USD']['price']) * 2 }}
+                                        <hr>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
