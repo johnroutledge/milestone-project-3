@@ -135,8 +135,21 @@ def portfolio(username):
         json = requests.get(url, params=params, headers=headers).json()
         coins = json['data']
 
+        dict = {}
+        for balance in balances:
+            for coin in coins:
+                if coin['symbol'] == balance.upper():    
+                    # x = "{:.2f}".format(coin['quote']['USD']['price']) * balances[balance]
+                    x = coin['quote']['USD']['price'] * balances[balance]
+                    x = "{:.2f}".format(x)
+                    dict [balance.upper()] = x
+                elif balance.upper() == "USD":
+                    x = balances[balance]
+                    dict[balance.upper()] = x
+                
+
         return render_template(
-            "portfolio.html", username=username, currencies=currencies, balances=balances, coins=coins)
+            "portfolio.html", username=username, currencies=currencies, balances=balances, coins=coins, dict=dict)
 
     return redirect(url_for("login"))
 
