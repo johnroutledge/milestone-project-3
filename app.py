@@ -135,6 +135,7 @@ def portfolio(username):
         json = requests.get(url, params=params, headers=headers).json()
         coins = json['data']
 
+        # create a dictionary which calculate the user's balance for each cryptocurrency
         dict = {}
         for balance in balances:
             for coin in coins:
@@ -142,7 +143,7 @@ def portfolio(username):
                     # x = "{:.2f}".format(coin['quote']['USD']['price']) * balances[balance]
                     x = coin['quote']['USD']['price'] * balances[balance]
                     x = "{:.2f}".format(x)
-                    dict [balance.upper()] = x
+                    dict[balance.upper()] = x
                 elif balance.upper() == "USD":
                     x = balances[balance]
                     dict[balance.upper()] = x
