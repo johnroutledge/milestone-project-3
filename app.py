@@ -20,7 +20,6 @@ coin_market_cap_key = os.environ.get("COIN_MARKET_CAP_KEY")
 mongo = PyMongo(app)
 
 @app.route("/")
-@app.route("/home")
 def home():
     return render_template("index.html")
 
@@ -105,8 +104,11 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/portfolio/<username>", methods=["GET", "POST"])
-def portfolio(username):
+@app.route("/portfolio/", methods=["GET", "POST"])
+def portfolio():
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     # get users first name from db
     username = mongo.db.users.find_one(
         {"email": session["user"]})["first_name"]
