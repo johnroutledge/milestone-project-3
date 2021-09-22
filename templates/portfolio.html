@@ -8,13 +8,13 @@
                     <img src="../static/images/register.jpg">
                 </div>
                 <div class="card-content">
-                    <h6 class="center-align">
-                        {{ username }}'s Portfolio
+                    <h6 class="crypto-prices">
+                        {{ username }}'s Portfolio <br>
+                        Current balance: {{ totalBalance }}
                     </h6>
-                    <p>Current balance: </p>
                     <!-- iterate through the dictionary containing crypto balances and print to screen-->
-                    {% for item, value in dict.items() %}
-                        {% for currency in currencies %}
+                    {% for currency in currencies %}
+                        {% for item, value in dict.items() %}
                             {% if item == currency.currency_symbol %} 
                                 <div class="crypto-prices">
                                     {{ currency.currency_name }}

@@ -7,6 +7,10 @@ body {
     line-height: 2;
 } */
 
+.headline {
+    font-size: 2em;
+}
+
 .reveal-card-text {
     color: black
 }

@@ -137,20 +137,24 @@ def portfolio(username):
 
         # create a dictionary which calculate the user's balance for each cryptocurrency
         dict = {}
+        totalBalance = 0
         for balance in balances:
             for coin in coins:
                 if coin['symbol'] == balance.upper():    
-                    # x = "{:.2f}".format(coin['quote']['USD']['price']) * balances[balance]
                     x = coin['quote']['USD']['price'] * balances[balance]
                     x = "{:.2f}".format(x)
                     dict[balance.upper()] = x
+                    totalBalance = totalBalance + float(x)
                 elif balance.upper() == "USD":
                     x = balances[balance]
                     dict[balance.upper()] = x
-                
+                    # NEED TO FIX AS IT IS DOUBLING USD AMOUNT
+                    totalBalance = totalBalance + float(x)
+
+                totalBalance = float(totalBalance)
 
         return render_template(
-            "portfolio.html", username=username, currencies=currencies, balances=balances, coins=coins, dict=dict)
+            "portfolio.html", username=username, currencies=currencies, balances=balances, coins=coins, dict=dict, totalBalance=totalBalance)
 
     return redirect(url_for("login"))
 
