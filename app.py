@@ -1,5 +1,6 @@
 import os
 import requests
+from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 from flask import (
     Flask, flash, render_template, redirect,
     request, session, url_for)
@@ -41,9 +42,12 @@ def get_currencies():
         'convert' : 'USD'
     }
 
-    url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-    json = requests.get(url, params=params, headers=headers).json()
-    coins = json['data']
+    try:
+        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+        json = requests.get(url, params=params, headers=headers).json()
+        coins = json['data']
+    except (ConnectionError, Timeout, TooManyRedirects) as e:
+        flash(e)
 
     return render_template("currencies.html", currencies = currencies, coins = coins)
 
@@ -60,12 +64,25 @@ def register():
             return redirect(url_for("register"))
 
         register = {
-            "first_name": request.form.get("first_name").lower(),
-            "last_name": request.form.get("last_name").lower(),
+            "first_name": request.form.get("first_name").capitalize(),
+            "last_name": request.form.get("last_name").capitalize(),
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password").lower())
         }
+
+        balances = {
+            "email": request.form.get("email").lower(),
+            "usd": 100000,
+            "btc": 0,
+            "eth": 0,
+            "doge": 0,
+            "ada": 0,
+            "ltc": 0,
+            "sol": 0,
+            "usdt": 0
+        }
         mongo.db.users.insert_one(register)
+        mongo.db.balances.insert_one(balances)
 
         # put the new user into session cookie
         session["user"] = request.form.get("email").lower()
@@ -141,24 +158,29 @@ def portfolio():
         dict = {}
         totalBalance = 0
         for balance in balances:
-            for coin in coins:
-                if coin['symbol'] == balance.upper():    
-                    x = coin['quote']['USD']['price'] * balances[balance]
-                    x = "{:.2f}".format(x)
-                    dict[balance.upper()] = x
-                    totalBalance = totalBalance + float(x)
-                elif balance.upper() == "USD":
-                    x = balances[balance]
-                    dict[balance.upper()] = x
-                    # NEED TO FIX AS IT IS DOUBLING USD AMOUNT
-                    totalBalance = totalBalance + float(x)
+            if balance.upper() == "USD":
+                x = balances[balance]
+                dict[balance.upper()] = x
+                totalBalance = totalBalance + float(x)
+            else:
+                for coin in coins:
+                    if coin['symbol'] == balance.upper():    
+                        x = coin['quote']['USD']['price'] * balances[balance]
+                        x = "{:.2f}".format(x)
+                        dict[balance.upper()] = x
+                        totalBalance = totalBalance + float(x)
 
-                totalBalance = float(totalBalance)
+            totalBalance = float(totalBalance)
 
         return render_template(
             "portfolio.html", username=username, currencies=currencies, balances=balances, coins=coins, dict=dict, totalBalance=totalBalance)
 
     return redirect(url_for("login"))
+
+
+@app.route("/trade")
+def trade():
+    return render_template("trade.html")
 
 
 @app.route("/logout")
