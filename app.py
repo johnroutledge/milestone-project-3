@@ -72,14 +72,14 @@ def register():
 
         balances = {
             "email": request.form.get("email").lower(),
-            "usd": 100000,
-            "btc": 0,
-            "eth": 0,
-            "doge": 0,
-            "ada": 0,
-            "ltc": 0,
-            "sol": 0,
-            "usdt": 0
+            "USD": 100000,
+            "BTC": 0,
+            "ETH": 0,
+            "DOGE": 0,
+            "ADA": 0,
+            "LTS": 0,
+            "SOL": 0,
+            "USDT": 0
         }
         mongo.db.users.insert_one(register)
         mongo.db.balances.insert_one(balances)
@@ -131,10 +131,11 @@ def portfolio():
         {"email": session["user"]})["first_name"]
     
     if session["user"]:
-        # calculate portfolio balance
+        # retrieve user's balance for each cryptocurrency
         balances = mongo.db.balances.find_one(
             {"email": session["user"]})
 
+        # retrieve all tradable cryptocurrencies
         currencies = mongo.db.currencies.find()
 
         # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
@@ -180,7 +181,34 @@ def portfolio():
 
 @app.route("/trade")
 def trade():
-    return render_template("trade.html")
+    if session["user"]:
+        # retrieve user's balance for each cryptocurrency
+        balances = mongo.db.balances.find_one(
+            {"email": session["user"]})
+
+        # retrieve all tradable cryptocurrencies
+        currencies = mongo.db.currencies.find()
+
+        # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
+        # 'How to Use an API in Python to get Bitcoin's Price Live - Along with other Cryptocurrencies'
+        headers = {
+            'X-CMC_PRO_API_KEY' : coin_market_cap_key,
+            'Accepts' : 'application/json'
+        }
+
+        params = {
+            'start' : '1',
+            'limit' : '20',
+            'convert' : 'USD'
+        }
+
+        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+        json = requests.get(url, params=params, headers=headers).json()
+        coins = json['data']
+
+
+    return render_template(
+        "trade.html", currencies=currencies, balances=balances, coins=coins)
 
 
 @app.route("/logout")

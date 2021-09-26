@@ -21,7 +21,7 @@
                                     {{ currency.currency_symbol }}    
                                     <img src="{{ currency.image_source }}" alt="Profile image for {{ currency.currency_name }}">
                                         {{ value }}
-                                        <a href="{{ url_for('trade') }}" class="waves-effect waves-light btn-small" id="right-align">Trade</a><br>
+                                        <a href="{{ url_for('trade') }}" class="waves-effect waves-light btn-small" id="right-align {{ currency.currency_symbol }}">Trade</a><br>
                                     <hr>
                                 </div>
                             {% endif %}
