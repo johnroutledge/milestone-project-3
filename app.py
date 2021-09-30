@@ -179,8 +179,8 @@ def portfolio():
     return redirect(url_for("login"))
 
 
-@app.route("/trade")
-def trade():
+@app.route("/trade/<ticker>")
+def trade(ticker):
     if session["user"]:
         # retrieve user's balance for each cryptocurrency
         balances = mongo.db.balances.find_one(
@@ -208,7 +208,7 @@ def trade():
 
 
     return render_template(
-        "trade.html", currencies=currencies, balances=balances, coins=coins)
+        "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
 
 
 @app.route("/logout")

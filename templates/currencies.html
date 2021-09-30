@@ -10,7 +10,7 @@
                     <img src="{{ currency.image_source }}" alt="Profile image for {{ currency.currency_name }}">
                     <!--credit to kite.com for formatting tips - how to print float with 2 decimal places-->
                     price {{ "{:.2f}".format(coin['quote']['USD']['price']) }}, change {{ "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) }}% in last 24hrs
-                    <a href="{{ url_for('trade') }}" class="waves-effect waves-light btn-small" id="right-align {{ coin['symbol'] }}">Trade</a><br>
+                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small" id="right-align {{ coin['symbol'] }}">Trade</a><br>
                     <hr>
                 </div>
             {% endif %}
