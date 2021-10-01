@@ -7,6 +7,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -206,6 +207,25 @@ def trade(ticker):
         json = requests.get(url, params=params, headers=headers).json()
         coins = json['data']
 
+    if request.method == "POST":
+        #  credit: stackoverflow.com how to get current date and time in python
+        time_stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        # add code to get current prices for sold and bought currencies
+        # sold_price
+        # bought_price
+        transaction = {
+            "email": session["user"],
+            "time_stamp": time_stamp,
+            "currency_sold": request.form.get("currency_sold"),
+            "sold_amount": request.form.get("sold_amount"),
+            "sold_price": sold_price,
+            "currency_bought": request.form.get("currency_bought"),
+            "bought_price": bought_price,
+        }
+        mongo.db.transactions.insert_one(transaction)
+        # add code to update balances document in DB
+        flash("Trade Successfully Processed")
+        return redirect(url_for("portfolio"))
 
     return render_template(
         "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
