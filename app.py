@@ -180,7 +180,7 @@ def portfolio():
     return redirect(url_for("login"))
 
 
-@app.route("/trade/<ticker>")
+@app.route("/trade/<ticker>", methods=["GET", "POST"])
 def trade(ticker):
     if session["user"]:
         # retrieve user's balance for each cryptocurrency
@@ -210,9 +210,18 @@ def trade(ticker):
     if request.method == "POST":
         #  credit: stackoverflow.com how to get current date and time in python
         time_stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        # add code to get current prices for sold and bought currencies
-        # sold_price
-        # bought_price
+        # code to get current prices for sold and bought currencies
+        sold_price = 0
+        bought_price = 0
+        for coin in coins:
+            if request.form.get("currency_sold").upper() == "USD":
+                sold_price = 1
+            elif coin['symbol'] == request.form.get("currency_sold"):
+                sold_price = "{:.2f}".format(coin['quote']['USD']['price'])
+            if coin['symbol'] == request.form.get("currency_bought"):
+                bought_price = "{:.2f}".format(coin['quote']['USD']['price'])
+
+        # create the dictionary to be inserted into the db
         transaction = {
             "email": session["user"],
             "time_stamp": time_stamp,

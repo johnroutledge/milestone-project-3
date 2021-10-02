@@ -4,14 +4,14 @@
     <h4>Trade</h4>
     
     <div class="row">
-        <form class="col s12 m12 " method="POST" action="">
+        <form class="col s12 m12 " method="POST" action="{{ url_for('trade', ticker = 'None') }}">
             <!-- <div class="card grey darken-3"> -->
                 <!-- <div class="card-image">
                     <img src="../static/images/register.jpg">
                 </div> -->
                 <div class="card-content">
                     <div class="input-field col m4 s12">
-                        <select id="currency_sold">
+                        <select id="currency_sold" name="currency_sold">
                             <option disabled selected>Sell</option>
                             {% for balance in balances %}
                                 {% if balances[balance] != 0 %}
@@ -23,11 +23,11 @@
                         </select>
                     </div>
                     <div class="input-field col m4 s12">
-                        <input id="sold_amount" type="text" pattern="^[0-9]{0,15}$" class="validate">
+                        <input id="sold_amount" name="sold_amount" type="text" pattern="^[0-9]{0,15}$" class="validate">
                         <label for="sold_amount">Amount</label>
                       </div>
                     <div class="input-field col m4 s12">
-                        <select id="currency_bought">
+                        <select id="currency_bought" name="currency_bought">
                             <option value="" disabled selected>Buy</option>
                             {% for currency in currencies %}
                                 <option>{{ currency.currency_symbol }}</option>
