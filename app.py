@@ -159,6 +159,7 @@ def portfolio():
         # create a dictionary which calculate the user's balance for each cryptocurrency
         dict = {}
         totalBalance = 0
+        percentageChange = 0
         for balance in balances:
             if balance.upper() == "USD":
                 x = balances[balance]
@@ -172,10 +173,13 @@ def portfolio():
                         dict[balance.upper()] = x
                         totalBalance = totalBalance + float(x)
 
-            totalBalance = float(totalBalance)
+            totalBalance = int(float(totalBalance))
+            percentageChange = int((totalBalance - 100000) / 1000)
 
         return render_template(
-            "portfolio.html", username=username, currencies=currencies, balances=balances, coins=coins, dict=dict, totalBalance=totalBalance)
+            "portfolio.html", username=username,
+                currencies=currencies, balances=balances, coins=coins,
+                dict=dict, totalBalance=totalBalance, percentageChange=percentageChange)
 
     return redirect(url_for("login"))
 
@@ -212,11 +216,21 @@ def trade(ticker):
         balances = mongo.db.balances.find_one(
             {"email": session["user"]})
         currency_sold = request.form.get("currency_sold")
-        available_balance = balances[currency_sold]
+        if currency_sold.lower() == "usd":
+            available_balance = balances[currency_sold]
+        else:
+            for coin in coins:
+                if coin['symbol'] == currency_sold.upper():
+                    sold_price = "{:.2f}".format(coin['quote']['USD']['price'])
+            
+            available_balance = balances[currency_sold] * int(float(sold_price))
+        
         requested_balance = request.form.get("sold_amount")
 
         if int(requested_balance) > int(available_balance):
             flash("Insufficient funds")
+            flash(balances[currency_sold])
+            flash(int(float(sold_price)))
             return render_template(
                 "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
 
@@ -228,9 +242,11 @@ def trade(ticker):
         for coin in coins:
             if request.form.get("currency_sold").upper() == "USD":
                 sold_price = 1
-            elif coin['symbol'] == request.form.get("currency_sold"):
+            elif coin['symbol'] == request.form.get("currency_sold").upper():
                 sold_price = "{:.2f}".format(coin['quote']['USD']['price'])
-            if coin['symbol'] == request.form.get("currency_bought"):
+            if request.form.get("currency_bought").upper() == "USD":
+                bought_price = 1
+            elif coin['symbol'] == request.form.get("currency_bought"):
                 bought_price = "{:.2f}".format(coin['quote']['USD']['price'])
 
         # create the dictionary to be inserted into the db
@@ -245,7 +261,7 @@ def trade(ticker):
         }
         mongo.db.transactions.insert_one(transaction)
         
-        # update balances document in DB
+        # update balances of cryptos sold and bought in balances document in DB
         current_sold_balance = 0
         new_sold_balance = 0
 
@@ -258,12 +274,15 @@ def trade(ticker):
             if balance.upper() == request.form.get("currency_bought").upper():
                 current_bought_balance = balances[balance]
 
-        new_sold_balance = int(current_sold_balance) - int(request.form.get("sold_amount"))
-
+        new_sold_balance = int(current_sold_balance) - (int(request.form.get("sold_amount")) / int(float(sold_price)))
+        new_bought_balance = int(request.form.get("sold_amount")) / int(float(bought_price))
         mongo.db.balances.update(
             { "email": session["user"] },
             { "$set":
-                {request.form.get("currency_sold"): new_sold_balance }
+                {
+                    request.form.get("currency_sold").lower(): new_sold_balance,
+                    request.form.get("currency_bought").lower(): new_bought_balance
+                }
             }
         )
 

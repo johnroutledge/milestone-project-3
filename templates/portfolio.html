@@ -10,7 +10,8 @@
                 <div class="card-content">
                     <h6 class="crypto-prices">
                         {{ username }}'s Portfolio <br>
-                        Current balance: {{ totalBalance }}
+                        Current balance: {{ totalBalance }} <br>
+                        Change: {{ percentageChange }}%
                     </h6>
                     <!-- iterate through the dictionary containing crypto balances and print to screen-->
                     {% for currency in currencies %}
