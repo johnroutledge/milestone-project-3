@@ -208,7 +208,19 @@ def trade(ticker):
         coins = json['data']
 
     if request.method == "POST":
-        #  credit: stackoverflow.com how to get current date and time in python
+        #  check to see if available balance covers trade
+        balances = mongo.db.balances.find_one(
+            {"email": session["user"]})
+        currency_sold = request.form.get("currency_sold")
+        available_balance = balances[currency_sold]
+        requested_balance = request.form.get("sold_amount")
+
+        if int(requested_balance) > int(available_balance):
+            flash("Insufficient funds")
+            return render_template(
+                "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
+
+        # credit: stackoverflow.com how to get current date and time in python
         time_stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         # code to get current prices for sold and bought currencies
         sold_price = 0
@@ -232,8 +244,30 @@ def trade(ticker):
             "bought_price": bought_price,
         }
         mongo.db.transactions.insert_one(transaction)
-        # add code to update balances document in DB
-        flash("Trade Successfully Processed")
+        
+        # update balances document in DB
+        current_sold_balance = 0
+        new_sold_balance = 0
+
+        balances = mongo.db.balances.find_one(
+            {"email": session["user"]})
+
+        for balance in balances:
+            if balance.upper() == request.form.get("currency_sold").upper():
+                current_sold_balance = balances[balance]
+            if balance.upper() == request.form.get("currency_bought").upper():
+                current_bought_balance = balances[balance]
+
+        new_sold_balance = int(current_sold_balance) - int(request.form.get("sold_amount"))
+
+        mongo.db.balances.update(
+            { "email": session["user"] },
+            { "$set":
+                {request.form.get("currency_sold"): new_sold_balance }
+            }
+        )
+
+        flash("Trade Successfully Processed ")
         return redirect(url_for("portfolio"))
 
     return render_template(
