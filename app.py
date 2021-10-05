@@ -63,12 +63,14 @@ def register():
         if existing_user:
             flash("email already registered")
             return redirect(url_for("register"))
-
+        
+        time_stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         register = {
             "first_name": request.form.get("first_name").capitalize(),
             "last_name": request.form.get("last_name").capitalize(),
             "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password").lower())
+            "password": generate_password_hash(request.form.get("password").lower()),
+            "register_date": time_stamp
         }
 
         balances = {
@@ -274,8 +276,8 @@ def trade(ticker):
             if balance.upper() == request.form.get("currency_bought").upper():
                 current_bought_balance = balances[balance]
 
-        new_sold_balance = int(current_sold_balance) - (int(request.form.get("sold_amount")) / int(float(sold_price)))
-        new_bought_balance = int(request.form.get("sold_amount")) / int(float(bought_price))
+        new_sold_balance = float(current_sold_balance) - (float(request.form.get("sold_amount")) / float(sold_price))
+        new_bought_balance = float(current_bought_balance) + (float(request.form.get("sold_amount")) / float(bought_price))
         mongo.db.balances.update(
             { "email": session["user"] },
             { "$set":
