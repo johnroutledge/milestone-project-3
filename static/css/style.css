@@ -2,6 +2,8 @@ body {
     /* background-color: slategray; */
     background-color: white;
     color: slategray;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
 }
 
 /* .flashes h6 {
@@ -28,6 +30,7 @@ body {
 .headline-text {
     font-family: 'Montserrat', sans-serif;
     font-size: 4em;
+    font-weight: bold;
     top: 0em;
     padding-top: 0em;
 }
@@ -59,4 +62,12 @@ body {
 
 #right-align {
     float: right;
+}
+
+#positive-change {
+    color: green;
+}
+
+#negative-change {
+    color: red;
 }

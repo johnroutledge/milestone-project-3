@@ -1,21 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <p></p>
-    <!--iterate through list of currencies listed in db to find price information in coin array-->
-    {% for currency in currencies %}
-        {% for coin in coins %}
-            {% if coin['symbol'] == currency.currency_symbol %}    
-                <div class="crypto-prices">
-                    {{ coin['name'] }} {{ coin['symbol'] }}    
-                    <img class="crypto-icon" src="{{ currency.image_source }}" alt="Profile image for {{ currency.currency_name }}">
-                    <!--credit to kite.com for formatting tips - how to print float with 2 decimal places-->
-                    price {{ "{:.2f}".format(coin['quote']['USD']['price']) }}, change {{ "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) }}% in last 24hrs
-                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small" id="right-align {{ coin['symbol'] }}">Trade</a><br>
-                    <hr>
+    <div class="row">
+        <div class="col s12 m10 offset-m1">
+            <div class="card white">
+                <div class="card-content">
+                    <p class="crypto-prices">Latest Prices</p><br>
+                    <p></p>
+                    <!--iterate through list of currencies listed in db to find price information in coin array-->
+                    {% for currency in currencies %}
+                        {% for coin in coins %}
+                            {% if coin['symbol'] == currency.currency_symbol %}    
+                                <div class="crypto-prices">
+                                    {{ coin['name'] }} {{ coin['symbol'] }}    
+                                    <img class="crypto-icon" src="{{ currency.image_source_large }}" alt="Profile image for {{ currency.currency_name }}">
+                                    <!--credit to kite.com for formatting tips - how to print float with 2 decimal places-->
+                                    price {{ "{:.2f}".format(coin['quote']['USD']['price']) }}, 
+                                    {% if '-' not in "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) %} <span id="positive-change">+{{ "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) }}%</span> {% endif %}
+                                    {% if '-' in "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) %} <span id="negative-change">{{ "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) }}%</span> {% endif %}
+                                    last 24hrs
+                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small pink lighten-2" id="right-align {{ coin['symbol'] }}">Trade</a><br>
+                                    <hr>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
                 </div>
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

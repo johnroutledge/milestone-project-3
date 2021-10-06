@@ -170,7 +170,7 @@ def portfolio():
             else:
                 for coin in coins:
                     if coin['symbol'] == balance.upper():    
-                        x = coin['quote']['USD']['price'] * balances[balance]
+                        x = coin['quote']['USD']['price'] * float(balances[balance])
                         x = "{:.2f}".format(x)
                         dict[balance.upper()] = x
                         totalBalance = totalBalance + float(x)
