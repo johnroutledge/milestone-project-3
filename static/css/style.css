@@ -53,6 +53,12 @@ body {
     float: right;
 }
 
+.update-warning {
+    color: red;
+    font-size: small;
+    line-height: 150%;
+}
+
 .upper {
     text-transform: uppercase;
 }

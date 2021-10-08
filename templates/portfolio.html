@@ -15,6 +15,7 @@
                         Change: 
                         {% if '-' not in percentageChange|string %} <span id="positive-change">+{{ percentageChange }}%</span> {% endif %}
                         {% if '-' in percentageChange|string %} <span id="negative-change">{{ percentageChange }}%</span> {% endif %}
+                        <hr>
                     </h6>
                     <!-- iterate through the dictionary containing crypto balances and print to screen-->
                     {% for currency in currencies %}

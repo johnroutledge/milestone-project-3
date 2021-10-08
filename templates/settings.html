@@ -9,12 +9,11 @@
                 </div>
                 <div class="card-content">
                     <h6 class="crypto-prices">
-                        {{ username }}'s Profile <br>
-                        Display currency:
+                        First name: {{ userSettings.first_name }}<br>
+                        Last name: {{ userSettings.last_name }}<br>
+                        Display currency: {{ userSettings.display_currency.upper() }}<br>
+                        <a href="{{ url_for('edit_settings') }}" class="waves-effect waves-light btn-small pink lighten-2">Edit</a><br>
                     </h6>
-                    <!-- insert code to list transaction history here-->
-                       
-
                 </div>
             </div>
         </div>

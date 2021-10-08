@@ -123,6 +123,7 @@ def login():
 
     return render_template("login.html")
 
+
 @app.route("/settings/")
 def settings():
     if "user" not in session:
@@ -130,11 +131,25 @@ def settings():
 
     # get users first name from db
     userSettings = mongo.db.users.find_one(
-        {"email": session["user"]})["first_name"]
+        {"email": session["user"]})
     
     if session["user"]:
         return render_template(
             "settings.html", userSettings=userSettings)
+
+
+@app.route("/edit_settings/", methods = ["GET", "POST"])
+def edit_settings():
+    if "user" not in session:
+        return redirect(url_for("login"))
+
+    # get users first name from db
+    userSettings = mongo.db.users.find_one(
+        {"email": session["user"]})
+    
+    if session["user"]:
+        return render_template(
+            "edit_settings.html", userSettings=userSettings)
 
 
 @app.route("/portfolio/", methods=["GET", "POST"])
