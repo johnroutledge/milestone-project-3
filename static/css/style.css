@@ -6,9 +6,10 @@ body {
     font-weight: bolder;
 }
 
-/* .flashes h6 {
+.flashes {
     line-height: 2;
-} */
+    font-weight: bolder;
+}
 
 .headline {
     font-size: 2em;
@@ -70,4 +71,8 @@ body {
 
 #negative-change {
     color: red;
+}
+
+.parallax {
+    position: static;
 }

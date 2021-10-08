@@ -29,6 +29,7 @@
                             <li><a href="{{ url_for('portfolio', username=session['user']) }}">Portfolio</a></li>
                             <li><a href="{{ url_for('get_currencies') }}">Prices</a></li>
                             <li><a href="{{ url_for('trade', ticker='USD') }}">Trade</a></li>
+                            <li><a href="{{ url_for('settings') }}">Settings</a></li>
                             <li><a href="{{ url_for('logout') }}">Logout</a></li>
                         {% else %}
                             <li><a href="{{ url_for('login') }}">Sign In</a></li>
@@ -46,6 +47,8 @@
             {% if session.user %}
                 <li><a href="{{ url_for('portfolio', username=session['user']) }}">Portfolio</a></li>
                 <li><a href="{{ url_for('get_currencies') }}">Prices</a></li>
+                <li><a href="{{ url_for('trade', ticker='USD') }}">Trade</a></li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}">Sign In</a></li>

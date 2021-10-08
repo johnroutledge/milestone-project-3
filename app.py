@@ -123,6 +123,19 @@ def login():
 
     return render_template("login.html")
 
+@app.route("/settings/")
+def settings():
+    if "user" not in session:
+        return redirect(url_for("login"))
+
+    # get users first name from db
+    userSettings = mongo.db.users.find_one(
+        {"email": session["user"]})["first_name"]
+    
+    if session["user"]:
+        return render_template(
+            "settings.html", userSettings=userSettings)
+
 
 @app.route("/portfolio/", methods=["GET", "POST"])
 def portfolio():
