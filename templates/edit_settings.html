@@ -3,42 +3,46 @@
 
     <div class="row">
         <form class="col s6 m6 offset-m3" method="POST" action="{{ url_for('edit_settings') }}">
-        <!-- <div class="col s6 m6 offset-m3"> -->
             <div class="card white">
                 <div class="card-image">
                     <img src="../static/images/register.jpg">
+                    <div class="over-image">Edit Settings</div>
                 </div>
                 <div class="card-content">
                     <h6 class="crypto-prices">
-                        <!--first and last name-->
-                        <div class="row">
-                            <div class="input-field col s6">
-                                First name: 
-                                <input id="first_name" name="first_name" type="text" pattern="^[A-Za-z]{1,30}$"
-                                    class="validate" required>
-                                <label for="first_name">First Name</label>
-                            </div>
-                            <br>
-                            <div class="input-field col s6">
-                                Last name: 
-                                <input id="last_name" name="last_name" type="text" pattern="^[A-Za-z]{1,30}$"
-                                    class="validate" required>
-                                <label for="last_name">Last Name</label>
-                            </div>
+                        First name: 
+                        <div class="input-field inline">
+                            <input id="first_name" name="first_name" type="text" pattern="^[A-Za-z]{1,30}$"
+                            class="validate" required>
+                            <label for="first_name">{{ userSettings.first_name }}</label>
                         </div>
-                        <!-- First name: {{ userSettings.first_name }}<br> -->
-                        <!-- Last name: {{ userSettings.last_name }}<br> -->
+                        <br>
+                        Last name: 
+                        <div class="input-field inline">
+                            <input id="last_name" name="last_name" type="text" pattern="^[A-Za-z]{1,30}$"
+                            class="validate" required>
+                            <label for="last_name">{{ userSettings.last_name }}</label>
+                        </div>
+                        <br>
                         Display currency:
                         <div>
                             <span>
                                 <label>
-                                    <input name="group1" type="radio" checked />
+                                    {% if userSettings.display_currency == "usd" %}
+                                        <input id="currency_select" name="currency_select" type="radio" checked />
+                                    {% else %}
+                                        <input id="currency_select" name="currency_select" type="radio" />
+                                    {% endif %}
                                     <span>USD</span>
                                 </label>
                             </span>
                             <span>
                                 <label>
-                                    <input name="group1" type="radio" />
+                                    {% if userSettings.display_currency == "usd" %}
+                                        <input id="currency_select" name="currency_select" type="radio"  />
+                                    {% else %}
+                                        <input id="currency_select" name="currency_select" type="radio" checked />
+                                    {% endif %}
                                     <span>GBP</span>
                                 </label>
                             </span>
@@ -48,18 +52,23 @@
                         <div class="update-warning">WARNING: Selecting 'Yes' will delete all trading history and reset account to 100000 credits</div>
                         <div class="switch">
                             <label>
-                            No
+                            NO
                             <input type="checkbox">
                             <span class="lever"></span>
-                            Yes
+                            YES
                             </label>
                         </div>
-                        <a href="{{ url_for('edit_settings') }}" class="waves-effect waves-light btn-small pink lighten-2">Save</a><br>
+                        <a href="{{ url_for('settings') }}" class="waves-effect waves-light btn-small pink lighten-2">Cancel</a><br>
+                        <div class="row">
+                            <button type="submit" class="col s12 btn-large pink lighten-3">
+                                Save  <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                        <!-- <a href="{{ url_for('edit_settings') }}" class="waves-effect waves-light btn-small pink lighten-2">Save</a><br> -->
                     </h6>
                 </div>
             </div>
-        <!-- </div> -->
-        </form>
+        </div>
     </div>
 
 {% endblock %}

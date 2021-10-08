@@ -36,6 +36,15 @@ body {
     padding-top: 0em;
 }
 
+.over-image {
+    font-size: x-large;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+
 .card-image {
     margin-top: 5px;
 }
@@ -77,6 +86,11 @@ body {
 
 #negative-change {
     color: red;
+}
+
+#currency-select {
+    background-color: pink;
+    border-color: pink;
 }
 
 .parallax {

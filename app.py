@@ -138,7 +138,7 @@ def settings():
             "settings.html", userSettings=userSettings)
 
 
-@app.route("/edit_settings/", methods = ["GET", "POST"])
+@app.route("/edit_settings/", methods=["GET", "POST"])
 def edit_settings():
     if "user" not in session:
         return redirect(url_for("login"))
@@ -146,7 +146,34 @@ def edit_settings():
     # get users first name from db
     userSettings = mongo.db.users.find_one(
         {"email": session["user"]})
-    
+
+    if request.method == "POST":
+        # display_currency = "USD" if request.form.get("is_urgent") else "GBP"
+        # submit = {
+        #     "first_name": request.form.get("first_name"),
+        #     "last_name": request.form.get("last_name"),
+        #     "display_currency": request.form.get("currency-select"),
+        # }
+        # mongo.db.users.update({"email": session["user"]}, submit)
+        
+        display_currency = "usd"
+        if request.form.get("currency_select"):
+            display_currency = "gbp"
+        
+        mongo.db.users.update(
+            { "email": session["user"] },
+            { "$set":
+                {
+                    "first_name": request.form.get("first_name"),
+                    "last_name": request.form.get("last_name"),
+                    "display_currency": display_currency,
+                }
+            }
+        )
+        flash("Settings Successfully Updated")
+
+        return render_template("settings.html", userSettings=userSettings)
+
     if session["user"]:
         return render_template(
             "edit_settings.html", userSettings=userSettings)
