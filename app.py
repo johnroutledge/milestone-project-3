@@ -75,14 +75,15 @@ def register():
 
         balances = {
             "email": request.form.get("email").lower(),
-            "USD": 100000,
-            "BTC": 0,
-            "ETH": 0,
-            "DOGE": 0,
-            "ADA": 0,
-            "LTS": 0,
-            "SOL": 0,
-            "USDT": 0
+            "usd": 100000,
+            "btc": 0,
+            "eth": 0,
+            "doge": 0,
+            "ada": 0,
+            "lts": 0,
+            "xrp": 0,
+            "usdt": 0,
+            "bnb": 0
         }
         mongo.db.users.insert_one(register)
         mongo.db.balances.insert_one(balances)
@@ -148,16 +149,10 @@ def edit_settings():
         {"email": session["user"]})
 
     if request.method == "POST":
-        # display_currency = "USD" if request.form.get("is_urgent") else "GBP"
-        # submit = {
-        #     "first_name": request.form.get("first_name"),
-        #     "last_name": request.form.get("last_name"),
-        #     "display_currency": request.form.get("currency-select"),
-        # }
-        # mongo.db.users.update({"email": session["user"]}, submit)
-        
         display_currency = "usd"
-        if request.form.get("currency_select"):
+        if request.form.get("usd") == "ON":
+            display_currency = display_currency
+        else:
             display_currency = "gbp"
         
         mongo.db.users.update(
@@ -166,20 +161,45 @@ def edit_settings():
                 {
                     "first_name": request.form.get("first_name"),
                     "last_name": request.form.get("last_name"),
-                    "display_currency": display_currency,
+                    "display_currency": display_currency
                 }
             }
         )
         flash("Settings Successfully Updated")
 
-        return render_template("settings.html", userSettings=userSettings)
+        if request.form.get("reset_account") == "on":
+            mongo.db.transactions.remove({ "email": session["user"] })
+            mongo.db.balances.update(
+                { "email": session["user"] },
+                { "$set":
+                    {
+                        "usd": 100000,
+                        "btc": 0,
+                        "eth": 0,
+                        "doge": 0,
+                        "ada": 0,
+                        "lts": 0,
+                        "xrp": 0,
+                        "usdt": 0,
+                        "bnb": 0
+                    }
+                }
+            )
+            flash("Account reset")
+        
+        flash(request.form.get("usd"))
+        flash(request.form.get("gbp"))
+        flash(request.form.get("reset_account"))
+        flash(request.form.get("first_name"))
+        return redirect(url_for("settings"))
+        # return render_template("settings.html", userSettings=userSettings)
 
     if session["user"]:
         return render_template(
             "edit_settings.html", userSettings=userSettings)
 
 
-@app.route("/portfolio/", methods=["GET", "POST"])
+@app.route("/portfolio/")
 def portfolio():
     if "user" not in session:
         return redirect(url_for("login"))
@@ -237,6 +257,26 @@ def portfolio():
             "portfolio.html", username=username,
                 currencies=currencies, balances=balances, coins=coins,
                 dict=dict, totalBalance=totalBalance, percentageChange=percentageChange)
+
+    return redirect(url_for("login"))
+
+
+@app.route("/transactions/")
+def transactions():
+    if "user" not in session:
+        return redirect(url_for("login"))
+
+    # get users first name from db
+    username = mongo.db.users.find_one(
+        {"email": session["user"]})["first_name"]
+    
+    if session["user"]:
+        # retrieve user's transaction history
+        transactions = mongo.db.transactions.find(
+            {"email": session["user"]})
+        
+        return render_template(
+            "transactions.html", transactions=transactions)
 
     return redirect(url_for("login"))
 

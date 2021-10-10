@@ -27,21 +27,21 @@
                         Display currency:
                         <div>
                             <span>
-                                <label>
+                                <label for="usd">
                                     {% if userSettings.display_currency == "usd" %}
-                                        <input id="currency_select" name="currency_select" type="radio" checked />
+                                        <input id="usd" name="display_currency" type="radio" checked />
                                     {% else %}
-                                        <input id="currency_select" name="currency_select" type="radio" />
+                                        <input id="usd" name="display_currency" type="radio" />
                                     {% endif %}
                                     <span>USD</span>
                                 </label>
                             </span>
                             <span>
-                                <label>
+                                <label for="gbp">
                                     {% if userSettings.display_currency == "usd" %}
-                                        <input id="currency_select" name="currency_select" type="radio"  />
+                                        <input id="gbp" name="display_currency" type="radio" />
                                     {% else %}
-                                        <input id="currency_select" name="currency_select" type="radio" checked />
+                                        <input id="gbp" name="display_currency" type="radio"checked />
                                     {% endif %}
                                     <span>GBP</span>
                                 </label>
@@ -51,11 +51,11 @@
                         Reset Portfolio?
                         <div class="update-warning">WARNING: Selecting 'Yes' will delete all trading history and reset account to 100000 credits</div>
                         <div class="switch">
-                            <label>
-                            NO
-                            <input type="checkbox">
+                            <label for="reset_account">
+                                NO
+                            <input id="reset_account" name="reset_account" type="checkbox">
                             <span class="lever"></span>
-                            YES
+                                YES
                             </label>
                         </div>
                         <a href="{{ url_for('settings') }}" class="waves-effect waves-light btn-small pink lighten-2">Cancel</a><br>
