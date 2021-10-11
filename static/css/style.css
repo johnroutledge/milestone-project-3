@@ -6,6 +6,10 @@ body {
     font-weight: bolder;
 }
 
+/* #bold-hash {
+    font-weight: bold;
+} */
+
 .flashes {
     line-height: 2;
     font-weight: bolder;
@@ -43,7 +47,24 @@ body {
     position: absolute;
     bottom: 8px;
     left: 16px;
-  }
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both
+}
+.header {
+    padding: 1%;
+    width: 100%;
+    font-size: 3em;
+}
+.header > img {
+    float: right;
+    max-width: 30%;
+    max-height: 5rem;
+}
 
 .card-image {
     margin-top: 5px;
@@ -95,4 +116,8 @@ body {
 
 .parallax {
     position: static;
+}
+
+#edit-settings-buttons {
+    padding-bottom: 1rem;
 }

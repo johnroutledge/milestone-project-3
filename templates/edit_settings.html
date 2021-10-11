@@ -4,11 +4,10 @@
     <div class="row">
         <form class="col s6 m6 offset-m3" method="POST" action="{{ url_for('edit_settings') }}">
             <div class="card white">
-                <div class="card-image">
-                    <img src="../static/images/register.jpg">
-                    <div class="over-image">Edit Settings</div>
-                </div>
                 <div class="card-content">
+                    <div class="clearfix header">
+                        Edit Settings<img src="../static/images/crypto_coins_bw_min.png">
+                    </div><hr>
                     <h6 class="crypto-prices">
                         First name: 
                         <div class="input-field inline">
@@ -29,9 +28,9 @@
                             <span>
                                 <label for="usd">
                                     {% if userSettings.display_currency == "usd" %}
-                                        <input id="usd" name="display_currency" type="radio" checked />
+                                        <input id="usd" name="display_currency" type="radio" value="usd" checked />
                                     {% else %}
-                                        <input id="usd" name="display_currency" type="radio" />
+                                        <input id="usd" name="display_currency" type="radio" value="usd" />
                                     {% endif %}
                                     <span>USD</span>
                                 </label>
@@ -39,9 +38,9 @@
                             <span>
                                 <label for="gbp">
                                     {% if userSettings.display_currency == "usd" %}
-                                        <input id="gbp" name="display_currency" type="radio" />
+                                        <input id="gbp" name="display_currency" type="radio" value="gbp" />
                                     {% else %}
-                                        <input id="gbp" name="display_currency" type="radio"checked />
+                                        <input id="gbp" name="display_currency" type="radio"checked value="gbp" />
                                     {% endif %}
                                     <span>GBP</span>
                                 </label>
@@ -57,18 +56,17 @@
                             <span class="lever"></span>
                                 YES
                             </label>
-                        </div>
-                        <a href="{{ url_for('settings') }}" class="waves-effect waves-light btn-small pink lighten-2">Cancel</a><br>
-                        <div class="row">
-                            <button type="submit" class="col s12 btn-large pink lighten-3">
+                        </div><br>
+                        <div id="edit-settings-buttons">
+                            <a href="{{ url_for('settings') }}" class="waves-effect waves-light btn-small pink lighten-2 left crypto-icon">Cancel  <i class="fas fa-times"></i></a>
+                            <button type="submit" class="waves-effect waves-light btn-small pink lighten-2 crypto-icon">
                                 Save  <i class="fas fa-check"></i>
                             </button>
                         </div>
-                        <!-- <a href="{{ url_for('edit_settings') }}" class="waves-effect waves-light btn-small pink lighten-2">Save</a><br> -->
                     </h6>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 
 {% endblock %}

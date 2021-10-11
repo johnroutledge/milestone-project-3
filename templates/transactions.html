@@ -5,15 +5,19 @@
         <div class="col s12 m10 offset-m1">
             <div class="card white">
                 <div class="card-content">
-                    <p class="crypto-prices">Transactions</p>
+                    <div class="clearfix header">
+                        Transactions<img src="../static/images/crypto_coins_bw_min.png">
+                    </div>
                     <hr>
-                    <p></p>
                     <!--iterate through transactions listed in db to populate transaction history-->
                     {% for transaction in transactions %}
                         <div class="crypto-prices">
                             {{ transaction.time_stamp }}
-                            <hr>
-                        </div>
+                            Sold {{ transaction.currency_sold}}
+                            Amount {{ transaction.sold_amount }}
+                            Bought {{ transaction.currency_bought }}
+                            Price {{ transaction.bought_price }}
+                        </div><hr>
                     {% endfor %}
                 </div>
             </div>

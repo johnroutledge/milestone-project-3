@@ -149,11 +149,6 @@ def edit_settings():
         {"email": session["user"]})
 
     if request.method == "POST":
-        display_currency = "usd"
-        if request.form.get("usd") == "ON":
-            display_currency = display_currency
-        else:
-            display_currency = "gbp"
         
         mongo.db.users.update(
             { "email": session["user"] },
@@ -161,7 +156,7 @@ def edit_settings():
                 {
                     "first_name": request.form.get("first_name"),
                     "last_name": request.form.get("last_name"),
-                    "display_currency": display_currency
+                    "display_currency": request.form.get("display_currency")
                 }
             }
         )
@@ -187,10 +182,6 @@ def edit_settings():
             )
             flash("Account reset")
         
-        flash(request.form.get("usd"))
-        flash(request.form.get("gbp"))
-        flash(request.form.get("reset_account"))
-        flash(request.form.get("first_name"))
         return redirect(url_for("settings"))
         # return render_template("settings.html", userSettings=userSettings)
 
