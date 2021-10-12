@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class="row">
-        <div class="col s12 m10 offset-m1">
+        <div class="col s12 m8 offset-m2">
             <div class="card white">
                 <div class="card-content">
                     <div class="clearfix header">
@@ -23,11 +23,11 @@
                         {% for item, value in dict.items() %}
                             {% if item == currency.currency_symbol %} 
                                 <div class="crypto-prices">
+                                    <img class="crypto-icon" src="{{ currency.image_source_large }}" alt="Profile image for {{ currency.currency_name }}">
                                     {{ currency.currency_name }}
                                     ({{ currency.currency_symbol }})    
-                                    <img class="crypto-icon" src="{{ currency.image_source_large }}" alt="Profile image for {{ currency.currency_name }}">
-                                        {{ value }}
-                                        <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small pink lighten-2" id="right-align {{ currency.currency_symbol }}">Trade</a><br>
+                                    {{ value }}
+                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small pink lighten-2" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
                                     <hr>
                                 </div>
                             {% endif %}

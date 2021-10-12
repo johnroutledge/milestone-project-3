@@ -1,4 +1,4 @@
-# hashmoney
+# Hashmoney
 **Backend Data Centric Milestone Project**
 
 ![Main Mockup](https://johnroutledge.github.io/milestone-project-3/assets/images/main_mockup.png "Main Mockup")
@@ -17,19 +17,19 @@ This website meets such needs by providing them with the ability to trade and tr
 All of the prices are up-to-the-minute accurate and taken from coinmarketcap.com via an api. Users can track the progress of their portfolio and can buy, sell and exchange cryptocurrencies as often as they wish.  There is also the option to reset their account and start from scratch.
 
 The typical user for the website would be someone:
-* Looking for some quick, light-hearted entertainment
-* Who likes retro-style games
-* Who is trying to improve their hand-eye coordination
-* Who wants to speed up their reactions
-* Who doesn't have too much time to invest in a game
+* Is completely new to crypto and just wants to follow the prices
+* Is unsure about trading crypto and wants to try it for fun
+* Is risk-averse and wants to see how much they could make without any financial investment
+* Knows about cryptocurrencies but can't afford to invest their own money just yet
+* Wants an imaginary crypto portfolio to show their friend/partner/client the risks/benefits of investing
 
 People visiting this website are looking for:
-* Entertainment
-* Fun
-* A quick five-minute distraction
-* A test of their reflexes
+* Increased knowledge of trading cryptocurrencies
+* A quick, easy way to invest in crytocurrencies risk-free
+* The different profits which could be made in the short and long-term
+* An introduction to cryptocurrencies
 
-Pop Bang Boing is the ideal site for such people because:
+Hashmoney is the ideal site for such people because:
 * It includes all of the above in one place
 * It has intuitive controls and layout
 * It is both clear and concise in its layout
@@ -88,29 +88,38 @@ The 'arcade' font was chosen to give a classic arcade game feel, while the neon 
 ## Features
 
 **Implemented**
-* Highlighted buttons on hover to enhance the UX and intuitiveness of gameplay
-* Random color each time action word changes to emphasize when a new action appears
-* Neon color scheme and fonts to give a retro feel
-* Classic game play sound effects to maintain the retro feel and also give extra user feedback
-* Instructions that load as a modal when page is loaded and also when 'help' button is pressed
-* Flashing button to indicate which button the player should have clicked after making a mistake
-* High score area to add an element of competitiveness
+* CHANGE 
+* CHANGE 
+* CHANGE 
+* CHANGE 
+* CHANGE 
+* CHANGE 
+* CHANGE 
 
 **Future Features to Implement**
-* Have extra leaderboards which save scores permanently. There could be one for the user's all-time best score, and another for all users globally.
-* Add a demo mode which helps visual learners with the game instructions
-* Give a choice of background images and color schemes to add to the UX
+* The ability to choose from a wider range of cryptocurrencies
+* Unlimited access to cryptocurrency rates (currently it is limited as the free API option was chosen)
+* Give a choice of color schemes to add to the UX
+* A portfolio balance leaderboard so traders can compete with each other regiestered users
+* Add 'forgot password' functionality
+* Price charts for prices and portfolio history to add to the UX
+* Links to real-money cryptocurrency exchanges so the site can earn commission
 
 ***
 
 ## Technologies Employed
 
+* Python
 * HTML
 * CSS
 * JavaScript
 * JQuery
+* MongoDB
+* Flask
+* Jinja
+* Heroku
 * Github/Gitpod
-* BootstrapCDN (Bootstrap 4)
+* Materialize 1.0.0
 * Google Fonts
 * Google Dev Tools 
 * Google Lighthouse
@@ -263,26 +272,22 @@ Pushing moves your work from the staging area to your repository.
 
 **Content**
 
-- The unknown person who created the drinking game from which Pop Bang Boing was derived.
-- All gameplay JavaScript (with the exception of the countdown and timer) was created by myself.
+- Coinmarketcap.com for all crypto prices (accessed via API).
+- Cryptocurrency coin descriptions taken from wikipedia.com and investopedia.com
 
 **Media**
 
-- The background arcade image was downloaded from www.wallpaper-mania.com
-- Sound effects were downloaded from www.freesound.org
+- The background arcade image was downloaded from INSERT
+- ADD
 
 **Code**
 
-- The neon color scheme and effect was adapted from Kevin Powell's YouTube channel.
-- To position the circles in a circular fashion, I gained help www.stackoverflow.com
-- Recreating the marquee text in CSS was taken and adapted from www.jsfiddle.net
-- The countdown and game timers used code adapted from 'How to set one minute counter in JavaScript' 
-found on www.stackoverflow.com
-- The blinking circle that highlights where the player should have clicked uses code taken from 'How to make blinking flashing text with CSS' found on www.stackoverflow.com
-- Matt Rudge at Code Institute for the basics behind the 'Register Modal' in the 'Whiskey Drop' mini-project which was adapted for my 'Instruction Modal'.
+- Basic template setup, use of Flask, linking to MongoDB and Heroku taken from the Code Institute's Backend Development Task-Manager Mini-Project
+- Code for Materialize elements taken and modified from materialize.com
+- ADD
 
 **Acknowledgements**
 
-- To my wife, Chonchanok Routledge, and several work colleagues for testing the game on various mobile devices.
-- To @Nat_Kate (via Slack) who discovered the play button bug.
+- To my wife, Chonchanok Routledge, and several work colleagues for testing the app on various devices.
+- ADD
 - To Brian Machiara, my Code Institute mentor, for giving me invaluable tips and insight throughout the whole process.
