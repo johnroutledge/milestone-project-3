@@ -12,14 +12,9 @@
 With the ever increasing popularity and interest in cryptocurrency, there are still a vast amount of people who are sceptical or unsure as to whether they should invest in it or not.
 Such people need an app that is easy to understand, simple to use and gives them clear visual feedback as to how their investment is progressing.  All of these should take place in a risk-free environment.
 
-This website meets such needs through an adaptation of a classic drinking game which I renamed 'Pop, Bang, Boing'. This change came about when in 
-a classroom scenario and the three action words had to be more student-friendly. In the original version, people sat in a circle and take it in turns
-to say either 'pop', 'bang' or 'boing' which, in turn, would determine who was next to speak.  Players who were too slow to respond, or who spoke out 
-of turn, would be eliminated from the game (and would have to perform a forfeit of some kind).  
+This website meets such needs by providing them with the ability to trade and track some of the most popular crypotcurrencies without any financial investment. Having registered, users given 100,000 credits which they can spend on a selection of cryptocurrencies as they please.  
 
-I thought it would be a fun idea to bring this game to electronic devices in order to provide users with some light relief and entertainment.  In my version,
-rather than people being eliminated from the game, the aim is to click on the correct circle as many times as possible in thirty seconds.  The action word 
-is chosen at random by the program.
+All of the prices are up-to-the-minute accurate and taken from coinmarketcap.com via an api. Users can track the progress of their portfolio and can buy, sell and exchange cryptocurrencies as often as they wish.  There is also the option to reset their account and start from scratch.
 
 The typical user for the website would be someone:
 * Looking for some quick, light-hearted entertainment
