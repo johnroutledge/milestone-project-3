@@ -6,17 +6,16 @@
             <div class="card white">
                 <div class="card-content">
                     <div class="clearfix header">
-                        Transactions<img src="../static/images/crypto_coins_bw_min.png">
+                        Transactions<img src="../static/images/bitcoins.png">
                     </div>
                     <hr>
                     <!--iterate through transactions listed in db to populate transaction history-->
                     {% for transaction in transactions %}
                         <div class="crypto-prices">
                             {{ transaction.time_stamp }}
-                            Sold {{ transaction.currency_sold}}
-                            Amount {{ transaction.sold_amount }}
-                            Bought {{ transaction.currency_bought }}
-                            Price {{ transaction.bought_price }}
+                            bought {{ transaction.sold_amount }} USD of {{ transaction.currency_bought.upper() }}
+                            using {{ transaction.currency_sold.upper() }}
+                            @ {{ transaction.bought_price }} per coin
                         </div><hr>
                     {% endfor %}
                 </div>

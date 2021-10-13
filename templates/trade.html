@@ -2,43 +2,43 @@
 {% block content %}
 
     <div class="row">
-        <form class="col s6 m6 offset-m3"" method="POST" action="{{ url_for('trade', ticker = 'None') }}">
-                <div class="card-content">
-                    <div class="clearfix header">
-                        Trade<img src="../static/images/crypto_coins_bw_min.png">
-                    </div>
-                    <hr>
-                    <div class="input-field col m4 s12 upper">
-                        <select id="currency_sold" name="currency_sold">
-                            <option disabled selected>Sell</option>
-                            {% for balance in balances %}
-                                {% if balances[balance] != 0 %}
-                                    {% if balance != '_id' and balance != 'email' %}
-                                        <option>{{ balance }}</option>
-                                    {% endif %}   
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="input-field col m4 s12 black-text">
-                        <input id="sold_amount" name="sold_amount" type="text" pattern="^[0-9]{0,15}$" class="validate">
-                        <label class="black-text" for="sold_amount">Amount (USD)</label>
-                    </div>
-                    <div class="input-field col m4 s12">
-                        <select id="currency_bought" name="currency_bought">
-                            <option value="" disabled selected>Buy</option>
-                            {% for currency in currencies %}
-                                <option>{{ currency.currency_symbol }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <!--complete trade button-->
-                    <div class="row">
-                        <button type="submit" class="col s12 btn-large pink lighten-1">
-                            Submit Trade  <i class="fas fa-check"></i>
-                        </button>
-                    </div>
+        <form class="col s6 m6 offset-m3 card white" method="POST" action="{{ url_for('trade', ticker = 'None') }}">
+            <div class="card-content">
+                <div class="clearfix header">
+                    Trade<img src="../static/images/crypto_coins_bw_min.png">
                 </div>
+                <hr>
+                <div class="input-field col m4 s12 upper">
+                    <select id="currency_sold" name="currency_sold">
+                        <option disabled selected>Sell</option>
+                        {% for balance in balances %}
+                            {% if balances[balance] != 0 %}
+                                {% if balance != '_id' and balance != 'email' %}
+                                    <option>{{ balance }}</option>
+                                {% endif %}   
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-field col m4 s12 black-text">
+                    <input id="sold_amount" name="sold_amount" type="text" pattern="^[0-9]{0,15}$" class="validate">
+                    <label class="black-text" for="sold_amount">Amount (USD)</label>
+                </div>
+                <div class="input-field col m4 s12">
+                    <select id="currency_bought" name="currency_bought">
+                        <option value="" disabled selected>Buy</option>
+                        {% for currency in currencies %}
+                            <option>{{ currency.currency_symbol }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!--complete trade button-->
+                <div class="row">
+                    <button type="submit" class="col s12 btn-large pink lighten-1">
+                        Submit Trade  <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
             <!-- </div> -->
         </form>
     </div>

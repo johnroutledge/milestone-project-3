@@ -51,7 +51,7 @@ Hashmoney is the ideal site for such people because:
 
 **Strategy**
 
-User needs:  quick entertainment and gratification, a reaction challenge, intuitive gameplay, visual appeal.
+User needs:  simple to navigate, quick to register, straightforward to trade, intuitive design, unintimidating and modern appearance.
 
 Being a big mobile gamer myself who only has a few minutes to spend playing a game, I decided that the game should fulfil the following needs: be visually pleasing, provide quick feedback and gratification, and be extremely easy to pick up.
 
@@ -59,10 +59,10 @@ Being a big mobile gamer myself who only has a few minutes to spend playing a ga
 **Scope**
 
 User Stories:
-1. As someone who only has a few minutes to spare, I want a game that can be picked up and put down without any commitment.
-1. As someone short on time, I need a game which is intuitive to play.
-1. As a person who enjoys a challenge, I want a game to test my reflexes.
-1. As someone who enjoys classic arcade games, I want a game that appeals to me in a retro-way.
+1. As someone who is new to cryptocurrency trading, I want an app which gives me clear and concise information.
+2. As someone who is new to cryptocurrency trading, I want an app which is intuitive to use.
+3. As a person who is risk-averse, I want an app that allows me to trade cryptocurrencies without any financial investment.
+4. As a person who wants to invest in cryptocurrencies, but still has reservations, I want an app that shows me the realistic gains and losses that can be made.
 
 
 **Structure**
@@ -80,7 +80,7 @@ Through a minimum of visual content, I also reduced distraction and maximized en
 
 **Surface**
 
-The 'arcade' font was chosen to give a classic arcade game feel, while the neon colour scheme added to this style.  The colour scheme was chosen as it feels kitsch and retro, while at the same time being visually stimulating. The classic arcade sound effects and background also enhances the retro feel of the game and makes it even more appealing to fans of old-school arcade games. 
+The 'Moserrat' Google font was chosen to give a clean and modern feel, while the grey and white colour scheme added to this style.  The colour scheme was chosen as it feels sharp and modern to match the world of cryptocurrencies. At the same time, it is both visually unitimidating and easy on the eye. I wanted the app to have this look so that it appeals to users who are risk-averse and who don't want to be overloaded with unecessary information.  The cryptocoin images were used to make it immediately apparent that this is a financial app dealing with cryptocurrency.  
 
 ***
 
@@ -123,6 +123,7 @@ The 'arcade' font was chosen to give a classic arcade game feel, while the neon 
 * Google Fonts
 * Google Dev Tools 
 * Google Lighthouse
+* Pep8online.com (to check Python code for PEP 8 requirements)
 * W3C Validator (to check validity of HTML and CSS)
 * Code Beautify (to beautify JavaScript)
 
@@ -167,14 +168,14 @@ The 'arcade' font was chosen to give a classic arcade game feel, while the neon 
 
 **Testing User Stories**
 
-1. As someone who only has a few minutes to spare, I want a game that can be picked up and put down without any commitment.
-* Yes, the game requires minimal time investment (30 seconds per game) with no need to revisit the game in terms of saving progress.
-2. As someone short on time, I need a game which is intuitive to play.
-* Yes, by showing the instructions on page load and having responsive gameplay feedback (both visual and audible), the game is very intuitive.
-3. As a person who enjoys a challenge, I want a game to test my reflexes.
-* Yes, due to the time constraints of the game as well as including a high score, the game requires focus, concentration and quick reflexes.
-4. As someone who enjoys classic arcade games, I want a game that appeals to me in a retro-way.
-* Yes, this is achieved by the use of a retro-style font and audio clips, a neon color scheme and a classic arcade background.  
+1. As someone who is new to cryptocurrency trading, I want an app which gives me clear and concise information.
+* Yes, app presents all of the cryptocurrency names, logos and prices very clearly. There is also concise information about each one available to trade on the app.
+2. As someone who is new to cryptocurrency trading, I want an app which is intuitive to use.
+* Yes, it is very straightforward to trade on the app and users can also access all of their trades easily.
+3. As a person who is risk-averse, I want an app that allows me to trade cryptocurrencies without any financial investment.
+* Yes, it is clear from the home screen that the app is completely risk free. Once registered, users are allocated 100,000 credits which they can trade as they choose. They can also reset this balance and start from scratch at any point.
+4. As a person who wants to invest in cryptocurrencies, but still has reservations, I want an app that shows me the realistic gains and losses that can be made.
+* Yes, this is achieved by clearly showing a user's portfolio balance as well as an indication of how much it has grown or diminished since they started. 
 
 **Testing Responsiveness**
 
@@ -189,6 +190,8 @@ The website was tested on various screen sizes using Chrome DevTools, from iPhon
 The website was successfully opened and rendered correctly in Chrome (both desktop and mobile versions), Edge and Safari.
 
 **Code Validation**
+
+pep8online.com
 
 ![Marquee](https://johnroutledge.github.io/milestone-project-2/assets/images/marquee_error.png "Marquee")
 
@@ -227,6 +230,21 @@ within the JavaScript.  The countdown timer was originally within its own functi
 ***
 
 ## Deployment 
+
+**Deploying to [Heroku](https://dashboard.heroku.com/)**
+
+* First, create an account at [Heroku](https://www.heroku.com)
+* After logging in, click on 'create new app'.
+* Select the closest region to your location and give the app a name.
+* Select 'GitHub' as the deployment method.
+ ![Heroku connected to  github](static/images/deployment/heroku-github.png)
+* Navigate to [GitHub](https://www.github.com) and login.
+* Select the repository you want to deploy from.
+* Next, go to settings and click 'Reveal Config Vars' and set the environment variables so they match the values in your env.py file (leave out the inverted commas)
+* Before deploying, ensure your Procfile is correctly set up and that you have updated your requirements.txt file
+ - Enable automatic deploys 
+      ![Heroku github automatic deploys](static/images/deployment/heroku-automatic-deploys.png)
+* Once deployed, your app is now runnable
 
 **The project can be deployed by following these steps**
 
@@ -272,13 +290,14 @@ Pushing moves your work from the staging area to your repository.
 
 **Content**
 
-- Coinmarketcap.com for all crypto prices (accessed via API).
+- Coinmarketcap.com for all crypto prices (accessed via API)
 - Cryptocurrency coin descriptions taken from wikipedia.com and investopedia.com
 
 **Media**
 
 - The background arcade image was downloaded from INSERT
-- ADD
+- Cryptocurrency icons taken from cryptologos.cc and iconarchive.com
+- All other icons used in the app are from FontAwesome.com
 
 **Code**
 

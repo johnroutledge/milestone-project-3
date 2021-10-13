@@ -84,7 +84,15 @@ body {
     /* float: right; */
     /* right: 0; */
     text-align: right;
+}
 
+.card .card-title {
+    font-weight: bold;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    color: rgb(218, 113, 197);
+    font-weight: bolder;
 }
 
 .update-warning {
@@ -99,6 +107,14 @@ body {
 
 .crypto-icon {
     vertical-align: middle;
+    max-height: 32px;
+    max-width: 32px;
+}
+
+.box-heading {
+    font-size: larger;
+    font-weight: bold;
+    line-height: 150%;
 }
 
 #right-align {

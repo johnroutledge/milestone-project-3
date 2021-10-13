@@ -39,7 +39,7 @@ def get_currencies():
 
     params = {
         'start' : '1',
-        'limit' : '20',
+        'limit' : '30',
         'convert' : 'USD'
     }
 
@@ -72,7 +72,7 @@ def register():
             "password": generate_password_hash(request.form.get("password").lower()),
             "register_date": time_stamp
         }
-
+        # need to refactor
         balances = {
             "email": request.form.get("email").lower(),
             "usd": 100000,
@@ -80,10 +80,19 @@ def register():
             "eth": 0,
             "doge": 0,
             "ada": 0,
-            "lts": 0,
+            "ltc": 0,
             "xrp": 0,
             "usdt": 0,
-            "bnb": 0
+            "bnb": 0,
+            "sol": 0,
+            "dot": 0,
+            "avax": 0,
+            "xlm": 0,
+            "uni": 0,
+            "luna": 0,
+            "link": 0,
+            "algo": 0,
+            "shib": 0
         }
         mongo.db.users.insert_one(register)
         mongo.db.balances.insert_one(balances)
@@ -161,7 +170,7 @@ def edit_settings():
             }
         )
         flash("Settings Successfully Updated")
-
+        # need to refactor
         if request.form.get("reset_account") == "on":
             mongo.db.transactions.remove({ "email": session["user"] })
             mongo.db.balances.update(
@@ -173,10 +182,19 @@ def edit_settings():
                         "eth": 0,
                         "doge": 0,
                         "ada": 0,
-                        "lts": 0,
+                        "ltc": 0,
                         "xrp": 0,
                         "usdt": 0,
-                        "bnb": 0
+                        "bnb": 0,
+                        "sol": 0,
+                        "dot": 0,
+                        "avax": 0,
+                        "xlm": 0,
+                        "uni": 0,
+                        "luna": 0,
+                        "link": 0,
+                        "algo": 0,
+                        "shib": 0
                     }
                 }
             )
@@ -204,6 +222,10 @@ def portfolio():
         balances = mongo.db.balances.find_one(
             {"email": session["user"]})
 
+        # retrieve user's details from users document
+        user = mongo.db.users.find_one(
+            {"email": session["user"]})
+
         # retrieve all tradable cryptocurrencies
         currencies = mongo.db.currencies.find()
 
@@ -216,7 +238,7 @@ def portfolio():
 
         params = {
             'start' : '1',
-            'limit' : '20',
+            'limit' : '30',
             'convert' : 'USD'
         }
 
@@ -246,7 +268,7 @@ def portfolio():
 
         return render_template(
             "portfolio.html", username=username,
-                currencies=currencies, balances=balances, coins=coins,
+                currencies=currencies, balances=balances, coins=coins, user=user, 
                 dict=dict, totalBalance=totalBalance, percentageChange=percentageChange)
 
     return redirect(url_for("login"))
@@ -291,7 +313,7 @@ def trade(ticker):
 
         params = {
             'start' : '1',
-            'limit' : '20',
+            'limit' : '30',
             'convert' : 'USD'
         }
 
@@ -323,7 +345,7 @@ def trade(ticker):
                 "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
 
         # credit: stackoverflow.com how to get current date and time in python
-        time_stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        time_stamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
         # code to get current prices for sold and bought currencies
         sold_price = 0
         bought_price = 0
@@ -331,11 +353,13 @@ def trade(ticker):
             if request.form.get("currency_sold").upper() == "USD":
                 sold_price = 1
             elif coin['symbol'] == request.form.get("currency_sold").upper():
-                sold_price = "{:.2f}".format(coin['quote']['USD']['price'])
+                sold_price = "{:.10f}".format(coin['quote']['USD']['price'])
+                # sold_price = coin['quote']['USD']['price']
             if request.form.get("currency_bought").upper() == "USD":
                 bought_price = 1
             elif coin['symbol'] == request.form.get("currency_bought"):
-                bought_price = "{:.2f}".format(coin['quote']['USD']['price'])
+                bought_price = "{:.10f}".format(coin['quote']['USD']['price'])
+                # bought_price = coin['quote']['USD']['price']
 
         # create the dictionary to be inserted into the db
         transaction = {
@@ -364,6 +388,7 @@ def trade(ticker):
 
         new_sold_balance = float(current_sold_balance) - (float(request.form.get("sold_amount")) / float(sold_price))
         new_bought_balance = float(current_bought_balance) + (float(request.form.get("sold_amount")) / float(bought_price))
+
         mongo.db.balances.update(
             { "email": session["user"] },
             { "$set":

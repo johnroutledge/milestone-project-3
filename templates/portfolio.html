@@ -9,10 +9,10 @@
                         Portfolio<img src="../static/images/crypto_coins_bw_min.png">
                     </div>
                     <hr>
-                    <h6 class="crypto-prices">
+                    <h6 class="crypto-prices box-heading">
                         <!-- {{ username }}'s Portfolio <br> -->
-                        Member since: <br>
-                        Balance: {{ "{:.2f}".format(totalBalance) }} <br>
+                        Member since: {{ user.member_since }}<br>
+                        Balance: {{ "{:.2f}".format(totalBalance) }}<br>
                         Change: 
                         {% if '-' not in percentageChange|string %} <span id="positive-change">+{{ percentageChange }}%</span> {% endif %}
                         {% if '-' in percentageChange|string %} <span id="negative-change">{{ percentageChange }}%</span> {% endif %}
@@ -23,10 +23,17 @@
                         {% for item, value in dict.items() %}
                             {% if item == currency.currency_symbol %} 
                                 <div class="crypto-prices">
-                                    <img class="crypto-icon" src="{{ currency.image_source_large }}" alt="Profile image for {{ currency.currency_name }}">
+                                    <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
+                                    <!-- <img class="crypto-icon" src="{{ currency.image_source_large }}" alt="Profile image for {{ currency.currency_name }}"> -->
                                     {{ currency.currency_name }}
-                                    ({{ currency.currency_symbol }})    
-                                    {{ value }}
+                                    <!-- ({{ currency.currency_symbol }})     -->
+                                    {{ value }} 
+                                    {% for balance in balances %}
+                                        {% if balance.upper() == currency.currency_symbol %}
+                                            ({{ "{:.2f}".format(balances[balance]) }}
+                                            {{ currency.currency_symbol }})
+                                        {% endif %}
+                                    {% endfor %}
                                     <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small pink lighten-2" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
                                     <hr>
                                 </div>
