@@ -81,9 +81,7 @@ body {
 }
 
 .btn-small {
-    /* float: right; */
-    /* right: 0; */
-    text-align: right;
+    float: right;
 }
 
 .card .card-title {
@@ -98,6 +96,10 @@ body {
 .update-warning {
     color: red;
     font-size: small;
+    line-height: 150%;
+}
+
+.increase-line-height {
     line-height: 150%;
 }
 

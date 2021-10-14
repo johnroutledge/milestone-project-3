@@ -13,8 +13,10 @@
                     {% for transaction in transactions %}
                         <div class="crypto-prices">
                             {{ transaction.time_stamp }}
-                            bought {{ transaction.sold_amount }} USD of {{ transaction.currency_bought.upper() }}
-                            using {{ transaction.currency_sold.upper() }}
+                            bought {{ transaction.sold_amount }} USD of &nbsp <img class="crypto-icon" src="../static/images/crypto-icons/{{ transaction.currency_bought.lower() }}.png" alt="Profile image for {{ transaction.currency_bought }}">
+                            {{ transaction.currency_bought.upper() }}
+                            using &nbsp <img class="crypto-icon" src="../static/images/crypto-icons/{{ transaction.currency_sold.lower() }}.png" alt="Profile image for {{ transaction.currency_sold }}">
+                            {{ transaction.currency_sold.upper() }}
                             @ {{ transaction.bought_price }} per coin
                         </div><hr>
                     {% endfor %}

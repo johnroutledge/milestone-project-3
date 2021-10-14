@@ -80,7 +80,13 @@ Through a minimum of visual content, I also reduced distraction and maximized en
 
 **Surface**
 
-The 'Moserrat' Google font was chosen to give a clean and modern feel, while the grey and white colour scheme added to this style.  The colour scheme was chosen as it feels sharp and modern to match the world of cryptocurrencies. At the same time, it is both visually unitimidating and easy on the eye. I wanted the app to have this look so that it appeals to users who are risk-averse and who don't want to be overloaded with unecessary information.  The cryptocoin images were used to make it immediately apparent that this is a financial app dealing with cryptocurrency.  
+The 'Moserrat' Google font was chosen to give a clean and modern feel, while the grey and white colour scheme added to this style.
+
+The colour scheme was chosen as it feels sharp and modern to match the world of cryptocurrencies. At the same time, it is both visually unintimidating and easy on the eye. I wanted the app to have this look so that it appeals to users who are risk-averse and who don't want to be overloaded with unecessary information.
+
+The cryptocoin hero image was chosen for the landing page to make it immediately apparent that this is a financial app dealing with cryptocurrency. The large two sentence message underneath the hero image was used to give a clear, unambiguous description of what the app is about.
+
+The cryptocoin images used in the title bars of all other pages were used to maintain consistency and also reaffirm that it is an app dealing with cryptocurrency.  
 
 ***
 
@@ -126,6 +132,17 @@ The 'Moserrat' Google font was chosen to give a clean and modern feel, while the
 * Pep8online.com (to check Python code for PEP 8 requirements)
 * W3C Validator (to check validity of HTML and CSS)
 * Code Beautify (to beautify JavaScript)
+* dbdiagram.io (to produce the MongoDB ERD)
+
+***
+
+## Database Schema
+
+## Database Model
+
+![ERD](https://johnroutledge.github.io/milestone-project-3/static/images/readme/hashmoney.png "ERD")
+
+## CRUD
 
 ***
 

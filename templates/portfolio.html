@@ -6,7 +6,7 @@
             <div class="card white">
                 <div class="card-content">
                     <div class="clearfix header">
-                        Portfolio<img src="../static/images/crypto_coins_bw_min.png">
+                        Portfolio<img src="../static/images/bitcoins_bw.png">
                     </div>
                     <hr>
                     <h6 class="crypto-prices box-heading">
@@ -34,7 +34,7 @@
                                             {{ currency.currency_symbol }})
                                         {% endif %}
                                     {% endfor %}
-                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small pink lighten-2" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
+                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small teal lighten-1" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
                                     <hr>
                                 </div>
                             {% endif %}
