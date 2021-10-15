@@ -6,7 +6,7 @@
             <div class="card white">
                 <div class="card-content">
                     <div class="clearfix header">
-                        Portfolio<img src="../static/images/bitcoins_bw.png">
+                        Portfolio<img src="../static/images/crypto_coins_bw_min.png">
                     </div>
                     <hr>
                     <h6 class="crypto-prices box-heading">
@@ -22,11 +22,11 @@
                     {% for currency in currencies %}
                         {% for item, value in dict.items() %}
                             {% if item == currency.currency_symbol %} 
-                                <div class="crypto-prices">
+                                <!-- display for medium screen sizes and above -->
+                                <div class="crypto-prices trade-screen-large">
                                     <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
                                     <!-- <img class="crypto-icon" src="{{ currency.image_source_large }}" alt="Profile image for {{ currency.currency_name }}"> -->
                                     {{ currency.currency_name }}
-                                    <!-- ({{ currency.currency_symbol }})     -->
                                     {{ value }} 
                                     {% for balance in balances %}
                                         {% if balance.upper() == currency.currency_symbol %}
@@ -34,6 +34,14 @@
                                             {{ currency.currency_symbol }})
                                         {% endif %}
                                     {% endfor %}
+                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small teal lighten-1" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
+                                    <hr>
+                                </div>
+                                <!-- display for mobile screen sizes -->
+                                <div class="crypto-prices trade-screen-small">
+                                    <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
+                                    {{ currency.currency_symbol }}
+                                    {{ value }} 
                                     <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small teal lighten-1" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
                                     <hr>
                                 </div>

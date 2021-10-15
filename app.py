@@ -21,6 +21,52 @@ coin_market_cap_key = os.environ.get("COIN_MARKET_CAP_KEY")
 
 mongo = PyMongo(app)
 
+# this procedure calculates the user's current portfolio balance by
+# retrieving their balance for each cryptocurrency held then
+# multiplying it by the latest price obtained via API call from
+# coinmarketcap.com and return it as the variable totalBalance
+def get_portfolio_balance():
+
+    balances = mongo.db.balances.find_one(
+            {"email": session["user"]})
+
+    # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
+    # 'How to Use an API in Python to get Bitcoin's Price Live - Along with other Cryptocurrencies'
+    headers = {
+            'X-CMC_PRO_API_KEY' : coin_market_cap_key,
+            'Accepts' : 'application/json'
+    }
+
+    params = {
+        'start' : '1',
+        'limit' : '30',
+        'convert' : 'USD'
+    }
+
+    url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+    json = requests.get(url, params=params, headers=headers).json()
+    coins = json['data']
+
+    # create a dictionary which calculate the user's balance for each cryptocurrency
+    dict = {}
+    totalBalance = 0
+    for balance in balances:
+        if balance.upper() == "USD":
+            x = balances[balance]
+            dict[balance.upper()] = x
+            totalBalance = totalBalance + float(x)
+        else:
+            for coin in coins:
+                if coin['symbol'] == balance.upper():    
+                    x = coin['quote']['USD']['price'] * float(balances[balance])
+                    x = "{:.2f}".format(x)
+                    dict[balance.upper()] = x
+                    totalBalance = totalBalance + float(x)
+
+    totalBalance = int(float(totalBalance))
+    return totalBalance
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -143,9 +189,11 @@ def settings():
     userSettings = mongo.db.users.find_one(
         {"email": session["user"]})
     
+    portfolioBalance = get_portfolio_balance()
+
     if session["user"]:
         return render_template(
-            "settings.html", userSettings=userSettings)
+            "settings.html", userSettings=userSettings, portfolioBalance=portfolioBalance)
 
 
 @app.route("/edit_settings/", methods=["GET", "POST"])
@@ -266,6 +314,9 @@ def portfolio():
             totalBalance = int(float(totalBalance))
             percentageChange = int((totalBalance - 100000) / 1000)
 
+        totalBalance = get_portfolio_balance()
+        percentageChange = int((totalBalance - 100000) / 1000)
+        
         return render_template(
             "portfolio.html", username=username,
                 currencies=currencies, balances=balances, coins=coins, user=user, 
