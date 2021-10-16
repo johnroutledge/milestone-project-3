@@ -12,7 +12,6 @@
                         <p class="increase-line-height">First name: {{ userSettings.first_name }}</p>
                         <p class="increase-line-height">Last name: {{ userSettings.last_name }}</p>
                         <p class="increase-line-height">Balance: {{ "{:.2f}".format(portfolioBalance) }}</p>
-                        <!-- <p class="increase-line-height">Display currency: {{ userSettings.display_currency.upper() }}</p> -->
                         <a href="{{ url_for('edit_settings') }}" class="waves-effect waves-light btn-small pink lighten-2">Edit</a><br>
                     </h6>
                 </div>
