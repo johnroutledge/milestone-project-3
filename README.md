@@ -3,7 +3,7 @@
 
 ![Main Mockup](https://johnroutledge.github.io/milestone-project-3/assets/images/main_mockup.png "Main Mockup")
  
-[Link to Live Website](https://johnroutledge.github.io/milestone-project-3/index.html)
+[Link to Live Website](https://hash-money.herokuapp.com)
 
 [GitHub Repo](https://github.com/johnroutledge/milestone-project-3)
 
