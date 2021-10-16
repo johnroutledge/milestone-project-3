@@ -1,14 +1,13 @@
 body {
-    /* background-color: slategray; */
     background-color: white;
     color: slategray;
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
 }
 
-/* #bold-hash {
-    font-weight: bold;
-} */
+button {
+    font-family: 'Montserrat', sans-serif; 
+}
 
 label {
     color:black;
@@ -39,18 +38,12 @@ label {
 .headline-text {
     font-family: 'Montserrat', sans-serif;
     font-size: 4em;
-    font-weight: bold;
     top: 0em;
     padding-top: 0em;
 }
 
-.over-image {
-    font-size: x-large;
-    font-weight: bold;
-    color: white;
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
+.hero-text {
+    font-weight: lighter;
 }
 
 .clearfix:before,
@@ -63,7 +56,6 @@ label {
     padding: 1%;
     width: 100%;
     font-size: 2em;
-    /* color: black; */
 }
 .header > img {
     float: right;
@@ -76,12 +68,9 @@ label {
 }
 
 .crypto-prices {
-    /* font-size: 1.5rem; */
     font-weight: bold;
     color: black;
     font-family: 'Montserrat', sans-serif;
-    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
-    /* line-height: 2.5rem; */
 }
 
 .btn-small {
@@ -140,12 +129,16 @@ label {
     border-color: pink;
 }
 
-.parallax {
-    position: static;
-}
-
 #edit-settings-buttons {
     padding-bottom: 1rem;
+}
+
+.social-links {
+    font-weight: lighter;
+}
+
+.social-links i {
+    font-size: x-large;
 }
 
 /*----------MEDIA QUERIES*/

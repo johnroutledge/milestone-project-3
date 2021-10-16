@@ -1,7 +1,7 @@
 # Hashmoney
 **Backend Data Centric Milestone Project**
 
-![Main Mockup](https://johnroutledge.github.io/milestone-project-3/assets/images/main_mockup.png "Main Mockup")
+![Main Mockup](https://johnroutledge.github.io/milestone-project-3/static/images/readme/mockup.png "Main Mockup")
  
 [Link to Live Website](https://hash-money.herokuapp.com)
 
@@ -53,7 +53,7 @@ Hashmoney is the ideal site for such people because:
 
 User needs:  simple to navigate, quick to register, straightforward to trade, intuitive design, unintimidating and modern appearance.
 
-Being a big mobile gamer myself who only has a few minutes to spend playing a game, I decided that the game should fulfil the following needs: be visually pleasing, provide quick feedback and gratification, and be extremely easy to pick up.
+Being a cryptocurrency trader myself, I remember the uncertainty and scepticism I had before I began. With that in mind, I decided to write an app that would enable people to dip into cryptocurrency trading risk-free. Along with that, I wanted it to be straightforward with clear feedback as to how their portfolio was growing (or not, as the case may be). I also wanted to give people the confidence to be able to make mistakes and to start from scratch again without financial penalties, hence the 'reset portfolio' option.
 
 
 **Scope**
@@ -67,20 +67,19 @@ User Stories:
 
 **Structure**
 
-As it is a very straightforward and intuitive game, the website is consequently a very simple one-page, no-scroll design.
-
+ADD
 
 **Skeleton**
 
-![Wireframes](https://johnroutledge.github.io/milestone-project-2/assets/images/ms2_gameplay_wireframes.png "Wireframes")
+ADD IMAGE
 
-To make sure the game intuitive to navigate and play, I kept the controls in a central position. This is very important for 
-mobile users as it allows for one-handed gameplay and also for desktop users as it keeps mouse-movement to a single movement, whatever the screen size and resolution.
-Through a minimum of visual content, I also reduced distraction and maximized engagement.
+![Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/ADD_wireframes.png "Wireframes")
+
+To make sure the app is intuitive to navigate and use, I decided to keep all of the buttons options fairly centrally placed and slightly to the right-hand side. This is very important for mobile users they are predominantly right-handed and allows for one-handed operation of the app. By minimizing the amount of visual content past the landing page, I also reduced distraction and maximized engagement.
 
 **Surface**
 
-The 'Moserrat' Google font was chosen to give a clean and modern feel, while the grey and white colour scheme added to this style.
+The 'Monserrat' Google font was chosen to give a clean and modern feel, while the grey and white colour scheme added to this style.
 
 The colour scheme was chosen as it feels sharp and modern to match the world of cryptocurrencies. At the same time, it is both visually unintimidating and easy on the eye. I wanted the app to have this look so that it appeals to users who are risk-averse and who don't want to be overloaded with unecessary information.
 
@@ -196,11 +195,11 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 
 **Testing Responsiveness**
 
-![Responsiveness](https://johnroutledge.github.io/milestone-project-2/assets/images/gameplay_screenshots.png "Responsiveness")
+![Responsiveness](https://johnroutledge.github.io/milestone-project-3/assets/images/gameplay_screenshots.png "Responsiveness")
 
-The website was tested on various screen sizes using Chrome DevTools, from iPhone5 up to 5k screen. The image above shows the website on iPhone 5, iPad and laptop screens. On a 5k screen resolution (see image below), the gameplay area remained the same size as on a laptop (and didn't scale up) to retain ease of gameplay when using a mouse.
+The website was tested on various screen sizes using Chrome DevTools, from iPhone5 up to 5k screen. The image above shows the website on iPhone 5, iPad and laptop screens. The app renders as per the screenshot below on a 5k screen resolution.
 
-![5k](https://johnroutledge.github.io/milestone-project-2/assets/images/5k_responsiveness.png "5k")
+![5k](https://johnroutledge.github.io/milestone-project-3/assets/images/5k_responsiveness.png "5k")
 
 **Testing Browser Compatibility**
 
@@ -210,37 +209,36 @@ The website was successfully opened and rendered correctly in Chrome (both deskt
 
 pep8online.com
 
-![Marquee](https://johnroutledge.github.io/milestone-project-2/assets/images/marquee_error.png "Marquee")
+![IF ERROR](https://johnroutledge.github.io/milestone-project-3/static/images/readme/marquee_error.png "IF ERROR")
 
-Both the HTML and CSS were validated using the W3C Markup Validation Service. This was done using the 'Validate by Direct Input' option. For the HTML, this resulted in an error with the marquee element (see screenshot above). This was rectified by recreating the effect using CSS (code credit listed in credits at the end of this readme file).  Final checks were done resulting in no errors as per screenshot below.
+Both the HTML and CSS were validated using the W3C Markup Validation Service. This was done using the 'Validate by Direct Input' option. For the HTML, this resulted in an error with IF ERROR (see screenshot above). This was rectified by IF FIXED .  Final checks were done resulting in no errors as per screenshot below.
 
-![HTML](https://johnroutledge.github.io/milestone-project-2/assets/images/html_check.png "HTML")
+![HTML](https://johnroutledge.github.io/milestone-project-3/static/images/readme/html_check.png "HTML")
 
 All checks on the CSS file were clear on the first attempt as per screenshot below.
 
-![CSS](https://johnroutledge.github.io/milestone-project-2/assets/images/css_check.png "CSS")
+![CSS](https://johnroutledge.github.io/milestone-project-3/static/images/readme/css_check.png "CSS")
 
 **Testing with Lighthouse in Google Chrome Devtools**
 
-![Lighthouse](https://johnroutledge.github.io/milestone-project-2/assets/images/lighthouse_testing.png "Lighthouse")
+![Lighthouse](https://johnroutledge.github.io/milestone-project-3/static/images/readme/lighthouse_testing.png "Lighthouse")
 
-* Performance: this was initially 91% which was acceptable (see top Lighthouse results in image above). However, to improve load speed further, the 
-background image was saved at a reduced resolution as it doesn't detract from the gameplay UX. Also, references to JavaScript files in the index.html file were moved from the head element down to the end of the body element. Having 
-done both of these, performance was tested again and increased to 95% on mobile (see middle Lighthouse results in image above) and 99% on desktop (see lower Lighthouse results in image above).
-* Accessibility: was 98% after first test (see top Lighthouse results in image above). This was due to the contrast between the font color and 
-background on the instruction modal. Having changed the font color used on the instruction modal from a neon pink to a neon green, it went up to 100% on both mobile and desktop versions (see middle and bottom Lighthouse results in image above).
-* Best Practices: was 100% after first test, so no changes needed.
-* SEO: was 100% after first test, so no changed needed.
+* Performance: ADD RESULTS
+* Accessibility: ADD RESULTS
+* Best Practices: ADD RESULTS
+* SEO: ADD RESULTS.
 
 **Notable bug fixes**
 
-1. When the first play() function is called, there is a noticeable delay before the audio file is played. 
-All subsequent audio files play without delay. Having tried various fixes (using MP3 files instead of WAV) without success, I decided to just play an empty sound before the start of the game. This fixed the problem as now the sounds are immediate when clicking circles during gameplay.
-2. Having played the game numerous times to make sure it played correctly, I noticed that when landing on circle number 0 (in the 12 o'clock position) from an anti-clockwise direction, if the next action word was 'boing' then the game flagged up wrong when clicking on the correct circle (number six). Having done a console.log to see which circle it was expecting, it turned out to be circle seven rather than circle six.  After looking at the code to see what the error could be, I discovered that I had miscalculated when experiencing a negative number in my if...else if statement in the 'calculateCorrectCircle' function.
-3. The three-second countdown timer on game start was very buggy initially.  Having researched this and discussing it with my mentor, this issue was found to be synchronicity
-within the JavaScript.  The countdown timer was originally within its own function, but calling this prior to starting the main game timer resulted in both timers running concurrently which caused multiple DOM updates at the same time.  To rectify this, I took the countdown timer out of its own function and put it into a loop in the 'playGame' function which eradicated any synchronicity issues and fixed the bug.
-4. After clicking the play button, it was discovered that it could be clicked again before becoming disabled and so causing further instances of the 'resetGame' function being called. This resulted in it being possible to start multiple games at the same time. Having inspected the code, it was discovered that both the play and help buttons were being disabled within the countdown timer loop. To fix the bug, the code which disables both the play and help buttons was simply moved to the top of the 'resetGame' function.
-5. When running the game with the DevTools console open, the error 'Uncaught (in promise) DOMException: The play() request was interrupted by a new load request' was flagged up (see image below). Originally, the audio files for the game sounds were played through an audio element in the index.html file using code in the index.js file. To fix this bug, I removed the audio element from the index.html file coded all game sounds to play purely via the index.js file.
+1. In an early version of the app, the portfolio screen was showing a balance which, for some reason, had doubled the USD amount. The resulted in an incorrect balance. Having examined the code within the app.py file, I discovered that there was an error within the loop that iterates through a user's currency balances to produce the total balance (see screenshots below). By moving the totalBalance variable outside of the else statement (but still within the loop), the bug was fixed.
+
+![Portfolio Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_bug_screen.png "Portfolio Bug")
+![Portfolio Bug Fix](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_bugfix_screen.png "Portfolio Bug Fix")
+
+2. ADD
+3. ADD
+4. ADD
+5. HEROKU DEPLOYMENT BUG
 
 ![Audio Bug](https://johnroutledge.github.io/milestone-project-2/assets/images/audio_bug.png "Audio Bug")
 

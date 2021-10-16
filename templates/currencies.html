@@ -19,7 +19,7 @@
                                     <div class="collapsible-header crypto-prices" id="full-width">
                                         <!-- <img class="crypto-icon" src="{{ currency.image_source_large }}" alt="Profile image for {{ currency.currency_name }}">&nbsp -->
                                         <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
-                                        {{ coin['name'] }} ({{ coin['symbol'] }}) &nbsp
+                                        {{ coin['name'] }} ({{ coin['symbol'] }})&nbsp
                                         <!--credit to kite.com for formatting tips - how to print float with 2 decimal places-->
                                         {{ "{:.2f}".format(coin['quote']['USD']['price']) }},&nbsp
                                         <!-- green for positive changes and red for negative changes  -->
