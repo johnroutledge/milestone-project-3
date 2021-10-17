@@ -377,6 +377,7 @@ def trade(ticker):
         balances = mongo.db.balances.find_one(
             {"email": session["user"]})
         currency_sold = request.form.get("currency_sold")
+        currency_bought = request.form.get("currency_bought")
         if currency_sold.lower() == "usd":
             available_balance = balances[currency_sold]
         else:
@@ -390,9 +391,14 @@ def trade(ticker):
 
         if int(requested_balance) > int(available_balance):
             flash(f"Insufficient funds - {currency_sold.upper()}")
-            # flash(currency_sold.upper())
             return render_template(
                 "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
+
+        if currency_sold.upper() == currency_bought.upper():
+            flash("Traded currencies must be different")
+            return render_template(
+                "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
+ 
 
         # credit: stackoverflow.com how to get current date and time in python
         time_stamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
