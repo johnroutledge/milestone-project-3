@@ -21,66 +21,14 @@ coin_market_cap_key = os.environ.get("COIN_MARKET_CAP_KEY")
 
 mongo = PyMongo(app)
 
-# this procedure calculates the user's current portfolio balance by
-# retrieving their balance for each cryptocurrency held then
-# multiplying it by the latest price obtained via API call from
-# coinmarketcap.com and return it as the variable totalBalance
-def get_portfolio_balance():
-
-    balances = mongo.db.balances.find_one(
-            {"email": session["user"]})
-
+# this procedure retrieves the latest cryptocurrency prices via API call from
+# coinmarketcap.com and returns it in JSON format in coins
+def get_latest_prices():
     # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
     # 'How to Use an API in Python to get Bitcoin's Price Live - Along with other Cryptocurrencies'
     headers = {
             'X-CMC_PRO_API_KEY' : coin_market_cap_key,
             'Accepts' : 'application/json'
-    }
-
-    params = {
-        'start' : '1',
-        'limit' : '30',
-        'convert' : 'USD'
-    }
-
-    url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-    json = requests.get(url, params=params, headers=headers).json()
-    coins = json['data']
-
-    # create a dictionary which calculate the user's balance for each cryptocurrency
-    dict = {}
-    totalBalance = 0
-    for balance in balances:
-        if balance.upper() == "USD":
-            x = balances[balance]
-            dict[balance.upper()] = x
-            totalBalance = totalBalance + float(x)
-        else:
-            for coin in coins:
-                if coin['symbol'] == balance.upper():    
-                    x = coin['quote']['USD']['price'] * float(balances[balance])
-                    x = "{:.2f}".format(x)
-                    dict[balance.upper()] = x
-                    totalBalance = totalBalance + float(x)
-
-    totalBalance = int(float(totalBalance))
-    return totalBalance
-
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-
-@app.route("/get_currencies")
-def get_currencies():
-    currencies = mongo.db.currencies.find()
-
-    # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
-    # 'How to Use an API in Python to get Bitcoin's Price Live - Along with other Cryptocurrencies'
-    headers = {
-        'X-CMC_PRO_API_KEY' : coin_market_cap_key,
-        'Accepts' : 'application/json'
     }
 
     params = {
@@ -96,6 +44,40 @@ def get_currencies():
     except (ConnectionError, Timeout, TooManyRedirects) as e:
         flash(e)
 
+    return coins
+
+# this procedure returns a user's total portfolio balance
+def get_total_balance(balances, coins):
+    totalBalance=0
+    dict = {}
+    for balance in balances:
+        if balance.upper() == "USD":
+            x = balances[balance]
+            dict[balance.upper()] = x
+            totalBalance = totalBalance + float(x)
+        else:
+            for coin in coins:
+                if coin['symbol'] == balance.upper():    
+                    x = coin['quote']['USD']['price'] * float(balances[balance])
+                    x = "{:.2f}".format(x)
+                    dict[balance.upper()] = x
+                    totalBalance = totalBalance + float(x)
+
+        # totalBalance = int(float(totalBalance))
+
+    return totalBalance
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/get_currencies")
+def get_currencies():
+    currencies = mongo.db.currencies.find()
+
+    coins=get_latest_prices()
+
     return render_template("currencies.html", currencies = currencies, coins = coins)
 
 
@@ -110,13 +92,13 @@ def register():
             flash("email already registered")
             return redirect(url_for("register"))
         
-        time_stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        date_today = datetime.now().strftime('%d-%m-%Y')
         register = {
             "first_name": request.form.get("first_name").capitalize(),
             "last_name": request.form.get("last_name").capitalize(),
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password").lower()),
-            "register_date": time_stamp
+            "register_date": date_today
         }
         # need to refactor
         balances = {
@@ -188,12 +170,22 @@ def settings():
     # get users first name from db
     userSettings = mongo.db.users.find_one(
         {"email": session["user"]})
+
+    # get users balances from db
+    balances = mongo.db.balances.find_one(
+            {"email": session["user"]})
+
+    # retrieve the latest crypto prices
+    coins=get_latest_prices()
     
-    portfolioBalance = get_portfolio_balance()
+    # create a dictionary which calculate the user's balance for each cryptocurrency
+    
+    totalBalance = get_total_balance(balances, coins)
+    
 
     if session["user"]:
         return render_template(
-            "settings.html", userSettings=userSettings, portfolioBalance=portfolioBalance)
+            "settings.html", userSettings=userSettings, portfolioBalance=totalBalance)
 
 
 @app.route("/edit_settings/", methods=["GET", "POST"])
@@ -277,27 +269,13 @@ def portfolio():
         # retrieve all tradable cryptocurrencies
         currencies = mongo.db.currencies.find()
 
-        # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
-        # 'How to Use an API in Python to get Bitcoin's Price Live - Along with other Cryptocurrencies'
-        headers = {
-            'X-CMC_PRO_API_KEY' : coin_market_cap_key,
-            'Accepts' : 'application/json'
-        }
-
-        params = {
-            'start' : '1',
-            'limit' : '30',
-            'convert' : 'USD'
-        }
-
-        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-        json = requests.get(url, params=params, headers=headers).json()
-        coins = json['data']
-
-        # create a dictionary which calculate the user's balance for each cryptocurrency
+        # retrieve latest cryptocurrency prices
+        coins = get_latest_prices()
+        
+        # create a dictionary which calculates the user's balance for each cryptocurrency
         dict = {}
         totalBalance = 0
-        percentageChange = 0
+        # percentageChange = 0
         for balance in balances:
             if balance.upper() == "USD":
                 x = balances[balance]
@@ -311,16 +289,17 @@ def portfolio():
                         dict[balance.upper()] = x
                         totalBalance = totalBalance + float(x)
 
-            totalBalance = int(float(totalBalance))
-            percentageChange = int((totalBalance - 100000) / 1000)
+            # totalBalance = int(float(totalBalance))
+            # percentageChange = "{:.2f}".format(int((totalBalance - 100000) / 1000))
+            percentageChange = "{:.2f}".format((totalBalance - 100000) / 1000)
 
-        totalBalance = get_portfolio_balance()
-        percentageChange = int((totalBalance - 100000) / 1000)
-        
+        registerDate = mongo.db.users.find_one(
+        {"email": session["user"]})["register_date"]
+
         return render_template(
             "portfolio.html", username=username,
                 currencies=currencies, balances=balances, coins=coins, user=user, 
-                dict=dict, totalBalance=totalBalance, percentageChange=percentageChange)
+                dict=dict, totalBalance=totalBalance, percentageChange=percentageChange,)
 
     return redirect(url_for("login"))
 

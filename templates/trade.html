@@ -10,11 +10,11 @@
                 <hr>
                 <div class="input-field col m4 s12 upper">
                     <select id="currency_sold" name="currency_sold" required>
-                        <option value="" disabled selected>Sell</option>
+                        <option value="" disabled selected>SELL</option>
                         {% for balance in balances %}
                             {% if balances[balance] != 0 %}
                                 {% if balance != '_id' and balance != 'email' %}
-                                    <option>{{ balance }}</option>
+                                    <option>{{ balance.upper() }}</option>
                                 {% endif %}   
                             {% endif %}
                         {% endfor %}
@@ -26,7 +26,7 @@
                 </div>
                 <div class="input-field col m4 s12">
                     <select id="currency_bought" name="currency_bought" required>
-                        <option value="" disabled selected>Buy</option>
+                        <option value="" disabled selected>BUY</option>
                         {% for currency in currencies %}
                             <option>{{ currency.currency_symbol }}</option>
                         {% endfor %}

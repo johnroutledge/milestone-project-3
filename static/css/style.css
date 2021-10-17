@@ -5,10 +5,14 @@ body {
     font-weight: bolder;
 }
 
-button {
-    font-family: 'Montserrat', sans-serif; 
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both
 }
 
+/*----------TYPOGRAPHY STYLING*/
 label {
     color:black;
 }
@@ -17,18 +21,72 @@ h6 {
     font-weight: bold;
 }
 
+.upper {
+    text-transform: uppercase;
+}
+
 .flashes {
-    /* line-height: 1; */
     font-weight: bolder;
     color: red;
 }
 
-.headline {
+.hero-text {
+    font-weight: lighter;
+}
+
+.increase-line-height {
+    line-height: 150%;
+}
+
+.update-warning {
+    color: red;
+    font-size: smaller;
+    line-height: 150%;
+}
+
+.box-heading {
+    font-size: larger;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+/*----------CRYPTO INFO*/
+.crypto-icon {
+    vertical-align: middle;
+    max-height: 32px;
+    max-width: 32px;
+}
+
+.crypto-prices {
+    font-weight: bold;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#positive-change {
+    color: green;
+}
+
+#negative-change {
+    color: red;
+}
+
+/*----------HEADERS*/
+.header {
+    padding: 1%;
+    width: 100%;
     font-size: 2em;
 }
 
-.reveal-card-text {
-    color: black;
+.header > img {
+    float: right;
+    max-width: 30%;
+    max-height: 5rem;
+}
+
+/*----------HEADLINES*/
+.headline {
+    font-size: 2em;
 }
 
 .headline-box {
@@ -47,39 +105,9 @@ h6 {
     padding-top: 0em;
 }
 
-.hero-text {
-    font-weight: lighter;
-}
-
-.clearfix:before,
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both
-}
-.header {
-    padding: 1%;
-    width: 100%;
-    font-size: 2em;
-}
-.header > img {
-    float: right;
-    max-width: 30%;
-    max-height: 5rem;
-}
-
+/*----------CARDS*/
 .card-image {
     margin-top: 5px;
-}
-
-.crypto-prices {
-    font-weight: bold;
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.btn-small {
-    float: right;
 }
 
 .card .card-title {
@@ -91,53 +119,24 @@ h6 {
     font-weight: bolder;
 }
 
-.update-warning {
-    color: red;
-    font-size: smaller;
-    line-height: 150%;
+.reveal-card-text {
+    color: black;
 }
 
-.increase-line-height {
-    line-height: 150%;
+/*----------BUTTONS*/
+button {
+    font-family: 'Montserrat', sans-serif; 
 }
 
-.upper {
-    text-transform: uppercase;
-}
-
-.crypto-icon {
-    vertical-align: middle;
-    max-height: 32px;
-    max-width: 32px;
-}
-
-.box-heading {
-    font-size: larger;
-    font-weight: bold;
-    line-height: 150%;
-}
-
-#right-align {
+.btn-small {
     float: right;
-}
-
-#positive-change {
-    color: green;
-}
-
-#negative-change {
-    color: red;
-}
-
-#currency-select {
-    background-color: pink;
-    border-color: pink;
 }
 
 #edit-settings-buttons {
     padding-bottom: 1rem;
 }
 
+/*----------FOOTER*/
 .social-links {
     font-weight: lighter;
 }
