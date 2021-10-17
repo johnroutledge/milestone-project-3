@@ -389,9 +389,8 @@ def trade(ticker):
         requested_balance = request.form.get("sold_amount")
 
         if int(requested_balance) > int(available_balance):
-            flash("Insufficient funds")
-            flash(balances[currency_sold])
-            flash(int(float(sold_price)))
+            flash(f"Insufficient funds - {currency_sold.upper()}")
+            # flash(currency_sold.upper())
             return render_template(
                 "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
 

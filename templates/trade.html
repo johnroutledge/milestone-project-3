@@ -9,8 +9,8 @@
                 </div>
                 <hr>
                 <div class="input-field col m4 s12 upper">
-                    <select id="currency_sold" name="currency_sold">
-                        <option disabled selected>Sell</option>
+                    <select id="currency_sold" name="currency_sold" required>
+                        <option value="" disabled selected>Sell</option>
                         {% for balance in balances %}
                             {% if balances[balance] != 0 %}
                                 {% if balance != '_id' and balance != 'email' %}
@@ -21,11 +21,11 @@
                     </select>
                 </div>
                 <div class="input-field col m4 s12 black-text">
-                    <input id="sold_amount" name="sold_amount" type="text" pattern="^[0-9]{0,15}$" class="validate">
+                    <input id="sold_amount" name="sold_amount" type="text" pattern="^[0-9]{0,15}$" class="validate" required>
                     <label class="black-text" for="sold_amount">Amount (USD)</label>
                 </div>
                 <div class="input-field col m4 s12">
-                    <select id="currency_bought" name="currency_bought">
+                    <select id="currency_bought" name="currency_bought" required>
                         <option value="" disabled selected>Buy</option>
                         {% for currency in currencies %}
                             <option>{{ currency.currency_symbol }}</option>

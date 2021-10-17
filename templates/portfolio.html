@@ -11,7 +11,7 @@
                     <hr>
                     <h6 class="crypto-prices box-heading">
                         <!-- {{ username }}'s Portfolio <br> -->
-                        Member since: {{ user.member_since }}<br>
+                        Member since: {{ user.register_date }}<br>
                         Balance: {{ "{:.2f}".format(totalBalance) }}<br>
                         Change: 
                         {% if '-' not in percentageChange|string %} <span id="positive-change">+{{ percentageChange }}%</span> {% endif %}
