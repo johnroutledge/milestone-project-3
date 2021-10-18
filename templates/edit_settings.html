@@ -13,39 +13,16 @@
                         <div class="input-field inline">
                             <input id="first_name" name="first_name" type="text" pattern="^[A-Za-z]{1,30}$"
                             class="validate" required>
-                            <label for="first_name">{{ userSettings.first_name }}</label>
+                            <label for="first_name">{{ user_settings.first_name }}</label>
                         </div>
                         <br>
                         Last name: 
                         <div class="input-field inline">
                             <input id="last_name" name="last_name" type="text" pattern="^[A-Za-z]{1,30}$"
                             class="validate" required>
-                            <label for="last_name">{{ userSettings.last_name }}</label>
+                            <label for="last_name">{{ user_settings.last_name }}</label>
                         </div>
                         <br>
-                        <!-- Display currency:
-                        <div>
-                            <span>
-                                <label for="usd">
-                                    {% if userSettings.display_currency == "usd" %}
-                                        <input id="usd" name="display_currency" type="radio" value="usd" checked />
-                                    {% else %}
-                                        <input id="usd" name="display_currency" type="radio" value="usd" />
-                                    {% endif %}
-                                    <span>USD</span>
-                                </label>
-                            </span>
-                            <span>
-                                <label for="gbp">
-                                    {% if userSettings.display_currency == "usd" %}
-                                        <input id="gbp" name="display_currency" type="radio" value="gbp" />
-                                    {% else %}
-                                        <input id="gbp" name="display_currency" type="radio"checked value="gbp" />
-                                    {% endif %}
-                                    <span>GBP</span>
-                                </label>
-                            </span>
-                        </div> -->
                         <!-- Reset Porftfolio -->
                         Reset Portfolio Balance?<br>
                         <br><div class="update-warning">WARNING: Selecting 'Yes' will delete all trading history and reset account to 100000 credits</div><br>

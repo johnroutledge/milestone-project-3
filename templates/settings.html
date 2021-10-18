@@ -9,8 +9,8 @@
                         Settings<img src="../static/images/crypto_coins_bw_min.png">
                     </div><hr>
                     <h6 class="crypto-prices">
-                        <p class="increase-line-height">First name: {{ userSettings.first_name }}</p>
-                        <p class="increase-line-height">Last name: {{ userSettings.last_name }}</p>
+                        <p class="increase-line-height">First name: {{ user_settings.first_name }}</p>
+                        <p class="increase-line-height">Last name: {{ user_settings.last_name }}</p>
                         <p class="increase-line-height">Balance: {{ "{:.2f}".format(portfolioBalance) }}</p>
                         <a href="{{ url_for('edit_settings') }}" class="waves-effect waves-light btn-small pink lighten-2">Edit</a><br>
                     </h6>

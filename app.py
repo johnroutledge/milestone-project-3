@@ -21,24 +21,27 @@ coin_market_cap_key = os.environ.get("COIN_MARKET_CAP_KEY")
 
 mongo = PyMongo(app)
 
+
 # this procedure retrieves the latest cryptocurrency prices via API call from
 # coinmarketcap.com and returns it in JSON format in coins
 def get_latest_prices():
-    # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
-    # 'How to Use an API in Python to get Bitcoin's Price Live - Along with other Cryptocurrencies'
+    # code to get cryptocurrency prices adapted from Coding Under Pressure
+    # YouTube channel 'How to Use an API in Python to get Bitcoin's Price
+    # Live - Along with other Cryptocurrencies'
     headers = {
-            'X-CMC_PRO_API_KEY' : coin_market_cap_key,
-            'Accepts' : 'application/json'
+            'X-CMC_PRO_API_KEY': coin_market_cap_key,
+            'Accepts': 'application/json'
     }
 
     params = {
-        'start' : '1',
-        'limit' : '30',
-        'convert' : 'USD'
+        'start': '1',
+        'limit': '30',
+        'convert': 'USD'
     }
 
     try:
-        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+        url = ('https://pro-api.coinmarketcap.com/'
+               'v1/cryptocurrency/listings/latest')
         json = requests.get(url, params=params, headers=headers).json()
         coins = json['data']
     except (ConnectionError, Timeout, TooManyRedirects) as e:
@@ -46,26 +49,29 @@ def get_latest_prices():
 
     return coins
 
+
 # this procedure returns a user's total portfolio balance
 def get_total_balance(balances, coins):
-    totalBalance=0
+    total_balance = 0
     dict = {}
     for balance in balances:
         if balance.upper() == "USD":
             x = balances[balance]
             dict[balance.upper()] = x
-            totalBalance = totalBalance + float(x)
+            total_balance = total_balance + float(x)
         else:
             for coin in coins:
-                if coin['symbol'] == balance.upper():    
-                    x = coin['quote']['USD']['price'] * float(balances[balance])
+                if coin['symbol'] == balance.upper():
+                    x = coin['quote']['USD']['price'] * float(
+                        balances[balance])
                     x = "{:.2f}".format(x)
                     dict[balance.upper()] = x
-                    totalBalance = totalBalance + float(x)
+                    total_balance = total_balance + float(x)
 
-        # totalBalance = int(float(totalBalance))
+        # total_balance = int(float(total_balance))
 
-    return totalBalance
+    return total_balance
+
 
 @app.route("/")
 def home():
@@ -75,13 +81,12 @@ def home():
 @app.route("/get_currencies")
 def get_currencies():
     currencies = mongo.db.currencies.find()
+    coins = get_latest_prices()
+    return render_template(
+        "currencies.html", currencies=currencies, coins=coins)
 
-    coins=get_latest_prices()
 
-    return render_template("currencies.html", currencies = currencies, coins = coins)
-
-
-@app.route("/register", methods = ["GET", "POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         # check if email already exists in db
@@ -91,13 +96,14 @@ def register():
         if existing_user:
             flash("email already registered")
             return redirect(url_for("register"))
-        
+
         date_today = datetime.now().strftime('%d-%m-%Y')
         register = {
             "first_name": request.form.get("first_name").capitalize(),
             "last_name": request.form.get("last_name").capitalize(),
             "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password").lower()),
+            "password": generate_password_hash(
+                request.form.get("password").lower()),
             "register_date": date_today
         }
         # need to refactor
@@ -133,7 +139,7 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/login", methods = ["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         # check if email already exists in db
@@ -143,12 +149,12 @@ def login():
         if existing_user:
             # make sure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("email").lower()
-                    flash("Hi {}".format(
-                        existing_user["first_name"].capitalize()))
-                    return redirect(url_for(
-                        "portfolio", username=session["user"]))
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("email").lower()
+                flash("Hi {}".format(
+                    existing_user["first_name"].capitalize()))
+                return redirect(
+                    url_for("portfolio", username=session["user"]))
             else:
                 # incorrect password
                 flash("Incorrect email and/or password")
@@ -168,24 +174,24 @@ def settings():
         return redirect(url_for("login"))
 
     # get users first name from db
-    userSettings = mongo.db.users.find_one(
+    user_settings = mongo.db.users.find_one(
         {"email": session["user"]})
 
     # get users balances from db
     balances = mongo.db.balances.find_one(
-            {"email": session["user"]})
+        {"email": session["user"]})
 
     # retrieve the latest crypto prices
-    coins=get_latest_prices()
-    
-    # create a dictionary which calculate the user's balance for each cryptocurrency
-    
-    totalBalance = get_total_balance(balances, coins)
-    
+    coins = get_latest_prices()
+
+    # create a dictionary which calculate the user's
+    # balance for each cryptocurrency
+    total_balance = get_total_balance(balances, coins)
 
     if session["user"]:
         return render_template(
-            "settings.html", userSettings=userSettings, portfolioBalance=totalBalance)
+            "settings.html", user_settings=user_settings,
+            portfolioBalance=total_balance)
 
 
 @app.route("/edit_settings/", methods=["GET", "POST"])
@@ -194,14 +200,13 @@ def edit_settings():
         return redirect(url_for("login"))
 
     # get users first name from db
-    userSettings = mongo.db.users.find_one(
+    user_settings = mongo.db.users.find_one(
         {"email": session["user"]})
 
     if request.method == "POST":
-        
         mongo.db.users.update(
-            { "email": session["user"] },
-            { "$set":
+            {"email": session["user"]},
+            {"$set":
                 {
                     "first_name": request.form.get("first_name"),
                     "last_name": request.form.get("last_name"),
@@ -212,10 +217,12 @@ def edit_settings():
         flash("Settings Successfully Updated")
         # need to refactor
         if request.form.get("reset_account") == "on":
-            mongo.db.transactions.remove({ "email": session["user"] })
+            # delete all transaction records for user from db
+            mongo.db.transactions.remove({"email": session["user"]})
+            # reset user portfolio balances
             mongo.db.balances.update(
-                { "email": session["user"] },
-                { "$set":
+                {"email": session["user"]},
+                {"$set":
                     {
                         "usd": 100000,
                         "btc": 0,
@@ -239,13 +246,12 @@ def edit_settings():
                 }
             )
             flash("Account reset")
-        
+
         return redirect(url_for("settings"))
-        # return render_template("settings.html", userSettings=userSettings)
 
     if session["user"]:
         return render_template(
-            "edit_settings.html", userSettings=userSettings)
+            "edit_settings.html", user_settings=user_settings)
 
 
 @app.route("/portfolio/")
@@ -256,7 +262,7 @@ def portfolio():
     # get users first name from db
     username = mongo.db.users.find_one(
         {"email": session["user"]})["first_name"]
-    
+
     if session["user"]:
         # retrieve user's balance for each cryptocurrency
         balances = mongo.db.balances.find_one(
@@ -271,35 +277,34 @@ def portfolio():
 
         # retrieve latest cryptocurrency prices
         coins = get_latest_prices()
-        
-        # create a dictionary which calculates the user's balance for each cryptocurrency
+
+        # create a dictionary which calculates the user's
+        # balance for each cryptocurrency
         dict = {}
-        totalBalance = 0
-        # percentageChange = 0
+        total_balance = 0
+        percentage_change = 0
         for balance in balances:
             if balance.upper() == "USD":
                 x = balances[balance]
                 dict[balance.upper()] = x
-                totalBalance = totalBalance + float(x)
+                total_balance = total_balance + float(x)
             else:
                 for coin in coins:
-                    if coin['symbol'] == balance.upper():    
-                        x = coin['quote']['USD']['price'] * float(balances[balance])
+                    if coin['symbol'] == balance.upper():
+                        x = coin['quote']['USD']['price'] * float(
+                            balances[balance])
                         x = "{:.2f}".format(x)
                         dict[balance.upper()] = x
-                        totalBalance = totalBalance + float(x)
+                        total_balance = total_balance + float(x)
 
-            # totalBalance = int(float(totalBalance))
-            # percentageChange = "{:.2f}".format(int((totalBalance - 100000) / 1000))
-            percentageChange = "{:.2f}".format((totalBalance - 100000) / 1000)
-
-        registerDate = mongo.db.users.find_one(
-        {"email": session["user"]})["register_date"]
+            percentage_change = "{:.2f}".format(
+                (total_balance - 100000) / 1000)
 
         return render_template(
             "portfolio.html", username=username,
-                currencies=currencies, balances=balances, coins=coins, user=user, 
-                dict=dict, totalBalance=totalBalance, percentageChange=percentageChange,)
+            currencies=currencies, balances=balances, coins=coins,
+            user=user, dict=dict, total_balance=total_balance,
+            percentage_change=percentage_change,)
 
     return redirect(url_for("login"))
 
@@ -312,12 +317,11 @@ def transactions():
     # get users first name from db
     username = mongo.db.users.find_one(
         {"email": session["user"]})["first_name"]
-    
     if session["user"]:
         # retrieve user's transaction history
         transactions = mongo.db.transactions.find(
             {"email": session["user"]})
-        
+
         return render_template(
             "transactions.html", transactions=transactions)
 
@@ -333,51 +337,37 @@ def trade(ticker):
 
         # retrieve all tradable cryptocurrencies
         currencies = mongo.db.currencies.find()
-
-        # code to get cryptocurrency prices adapted from Coding Under Pressure YouTube channel
-        # 'How to Use an API in Python to get Bitcoin's Price Live - Along with other Cryptocurrencies'
-        headers = {
-            'X-CMC_PRO_API_KEY' : coin_market_cap_key,
-            'Accepts' : 'application/json'
-        }
-
-        params = {
-            'start' : '1',
-            'limit' : '30',
-            'convert' : 'USD'
-        }
-
-        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-        json = requests.get(url, params=params, headers=headers).json()
-        coins = json['data']
+        coins = get_latest_prices()
 
     if request.method == "POST":
         #  check to see if available balance covers trade
         balances = mongo.db.balances.find_one(
             {"email": session["user"]})
-        currency_sold = request.form.get("currency_sold")
-        currency_bought = request.form.get("currency_bought")
+        currency_sold = request.form.get("currency_sold").lower()
+        currency_bought = request.form.get("currency_bought").lower()
         if currency_sold.lower() == "usd":
             available_balance = balances[currency_sold]
         else:
             for coin in coins:
                 if coin['symbol'] == currency_sold.upper():
                     sold_price = "{:.2f}".format(coin['quote']['USD']['price'])
-            
-            available_balance = balances[currency_sold] * int(float(sold_price))
-        
+
+            available_balance = balances[currency_sold] * int(
+                float(sold_price))
+
         requested_balance = request.form.get("sold_amount")
 
         if int(requested_balance) > int(available_balance):
             flash(f"Insufficient funds - {currency_sold.upper()}")
             return render_template(
-                "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
+                "trade.html", selected_ticker=ticker, currencies=currencies,
+                balances=balances, coins=coins)
 
         if currency_sold.upper() == currency_bought.upper():
             flash("Traded currencies must be different")
             return render_template(
-                "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
- 
+                "trade.html", selected_ticker=ticker, currencies=currencies,
+                balances=balances, coins=coins)
 
         # credit: stackoverflow.com how to get current date and time in python
         time_stamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
@@ -407,11 +397,10 @@ def trade(ticker):
             "bought_price": bought_price,
         }
         mongo.db.transactions.insert_one(transaction)
-        
-        # update balances of cryptos sold and bought in balances document in DB
+
+        # update balances of cryptos sold and bought in balances document in db
         current_sold_balance = 0
         new_sold_balance = 0
-
         balances = mongo.db.balances.find_one(
             {"email": session["user"]})
 
@@ -421,15 +410,19 @@ def trade(ticker):
             if balance.upper() == request.form.get("currency_bought").upper():
                 current_bought_balance = balances[balance]
 
-        new_sold_balance = float(current_sold_balance) - (float(request.form.get("sold_amount")) / float(sold_price))
-        new_bought_balance = float(current_bought_balance) + (float(request.form.get("sold_amount")) / float(bought_price))
+        new_sold_balance = float(current_sold_balance) - (float(
+            request.form.get("sold_amount")) / float(sold_price))
+        new_bought_balance = float(current_bought_balance) + (
+            float(request.form.get("sold_amount")) / float(bought_price))
 
         mongo.db.balances.update(
-            { "email": session["user"] },
-            { "$set":
+            {"email": session["user"]},
+            {"$set":
                 {
-                    request.form.get("currency_sold").lower(): new_sold_balance,
-                    request.form.get("currency_bought").lower(): new_bought_balance
+                    request.form.get(
+                        "currency_sold").lower(): new_sold_balance,
+                    request.form.get(
+                        "currency_bought").lower(): new_bought_balance
                 }
             }
         )
@@ -438,7 +431,8 @@ def trade(ticker):
         return redirect(url_for("portfolio"))
 
     return render_template(
-        "trade.html", selected_ticker=ticker, currencies=currencies, balances=balances, coins=coins)
+        "trade.html", selected_ticker=ticker, currencies=currencies,
+        balances=balances, coins=coins)
 
 
 @app.route("/logout")
@@ -450,6 +444,7 @@ def logout():
 
 
 if __name__ == "__main__":
+    # change debug to False before submitting
     app.run(host=os.environ.get("IP"),
-        port=int(os.environ.get("PORT")),
-        debug=True)  #change to False before submitting
+            port=int(os.environ.get("PORT")),
+            debug=True)
