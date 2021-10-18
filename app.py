@@ -212,7 +212,7 @@ def edit_settings():
                     "last_name": request.form.get("last_name"),
                     "display_currency": request.form.get("display_currency")
                 }
-            }
+             }
         )
         flash("Settings Successfully Updated")
         # need to refactor
@@ -243,7 +243,7 @@ def edit_settings():
                         "algo": 0,
                         "shib": 0
                     }
-                }
+                 }
             )
             flash("Account reset")
 
@@ -424,7 +424,7 @@ def trade(ticker):
                     request.form.get(
                         "currency_bought").lower(): new_bought_balance
                 }
-            }
+             }
         )
 
         flash("Trade Successfully Processed ")
