@@ -12,15 +12,15 @@
                         First name: 
                         <div class="input-field inline">
                             <input id="first_name" name="first_name" type="text" pattern="^[A-Za-z]{1,30}$"
-                            class="validate" required>
-                            <label for="first_name">{{ user_settings.first_name }}</label>
+                            class="validate" value="{{ user_settings.first_name }}" required>
+                            <!-- <label for="first_name">{{ user_settings.first_name }}</label> -->
                         </div>
                         <br>
                         Last name: 
                         <div class="input-field inline">
                             <input id="last_name" name="last_name" type="text" pattern="^[A-Za-z]{1,30}$"
-                            class="validate" required>
-                            <label for="last_name">{{ user_settings.last_name }}</label>
+                            class="validate" value="{{ user_settings.last_name }}" required>
+                            <!-- <label for="last_name">{{ user_settings.last_name }}</label> -->
                         </div>
                         <br>
                         <!-- Reset Porftfolio -->

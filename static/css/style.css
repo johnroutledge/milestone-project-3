@@ -1,8 +1,13 @@
-body {
+body, input {
     background-color: white;
-    color: slategray;
+    color: #404040;
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
+}
+
+.input-field.inline input, .input-field.inline .select-dropdown {
+    margin-bottom: 0rem;
+    line-height: 1rem;
 }
 
 .clearfix:before,
@@ -23,6 +28,10 @@ h6 {
 
 .upper {
     text-transform: uppercase;
+}
+
+.input-field label {
+    font-weight: bold;
 }
 
 .flashes {
@@ -53,8 +62,8 @@ h6 {
 /*----------CRYPTO INFO*/
 .crypto-icon {
     vertical-align: middle;
-    max-height: 32px;
-    max-width: 32px;
+    max-height: 16px;
+    max-width: 16px;
 }
 
 .crypto-prices {
@@ -130,6 +139,9 @@ button {
 
 .btn-small {
     float: right;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
 }
 
 #edit-settings-buttons {
@@ -155,5 +167,16 @@ button {
 @media screen and (min-width: 701px){
     .trade-screen-small {
         display: none;
+    }
+
+    .crypto-icon {
+        max-height: 32px;
+        max-width: 32px;
+    }
+
+    .btn-small {
+        height: 28px;
+        line-height: 28px;
+        font-size: 13px;
     }
 }

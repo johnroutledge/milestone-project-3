@@ -1,45 +1,57 @@
 {% extends "base.html" %}
 {% block content %}
 
+
     <div class="row">
-        <form class="col s12 m6 offset-m3 card white" method="POST" action="{{ url_for('trade', ticker = 'None') }}">
-            <div class="card-content">
-                <div class="clearfix header">
-                    Trade<img src="../static/images/crypto_coins_bw_min.png">
-                </div>
-                <hr>
-                <div class="input-field col m4 s12 upper">
-                    <select id="currency_sold" name="currency_sold" required>
-                        <option value="" disabled selected>SELL</option>
-                        {% for balance in balances %}
-                            {% if balances[balance] != 0 %}
-                                {% if balance != '_id' and balance != 'email' %}
-                                    <option>{{ balance.upper() }}</option>
-                                {% endif %}   
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="input-field col m4 s12 black-text">
-                    <input id="sold_amount" name="sold_amount" type="text" pattern="^[0-9]{0,15}$" class="validate" required>
-                    <label class="black-text" for="sold_amount">Amount (USD)</label>
-                </div>
-                <div class="input-field col m4 s12">
-                    <select id="currency_bought" name="currency_bought" required>
-                        <option value="" disabled selected>BUY</option>
-                        {% for currency in currencies %}
-                            <option>{{ currency.currency_symbol }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <!--complete trade button-->
-                <div class="row">
-                    <button type="submit" class="col s12 btn-large teal lighten-1">
-                        Submit Trade  <i class="fas fa-check"></i>
-                    </button>
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('trade', ticker = 'None') }}">
+            <div class="card white">
+                <div class="card-content">
+                    <div class="clearfix header">
+                        Trade<img src="../static/images/crypto_coins_bw_min.png">
+                    </div><hr>
+                    <h6 class="crypto-prices">
+                        I want to buy:
+                        <!-- <div class="input-field col m4 s12"> -->
+                        <div class="input-field inline">    
+                            <select id="currency_bought" name="currency_bought" required>
+                                <!-- <option value="" disabled selected>{{ selected_ticker }}</option> -->
+                                {% for currency in currencies %}
+                                    <option value="{{currency.currency_symbol}}" {% if currency.currency_symbol == selected_ticker %} selected {% endif %}>{{ currency.currency_symbol }}</option>
+                                    <!-- <option>{{ currency.currency_symbol }}</option> -->
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+                        Amount (USD):
+                        <!-- <div class="input-field col m4 s12 black-text"> -->
+                        <div class="input-field inline">
+                            <input id="sold_amount" name="sold_amount" type="text" pattern="^[0-9]{0,15}$" class="validate" required>
+                            <!-- <label class="black-text" for="sold_amount">Amount (USD)</label> -->
+                        </div>
+                        <br>
+                        Purchase using:
+                        <!-- <div class="input-field col m4 s12 upper"> -->
+                        <div class="input-field inline">
+                            <select id="currency_sold" name="currency_sold" required>
+                                <!-- <option value="" disabled selected>SELL</option> -->
+                                {% for balance in balances %}
+                                    {% if balances[balance] != 0 %}
+                                        {% if balance != '_id' and balance != 'email' %}
+                                            <option>{{ balance.upper() }}</option>
+                                        {% endif %}   
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <!--complete trade button-->
+                        <div class="row">
+                            <button type="submit" class="col s12 btn-large teal lighten-1">
+                                Submit Trade  <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </h6>
                 </div>
             </div>
-            <!-- </div> -->
         </form>
     </div>
 
