@@ -157,7 +157,7 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 |  Vertical elipses on 'Why Hashmoney' card     | Click          |  Reveal hidden text                                       | PASS          |
 |  Vertical elipses on 'How does it work' card  | Click          |  Reveal hidden text                                       | PASS          |
 |  Social Media links in footer                 | Click          |  Navigate to the correct social media homepages           | PASS          |
-|  Sign-in page input wrong data format         | Submit         |  Catch any incorrect data format                          | PASS          |
+|  Sign-in page input wrong data format         | Submit         |  Catch all incorrect data formats                         | PASS          |
 |  Sign-in page input wrong login details       | Submit         |  Display incorrect email/password flash message           | PASS          |
 |  Sign-in page successful login                | Submit         |  Display user welcome flash message                       | PASS          |
 |  Sign-in page successful login                | Submit         |  Navigate to user's portfolio page                        | PASS          |
@@ -169,17 +169,48 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 |  Prices page cryptocurrency data              | Page load      |  Display logo, name, code, coin price, loss/gain %        | PASS          |
 |  Prices page cryptocurrency change %          | Page load      |  Render in green text if gain, red text if loss           | PASS          |
 |  Prices page extra cryptocurrency information | Click          |  Reveal/Hide hidden text when clicking on cryptocurrency  | PASS          |
-
-|  Transaction page user transactions           | Page load      |  List all user's transactions since registered/reset      | PASS          |
-|  Transaction page user transactions           | Page load      |  Show date/time, amount bought, crypto logo & code        | PASS          |
-|  Transaction page user transactions           | Page load      |  Show bought with crypto logo & code, price per coin      | PASS          |
-
+|  Trade page (via portfolio 'trade' button)    | Page Load      |  Display correct 'buy' currency                           | PASS          |
+|  Trade page 'buy'currency select list         | Page Load      |  List all cryptocurrencies in database                    | PASS          |
+|  Trade page 'purchase using' select list      | Page Load      |  List only cryptocurrencies user has positive balance of  | PASS          |
+|  Trade page input wrong data format           | Click Submit   |  Catch all incorrect data formats                         | PASS          |
+|  Trade page successful trade                  | Click Submit   |  Display trade successfully processed flash message       | PASS          |
+|  Trade page successful trade                  | Click Submit   |  Navigate to portfolio page and display new balances      | PASS          |
+|  Transactions page user transactions          | Page load      |  List all user's transactions since registered/reset      | PASS          |
+|  Transactions page user transactions          | Page load      |  Show date/time, amount bought, crypto logo & code        | PASS          |
+|  Transactions page user transactions          | Page load      |  Show bought with crypto logo & code, price per coin      | PASS          |
+|  Settings page                                | Page load      |  Display user first name, last name and portfolio balance | PASS          |
+|  Settings page 'edit' button                  | Click          |  Navigate to edit settings page                           | PASS          |
+|  Edit Settings page input wrong data format   | Click Save     |  Catch all incorrect data formats                         | PASS          |
+|  Edit Settings page reset balance switch      | Set to 'off'   |  Not reset user's portfolio when saving                   | PASS          |
+|  Edit Settings page reset balance switch      | Set to 'on'    |  Reset user's portfolio when saving                       | PASS          |
+|  Edit Settings page successful save           | Click Save     |  Display settings successfully updated flash message      | PASS          |
+|  Edit Settings page successful save           | Click Save     |  Display account reset flash message if reset balance on  | PASS          |
+|  Edit Settings page successful save           | Click Save     |  Navigate back to settings page and display new data      | PASS          |
+|  Edit Settings page 'cancel' button           | Click          |  Navigate back to settings page and display existing data | PASS          |
+|  Logout navbar link                           | Click          |  Display log out successful flash message                 | PASS          |
+|  Logout navbar link                           | Click          |  Navigate to sign-in page                                 | PASS          |
 |  Media Query mobile screen size               | Resize screen  |  Page should display correctly on mobile screen           | PASS          |
 |  Media Query tablet screen size               | Resize screen  |  Page should display correctly on tablet screen           | PASS          |
 |  Media Query desktop screen size              | Resize screen  |  Page should display correctly on 14 inch screen          | PASS          |
 |  Media Query 5k screen size                   | Resize screen  |  Page should display correctly on 5k screen               | PASS          |
 |  Copyright text                               | Resize screen  |  Should be visible on screens above mobile size           | PASS          |
 |  Copyright text                               | Resize screen  |  Should not be visible mobile screens                     | PASS          |
+
+## CRUD Testing
+
+|  Test Label                                   | CRUD Action    |  Expected Outcome                                         | Test Outcome  |
+|-----------------------------------------------|----------------|-----------------------------------------------------------|---------------|
+|  New user register                            | Create         |  Create new record in users table in db                   | PASS          |
+|  New user register                            | Create         |  Create new record in balance table in db                 | PASS          |
+|  Porftolio page                               | Read           |  Correcly list all balances from db                       | PASS          |
+|  Prices page                                  | Read           |  Correcly list all prices from db and api call            | PASS          |
+|  Prices page reveal text                      | Read           |  Correcly list all info from currencies table in db       | PASS          |
+|  Trade page                                   | Read           |  List all cryptocurrencies from currencies table in db    | PASS          |
+|  Trade page successful trade                  | Update         |  Correcly update transactions and balances tables in db   | PASS          |
+|  Transactions page                            | Read           |  Correcly list all data from transactions table in db     | PASS          |
+|  Edit settings page successful edit           | Update         |  Correcly update user table in db                         | PASS          |
+|  Edit settings page successful reset balance  | Update         |  Correcly update balances table in db                     | PASS          |
+|  Edit settings page successful reset balance  | Delete         |  Correcly detete all date from transactions table in db   | PASS          |
 
 **Testing User Stories**
 
