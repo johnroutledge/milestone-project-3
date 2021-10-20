@@ -1,23 +1,10 @@
+/*----------TYPOGRAPHY STYLING*/
 body, input {
     background-color: white;
     color: #404040;
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
 }
-
-.input-field.inline input, .input-field.inline .select-dropdown {
-    margin-bottom: 0rem;
-    line-height: 1rem;
-}
-
-.clearfix:before,
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both
-}
-
-/*----------TYPOGRAPHY STYLING*/
 label {
     color:black;
 }
@@ -57,6 +44,14 @@ h6 {
     font-size: larger;
     font-weight: bold;
     line-height: 150%;
+}
+
+/*----------HEADER*/
+.container {
+    max-width: 2000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
 }
 
 /*----------CRYPTO INFO*/
@@ -132,6 +127,21 @@ h6 {
     color: black;
 }
 
+/*----------IMAGES*/
+img.responsive-img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* credit: stackoverflow - floating image to right of div */
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both
+}
+
 /*----------BUTTONS*/
 button {
     font-family: 'Montserrat', sans-serif; 
@@ -147,6 +157,12 @@ button {
 
 #edit-settings-buttons {
     padding-bottom: 1rem;
+}
+
+/*----------INPUT COMPONENTS*/
+.input-field.inline input, .input-field.inline .select-dropdown {
+    margin-bottom: 0rem;
+    line-height: 1rem;
 }
 
 /*----------FOOTER*/

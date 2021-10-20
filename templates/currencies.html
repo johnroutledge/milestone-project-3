@@ -8,8 +8,8 @@
                     <div class="clearfix header">
                         Latest Prices<img src="../static/images/crypto_coins_bw_min.png">
                     </div>
-                    <p>Click on any cryptocurrency for more information</p>
                     <hr>
+                    <p>Click on any cryptocurrency for more information</p>
                     <ul class="collapsible">
                     <!--iterate through list of currencies listed in db to find price information in coin array-->
                     {% for currency in currencies %}
@@ -17,7 +17,6 @@
                             {% if coin['symbol'] == currency.currency_symbol %}
                                 <li>
                                     <div class="collapsible-header crypto-prices" id="full-width">
-                                        <!-- <img class="crypto-icon" src="{{ currency.image_source_large }}" alt="Profile image for {{ currency.currency_name }}">&nbsp -->
                                         <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
                                         {{ coin['name'] }} ({{ coin['symbol'] }})&nbsp
                                         <!--credit to kite.com for formatting tips - how to print float with 2 decimal places-->

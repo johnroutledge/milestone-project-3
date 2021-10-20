@@ -67,7 +67,9 @@ User Stories:
 
 **Structure**
 
-ADD
+To make sure the content/functionality is intuitive to navigate, I maintained consistency throughout the different pages by using the same layout/structure (landing page sections matched the order of menu items) and header and footer elements.
+
+On the landing and gallery pages, I used content hinting so that users would be encouraged to scroll further down the page.
 
 **Skeleton**
 
@@ -93,13 +95,17 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 ## Features
 
 **Implemented**
-* CHANGE 
-* CHANGE 
-* CHANGE 
-* CHANGE 
-* CHANGE 
-* CHANGE 
-* CHANGE 
+* The navbar collapses to a burger menu on smaller screens to increase the available screen area
+* The same footer appears on every page to maintain consistency and give quick access to relevant social media links 
+* The home page incorporates content hinting by partially revealing an element just above the fold 
+* Images on homepage include reveal text functionality behind questions enouraging people to explore further 
+* People can register for free which also allocates them 100,000 dollars which they can trade with as they please 
+* Users can reset there portfolio to zero at any point should they wish to start afresh 
+* Users can trade 17 of the top 20 cryptocurrencies
+* A user's balance is clearly displayed on their portfolio screen and they can instantly see if they are in profit
+* Users can also access their trading history on the transactions screen so they can see what they have bought and sold
+* All cryptocurrency prices are accurate up to the second thanks to an api call to coinmarketcap.com
+* Users can also access snippets of background information on each cryptocurrency through the use of reveal text functionality on the prices page
 
 **Future Features to Implement**
 * The ability to choose from a wider range of cryptocurrencies
@@ -150,13 +156,13 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 |  Test Label                                   | Action         | Expected Outcome                                          | Test Outcome  |
 |-----------------------------------------------|----------------|-----------------------------------------------------------|---------------|
 |  Hashmoney navbar logo                        | Click          |  Navigate to homepage from all pages                      | PASS          |
-|  Navbar 'Home' 'Sign In' 'Register' links     | Be visible     |  See only these links if user not logged in               | PASS          |
-|  Navbar 'Porftfolio' 'Prices' 'Trade' links   | Be visible     |  See only these links if user logged in                   | PASS          |
-|  Navbar 'Transactions' 'Settings' 'Logout'    | Be visible     |  See only these links if user logged in                   | PASS          |
+|  Navbar 'Home' 'Sign In' 'Register' links     | Before login   |  See only these links if user not logged in               | PASS          |
+|  Navbar 'Porftfolio' 'Prices' 'Trade' links   | After login    |  See only these links if user logged in                   | PASS          |
+|  Navbar 'Transactions' 'Settings' 'Logout'    | After login    |  See only these links if user logged in                   | PASS          |
 |  Navbar links                                 | Click          |  Navigate to the corresponding pages                      | PASS          |
 |  Navbar links                                 | View on mobile |  Should be visible as hamburger icon                      | PASS          |
-|  Vertical ellipsis on 'Why Hashmoney' card     | Click          |  Reveal hidden text                                       | PASS          |
-|  Vertical ellipsis on 'How does it work' card  | Click          |  Reveal hidden text                                       | PASS          |
+|  Homepage vertical ellipsis on 'Why Hashmoney' card     | Click          |  Reveal hidden text                                       | PASS          |
+|  Homepage vertical ellipsis on 'How does it work' card  | Click          |  Reveal hidden text                                       | PASS          |
 |  Social Media links in footer                 | Click          |  Navigate to the correct social media homepages           | PASS          |
 |  Sign-in page input wrong data format         | Submit         |  Catch all incorrect data formats                         | PASS          |
 |  Sign-in page input wrong login details       | Submit         |  Display incorrect email/password flash message           | PASS          |
@@ -349,7 +355,8 @@ Pushing moves your work from the staging area to your repository.
 
 - Basic template setup, use of Flask, linking to MongoDB and Heroku taken from the Code Institute's Backend Development Task-Manager Mini-Project
 - Code for Materialize elements taken and modified from materialize.com
-- ADD
+- Pretty Printed's YouTube channel video 'Adding a Favivon to a Flask App'
+- How to float an image to right of div taken from stackoverflow.com
 
 **Acknowledgements**
 

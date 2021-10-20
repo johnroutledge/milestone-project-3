@@ -272,9 +272,16 @@ def portfolio():
         balances = mongo.db.balances.find_one(
             {"email": session["user"]})
 
+        member_since = mongo.db.users.find_one(
+            {"email": session["user"]})["register_date"]
+        
         # retrieve user's details from users document
         user = mongo.db.users.find_one(
             {"email": session["user"]})
+        
+        # convert member_since from string to required date format
+        member_since = datetime.strptime(member_since, '%Y-%m-%d %H:%M:%S')
+        member_since = member_since.strftime('%d-%b-%Y')
 
         # retrieve all tradable cryptocurrencies
         currencies = mongo.db.currencies.find()
@@ -308,7 +315,7 @@ def portfolio():
             "portfolio.html", username=username,
             currencies=currencies, balances=balances, coins=coins,
             user=user, dict=dict, total_balance=total_balance,
-            percentage_change=percentage_change,)
+            percentage_change=percentage_change, member_since=member_since)
 
     return redirect(url_for("login"))
 
