@@ -81,7 +81,7 @@ To make sure the app is intuitive to navigate and use, I decided to keep all of 
 
 The 'Monserrat' Google font was chosen to give a clean and modern feel, while the grey and white colour scheme added to this style.
 
-The colour scheme was chosen as it feels sharp and modern to match the world of cryptocurrencies. At the same time, it is both visually unintimidating and easy on the eye. I wanted the app to have this look so that it appeals to users who are risk-averse and who don't want to be overloaded with unecessary information.
+The colour scheme was chosen as it feels sharp and modern to match the world of cryptocurrencies. At the same time, it is both visually unintimidating and easy on the eye. I wanted the app to have this look so that it appeals to users who are risk-averse and who don't want to be overloaded with unecessary information. A shade of blue was chosen for the buttons as it is perceived as being a trustworthy,dependable, and responsible color. Blue is also popular among financial institutions, as conveys trust and stability. The button color is consistent throughout the app to maintain consistency and increase intuitivity.
 
 The cryptocoin hero image was chosen for the landing page to make it immediately apparent that this is a financial app dealing with cryptocurrency. The large two sentence message underneath the hero image was used to give a clear, unambiguous description of what the app is about.
 
@@ -141,9 +141,9 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 
 ![ERD](https://johnroutledge.github.io/milestone-project-3/static/images/readme/hashmoney.png "ERD")
 
-## CRUD
 
 ***
+
 
 ## Testing
 
@@ -154,14 +154,15 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 |  Navbar 'Porftfolio' 'Prices' 'Trade' links   | Be visible     |  See only these links if user logged in                   | PASS          |
 |  Navbar 'Transactions' 'Settings' 'Logout'    | Be visible     |  See only these links if user logged in                   | PASS          |
 |  Navbar links                                 | Click          |  Navigate to the corresponding pages                      | PASS          |
-|  Vertical elipses on 'Why Hashmoney' card     | Click          |  Reveal hidden text                                       | PASS          |
-|  Vertical elipses on 'How does it work' card  | Click          |  Reveal hidden text                                       | PASS          |
+|  Navbar links                                 | View on mobile |  Should be visible as hamburger icon                      | PASS          |
+|  Vertical ellipsis on 'Why Hashmoney' card     | Click          |  Reveal hidden text                                       | PASS          |
+|  Vertical ellipsis on 'How does it work' card  | Click          |  Reveal hidden text                                       | PASS          |
 |  Social Media links in footer                 | Click          |  Navigate to the correct social media homepages           | PASS          |
 |  Sign-in page input wrong data format         | Submit         |  Catch all incorrect data formats                         | PASS          |
 |  Sign-in page input wrong login details       | Submit         |  Display incorrect email/password flash message           | PASS          |
 |  Sign-in page successful login                | Submit         |  Display user welcome flash message                       | PASS          |
 |  Sign-in page successful login                | Submit         |  Navigate to user's portfolio page                        | PASS          |
-|  Sign-in page link to regsiter page           | Click          |  Navigate to register page                                | PASS          |
+|  Sign-in page link to register page           | Click          |  Navigate to register page                                | PASS          |
 |  Portfolio page member information            | Page load      |  Display name, join date, balance, loss/gain %            | PASS          |
 |  Portfolio page portfolio change %            | Page load      |  Render in green text if gain, red text if loss           | PASS          |
 |  Portfolio page cryptocurrency data           | Page load      |  Display logo, name, USD balance, coin quantity & code    | PASS          |
@@ -173,6 +174,7 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 |  Trade page 'buy'currency select list         | Page Load      |  List all cryptocurrencies in database                    | PASS          |
 |  Trade page 'purchase using' select list      | Page Load      |  List only cryptocurrencies user has positive balance of  | PASS          |
 |  Trade page input wrong data format           | Click Submit   |  Catch all incorrect data formats                         | PASS          |
+|  Trade page input duplicate currencies        | Click Submit   |  Display traded currencies must be different flash message       | PASS          |
 |  Trade page successful trade                  | Click Submit   |  Display trade successfully processed flash message       | PASS          |
 |  Trade page successful trade                  | Click Submit   |  Navigate to portfolio page and display new balances      | PASS          |
 |  Transactions page user transactions          | Page load      |  List all user's transactions since registered/reset      | PASS          |
@@ -189,12 +191,11 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 |  Edit Settings page 'cancel' button           | Click          |  Navigate back to settings page and display existing data | PASS          |
 |  Logout navbar link                           | Click          |  Display log out successful flash message                 | PASS          |
 |  Logout navbar link                           | Click          |  Navigate to sign-in page                                 | PASS          |
-|  Media Query mobile screen size               | Resize screen  |  Page should display correctly on mobile screen           | PASS          |
-|  Media Query tablet screen size               | Resize screen  |  Page should display correctly on tablet screen           | PASS          |
-|  Media Query desktop screen size              | Resize screen  |  Page should display correctly on 14 inch screen          | PASS          |
-|  Media Query 5k screen size                   | Resize screen  |  Page should display correctly on 5k screen               | PASS          |
-|  Copyright text                               | Resize screen  |  Should be visible on screens above mobile size           | PASS          |
-|  Copyright text                               | Resize screen  |  Should not be visible mobile screens                     | PASS          |
+|  Media Query mobile screen size               | Resize screen  |  Page should render correctly on mobile screen            | PASS          |
+|  Media Query tablet screen size               | Resize screen  |  Page should render correctly on tablet screen            | PASS          |
+|  Media Query desktop screen size              | Resize screen  |  Page should render correctly on 14 inch screen           | PASS          |
+|  Media Query 5k screen size                   | Resize screen  |  Page should render correctly on 5k screen                | PASS          |
+
 
 ## CRUD Testing
 
@@ -202,15 +203,15 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 |-----------------------------------------------|----------------|-----------------------------------------------------------|---------------|
 |  New user register                            | Create         |  Create new record in users table in db                   | PASS          |
 |  New user register                            | Create         |  Create new record in balance table in db                 | PASS          |
-|  Porftolio page                               | Read           |  Correcly list all balances from db                       | PASS          |
-|  Prices page                                  | Read           |  Correcly list all prices from db and api call            | PASS          |
-|  Prices page reveal text                      | Read           |  Correcly list all info from currencies table in db       | PASS          |
+|  Porftolio page                               | Read           |  Correctly list all balances from db                      | PASS          |
+|  Prices page                                  | Read           |  Correctly list all prices from db and api call           | PASS          |
+|  Prices page reveal text                      | Read           |  Correctly list all info from currencies table in db      | PASS          |
 |  Trade page                                   | Read           |  List all cryptocurrencies from currencies table in db    | PASS          |
-|  Trade page successful trade                  | Update         |  Correcly update transactions and balances tables in db   | PASS          |
-|  Transactions page                            | Read           |  Correcly list all data from transactions table in db     | PASS          |
-|  Edit settings page successful edit           | Update         |  Correcly update user table in db                         | PASS          |
-|  Edit settings page successful reset balance  | Update         |  Correcly update balances table in db                     | PASS          |
-|  Edit settings page successful reset balance  | Delete         |  Correcly detete all date from transactions table in db   | PASS          |
+|  Trade page successful trade                  | Update         |  Correctly update transactions and balances tables in db  | PASS          |
+|  Transactions page                            | Read           |  Correctly list all data from transactions table in db    | PASS          |
+|  Edit settings page successful edit           | Update         |  Correctly update user table in db                        | PASS          |
+|  Edit settings page successful reset balance  | Update         |  Correctly update balances table in db                    | PASS          |
+|  Edit settings page successful reset balance  | Delete         |  Correctly delete all data from transactions table in db  | PASS          |
 
 **Testing User Stories**
 

@@ -84,7 +84,7 @@ h6 {
 .header {
     padding: 1%;
     width: 100%;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 .header > img {
@@ -142,6 +142,7 @@ button {
     height: 20px;
     line-height: 20px;
     font-size: 12px;
+    font-weight: bolder;
 }
 
 #edit-settings-buttons {
@@ -178,5 +179,9 @@ button {
         height: 28px;
         line-height: 28px;
         font-size: 13px;
+    }
+
+    .header {
+        font-size: 2em;
     }
 }

@@ -51,6 +51,9 @@ def get_latest_prices():
 
 
 # this procedure returns a user's total portfolio balance
+# by taking their balance for each cryptocurrency then
+# multiplying it by its current price (taken from the api
+# call) and finally adding them together
 def get_total_balance(balances, coins):
     total_balance = 0
     dict = {}
@@ -67,8 +70,6 @@ def get_total_balance(balances, coins):
                     x = "{:.2f}".format(x)
                     dict[balance.upper()] = x
                     total_balance = total_balance + float(x)
-
-        # total_balance = int(float(total_balance))
 
     return total_balance
 
@@ -170,6 +171,7 @@ def login():
 
 @app.route("/settings/")
 def settings():
+    # this redirects user to login screen if not logged in
     if "user" not in session:
         return redirect(url_for("login"))
 
@@ -196,6 +198,7 @@ def settings():
 
 @app.route("/edit_settings/", methods=["GET", "POST"])
 def edit_settings():
+    # this redirects user to login screen if not logged in
     if "user" not in session:
         return redirect(url_for("login"))
 
@@ -256,6 +259,7 @@ def edit_settings():
 
 @app.route("/portfolio/")
 def portfolio():
+    # this redirects user to login screen if not logged in
     if "user" not in session:
         return redirect(url_for("login"))
 
@@ -311,12 +315,14 @@ def portfolio():
 
 @app.route("/transactions/")
 def transactions():
+    # this redirects user to login screen if not logged in
     if "user" not in session:
         return redirect(url_for("login"))
 
     # get users first name from db
     username = mongo.db.users.find_one(
         {"email": session["user"]})["first_name"]
+
     if session["user"]:
         # retrieve user's transaction history
         transactions = mongo.db.transactions.find(
@@ -330,6 +336,10 @@ def transactions():
 
 @app.route("/trade/<ticker>", methods=["GET", "POST"])
 def trade(ticker):
+    # this redirects user to login screen if not logged in
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     if session["user"]:
         # retrieve user's balance for each cryptocurrency
         balances = mongo.db.balances.find_one(
@@ -391,10 +401,10 @@ def trade(ticker):
             "email": session["user"],
             "time_stamp": time_stamp,
             "currency_sold": request.form.get("currency_sold"),
-            "sold_amount": request.form.get("sold_amount"),
+            "sold_amount": float(request.form.get("sold_amount")),
             "sold_price": sold_price,
             "currency_bought": request.form.get("currency_bought"),
-            "bought_price": bought_price,
+            "bought_price": float(bought_price),
         }
         mongo.db.transactions.insert_one(transaction)
 

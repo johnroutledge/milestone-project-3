@@ -11,31 +11,27 @@
                     </div><hr>
                     <h6 class="crypto-prices">
                         I want to buy:
-                        <!-- <div class="input-field col m4 s12"> -->
+                        <!-- populate select list with all cryptocurrencies in db -->
                         <div class="input-field inline">    
                             <select id="currency_bought" name="currency_bought" required>
-                                <!-- <option value="" disabled selected>{{ selected_ticker }}</option> -->
                                 {% for currency in currencies %}
+                                    <!-- if coming via trade button on portfolio screen, the pre-select cryptocurrency passed through -->
                                     <option value="{{currency.currency_symbol}}" {% if currency.currency_symbol == selected_ticker %} selected {% endif %}>{{ currency.currency_symbol }}</option>
-                                    <!-- <option>{{ currency.currency_symbol }}</option> -->
                                 {% endfor %}
                             </select>
                         </div>
                         <br>
                         Amount (USD):
-                        <!-- <div class="input-field col m4 s12 black-text"> -->
                         <div class="input-field inline">
                             <input id="sold_amount" name="sold_amount" type="text" pattern="^[0-9]{0,15}$" class="validate" required>
-                            <!-- <label class="black-text" for="sold_amount">Amount (USD)</label> -->
                         </div>
                         <br>
                         Purchase using:
-                        <!-- <div class="input-field col m4 s12 upper"> -->
+                        <!-- populate select list by finding currencies user holds with positive balance -->
                         <div class="input-field inline">
                             <select id="currency_sold" name="currency_sold" required>
-                                <!-- <option value="" disabled selected>SELL</option> -->
                                 {% for balance in balances %}
-                                    {% if balances[balance] != 0 %}
+                                    {% if balances[balance]|float > 0 %}
                                         {% if balance != '_id' and balance != 'email' %}
                                             <option>{{ balance.upper() }}</option>
                                         {% endif %}   
@@ -45,7 +41,7 @@
                         </div>
                         <!--complete trade button-->
                         <div class="row">
-                            <button type="submit" class="col s12 btn-large teal lighten-1">
+                            <button type="submit" class="col s12 btn-large blue darken-2">
                                 Submit Trade  <i class="fas fa-check"></i>
                             </button>
                         </div>

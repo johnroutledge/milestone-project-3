@@ -34,7 +34,7 @@
                                             {{ currency.currency_symbol }})
                                         {% endif %}
                                     {% endfor %}
-                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small teal lighten-1" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
+                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small blue darken-2" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
                                     <hr>
                                 </div>
                                 <!-- display for mobile screen sizes -->
@@ -42,7 +42,7 @@
                                     <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
                                     {{ currency.currency_symbol }}
                                     {{ value }} 
-                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small teal lighten-1" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
+                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small blue darken-2" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
                                     <hr>
                                 </div>
                             {% endif %}

@@ -13,20 +13,17 @@
                         <div class="input-field inline">
                             <input id="first_name" name="first_name" type="text" pattern="^[A-Za-z]{1,30}$"
                             class="validate" value="{{ user_settings.first_name }}" required>
-                            <!-- <label for="first_name">{{ user_settings.first_name }}</label> -->
                         </div>
                         <br>
                         Last name: 
                         <div class="input-field inline">
                             <input id="last_name" name="last_name" type="text" pattern="^[A-Za-z]{1,30}$"
                             class="validate" value="{{ user_settings.last_name }}" required>
-                            <!-- <label for="last_name">{{ user_settings.last_name }}</label> -->
                         </div>
                         <br>
                         <!-- Reset Porftfolio -->
-                        Reset Portfolio Balance?<br>
-                        <br><div class="update-warning">WARNING: Selecting 'Yes' will delete all trading history and reset account to 100000 credits</div><br>
-                        <div class="switch">
+                        <br>Reset Portfolio Balance?<br>
+                        <br><div class="switch">
                             <label for="reset_account">
                                 NO
                             <input id="reset_account" name="reset_account" type="checkbox">
@@ -34,9 +31,10 @@
                                 YES
                             </label>
                         </div><br>
+                        <div class="update-warning">WARNING: Selecting 'Yes' will delete all trading history and reset account to 100,000 USD</div><br>
                         <div id="edit-settings-buttons">
-                            <a href="{{ url_for('settings') }}" class="waves-effect waves-light btn-small pink lighten-2 left">Cancel  <i class="fas fa-times"></i></a>
-                            <button type="submit" class="waves-effect waves-light btn-small pink lighten-2">
+                            <a href="{{ url_for('settings') }}" class="waves-effect waves-light btn-small blue darken-2 left">Cancel  <i class="fas fa-times"></i></a>
+                            <button type="submit" class="waves-effect waves-light btn-small blue darken-2">
                                 Save  <i class="fas fa-check"></i>
                             </button>
                         </div>
