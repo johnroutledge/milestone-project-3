@@ -149,36 +149,35 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 
 |  Test Label                                   | Action         | Expected Outcome                                          | Test Outcome  |
 |-----------------------------------------------|----------------|-----------------------------------------------------------|---------------|
-|  Initial page load                            | Page load      |  Instruction modal should appear on top                    | PASS          |
-|  Instruction modal close button               | Click          |  Instruction modal should close when clicked              | PASS          |
-|  Marquee text                                 | Page load      |  Should scroll consistently at all times                  | PASS          |
-|  Help button                                  | Pre-play       |  Should be enabled and highlighted on focus               | PASS          |
-|  Play button                                  | Pre-play       |  Should be enabled and highlighted on focus               | PASS          |
-|  Help button                                  | Click          |  Instruction modal should appear on top                    | PASS          |
-|  Play button                                  | Click          |  Countdown should trigger followed by game start          | PASS          |
-|  Eight circle buttons                         | Pre-play       |  Should be disabled pre-play                              | PASS          |
-|  Help button                                  | In-play        |  Should be disabled in-play                               | PASS          |
-|  Play button                                  | In-play        |  Should be disabled in-play                               | PASS          |
-|  Eight circle buttons                         | In-play        |  Should be enabled and highlighted on focus               | PASS          |
-|  Countdown timer                              | In-play        |  Should perform a three-second countdown then 'Ready?'    | PASS          |
-|  Gameplay timer                               | In-play        |  Should run for 30 seconds unless incorrect button click  | PASS          |
-|  Action word                                  | In-play        |  Should change to new action if correct button clicked    | PASS          |
-|  Action word color                            | In-play        |  Should change colour if correct button clicked           | PASS          |
-|  Game score update                            | In-play        |  Should increment by one if correct button clicked        | PASS          |
-|  Correct click sound                          | In-play        |  Should be audible if correct button clicked              | PASS          |
-|  Incorrect click sound                        | In-play        |  Should be audible if incorrect button clicked            | PASS          |
-|  Highlight correct circle                     | In-play        |  Correct circle should blink if incorrect button clicked  | PASS          |
-|  Game over sound                              | In-play        |  Should be audible if time runs out                       | PASS          |
-|  High score update                            | Game end       |  Should update if new high score achieved                 | PASS          |
-|  Countdown timer                              | Game end       |  Should reset to zero                                     | PASS          |
-|  Action word                                  | Game end       |  Should display 'Game over' or 'New High'                 | PASS          |
-|  Game score                                   | Game end       |  Should reset to zero                                     | PASS          |
+|  Hashmoney navbar logo                        | Click          |  Navigate to homepage from all pages                      | PASS          |
+|  Navbar 'Home' 'Sign In' 'Register' links     | Be visible     |  See only these links if user not logged in               | PASS          |
+|  Navbar 'Porftfolio' 'Prices' 'Trade' links   | Be visible     |  See only these links if user logged in                   | PASS          |
+|  Navbar 'Transactions' 'Settings' 'Logout'    | Be visible     |  See only these links if user logged in                   | PASS          |
+|  Navbar links                                 | Click          |  Navigate to the corresponding pages                      | PASS          |
+|  Vertical elipses on 'Why Hashmoney' card     | Click          |  Reveal hidden text                                       | PASS          |
+|  Vertical elipses on 'How does it work' card  | Click          |  Reveal hidden text                                       | PASS          |
+|  Social Media links in footer                 | Click          |  Navigate to the correct social media homepages           | PASS          |
+|  Sign-in page input wrong data format         | Submit         |  Catch any incorrect data format                          | PASS          |
+|  Sign-in page input wrong login details       | Submit         |  Display incorrect email/password flash message           | PASS          |
+|  Sign-in page successful login                | Submit         |  Display user welcome flash message                       | PASS          |
+|  Sign-in page successful login                | Submit         |  Navigate to user's portfolio page                        | PASS          |
+|  Sign-in page link to regsiter page           | Click          |  Navigate to register page                                | PASS          |
+|  Portfolio page member information            | Page load      |  Display name, join date, balance, loss/gain %            | PASS          |
+|  Portfolio page portfolio change %            | Page load      |  Render in green text if gain, red text if loss           | PASS          |
+|  Portfolio page cryptocurrency data           | Page load      |  Display logo, name, USD balance, coin quantity & code    | PASS          |
+|  Portfolio page trade buttons                 | Click          |  Navigate to trade page and auto select chosen crypto     | PASS          |
+|  Prices page cryptocurrency data              | Page load      |  Display logo, name, code, coin price, loss/gain %        | PASS          |
+|  Prices page cryptocurrency change %          | Page load      |  Render in green text if gain, red text if loss           | PASS          |
+|  Prices page extra cryptocurrency information | Click          |  Reveal/Hide hidden text when clicking on cryptocurrency  | PASS          |
+
+|  Transaction page user transactions           | Page load      |  List all user's transactions since registered/reset      | PASS          |
+|  Transaction page user transactions           | Page load      |  Show date/time, amount bought, crypto logo & code        | PASS          |
+|  Transaction page user transactions           | Page load      |  Show bought with crypto logo & code, price per coin      | PASS          |
+
 |  Media Query mobile screen size               | Resize screen  |  Page should display correctly on mobile screen           | PASS          |
 |  Media Query tablet screen size               | Resize screen  |  Page should display correctly on tablet screen           | PASS          |
 |  Media Query desktop screen size              | Resize screen  |  Page should display correctly on 14 inch screen          | PASS          |
 |  Media Query 5k screen size                   | Resize screen  |  Page should display correctly on 5k screen               | PASS          |
-|  Marquee text                                 | Resize screen  |  Should fit partial width of screens above mobile size    | PASS          |
-|  Marquee text                                 | Resize screen  |  Should fit entire width of mobile screen                 | PASS          |
 |  Copyright text                               | Resize screen  |  Should be visible on screens above mobile size           | PASS          |
 |  Copyright text                               | Resize screen  |  Should not be visible mobile screens                     | PASS          |
 
