@@ -41,6 +41,7 @@ Hashmoney is the ideal site for such people because:
 * [User Experience (UX)](#user-experience) 
 * [Features](#features)
 * [Technologies Employed](#technologies-employed)
+* [Database](#database)
 * [Testing](#testing)
 * [Deployment](#deployment)
 * [Credits](#credits)
@@ -75,7 +76,8 @@ On the landing and gallery pages, I used content hinting so that users would be 
 
 ADD IMAGE
 
-![Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/ADD_wireframes.png "Wireframes")
+![Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/homepage
+_wireframes.png "Wireframes")
 
 To make sure the app is intuitive to navigate and use, I decided to keep all of the buttons options fairly centrally placed and slightly to the right-hand side. This is very important for mobile users they are predominantly right-handed and allows for one-handed operation of the app. By minimizing the amount of visual content past the landing page, I also reduced distraction and maximized engagement.
 
@@ -141,9 +143,11 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 
 ***
 
-## Database Schema
+## Database
 
-## Database Model
+**Schema**
+
+**Model**
 
 ![ERD](https://johnroutledge.github.io/milestone-project-3/static/images/readme/hashmoney.png "ERD")
 
