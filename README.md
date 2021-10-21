@@ -76,8 +76,7 @@ On the landing and gallery pages, I used content hinting so that users would be 
 
 ADD IMAGE
 
-![Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/homepage
-_wireframes.png "Wireframes")
+![Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_index.png "Wireframes")
 
 To make sure the app is intuitive to navigate and use, I decided to keep all of the buttons options fairly centrally placed and slightly to the right-hand side. This is very important for mobile users they are predominantly right-handed and allows for one-handed operation of the app. By minimizing the amount of visual content past the landing page, I also reduced distraction and maximized engagement.
 
@@ -248,7 +247,11 @@ The website was successfully opened and rendered correctly in Chrome (both deskt
 
 **Code Validation**
 
-pep8online.com
+The Python code from the app.py file was checked using [Pep8online](https://www.pep8online.com)
+
+The first check brought back numerous errors which were all rectified and resulted with a clear check as per the screenshot below.
+
+![HTML](https://johnroutledge.github.io/milestone-project-3/static/images/readme/pep8_check.png "Python")
 
 ![IF ERROR](https://johnroutledge.github.io/milestone-project-3/static/images/readme/marquee_error.png "IF ERROR")
 
@@ -271,17 +274,27 @@ All checks on the CSS file were clear on the first attempt as per screenshot bel
 
 **Notable bug fixes**
 
-1. In an early version of the app, the portfolio screen was showing a balance which, for some reason, had doubled the USD amount. The resulted in an incorrect balance. Having examined the code within the app.py file, I discovered that there was an error within the loop that iterates through a user's currency balances to produce the total balance (see screenshots below). By moving the totalBalance variable outside of the else statement (but still within the loop), the bug was fixed.
+1. Portfolio Balance Bug 
 
-![Portfolio Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_bug_screen.png "Portfolio Bug")
-![Portfolio Bug Fix](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_bugfix_screen.png "Portfolio Bug Fix")
+In an early version of the app, the portfolio screen was showing a balance which multiplied the USD amount by twenty. This resulted in an incorrect balance. Having examined the code within the app.py file, I discovered that there was an error within the loop that iterates through a user's currency balances to produce the total balance (see screenshots below). By moving the totalBalance variable outside of the else statement (but still within the loop), the bug was fixed. In the screenshots, the left image is with the bug and the right image is after the fix had been applied. Line numbers are different from what they are in the final version as much more code has been added.
+
+![Portfolio Bug Screen](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_bug_screen.png "Portfolio Bug")
+
+![Portfolio Bug Code](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_bug_code.png "Portfolio Bug Fix Code")
 
 2. ADD
 3. ADD
 4. ADD
-5. HEROKU DEPLOYMENT BUG
+5. Heroku Deployment Bug
 
-![Audio Bug](https://johnroutledge.github.io/milestone-project-2/assets/images/audio_bug.png "Audio Bug")
+![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/heroku_app_error.png "Heroku Bug")
+
+With the app not far from completion, I attempted to deploy it with Heroku. When trying to run the app, it produced the error is per the screenshot above. Having followed the onscreen instructions, I took a look at the application logs (shown below) and determined the error lay with importing requests. Having tried numerous suggestions from various webpages (which included freezing the requirements file) without success, I turned to tutor support for help. They also struggled, but suggested typing 'requests' directly into the requirements.txt file (no version number required - see second image below). Having done this and then re-deplying on Heroku again, the app ran as expected.
+
+![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/heroku_error_log.png "Heroku Bug")
+
+![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/requirements.png "Heroku Bug")
+
 
 ***
 
@@ -289,18 +302,47 @@ All checks on the CSS file were clear on the first attempt as per screenshot bel
 
 **Deploying to [Heroku](https://dashboard.heroku.com/)**
 
-* First, create an account at [Heroku](https://www.heroku.com)
+* Go to your Gitpod CLI and create a requirements file by typing 'pip3 freeze --local > requirements.txt' in the root directory.
+* Next, create the Procfile by typing 'echo web: python app.py > Procfile' into the CLI root directory.
+* Open this new file and type the line 'web: python3 app.py'. Make sure you delete any blank lines at the bottom, then save the file.
+* Add, commit and push your newly created files to your Github repository.
+* Then, go to [Heroku](https://www.heroku.com) and create an account. 
 * After logging in, click on 'create new app'.
 * Select the closest region to your location and give the app a name.
 * Select 'GitHub' as the deployment method.
- ![Heroku connected to  github](static/images/deployment/heroku-github.png)
-* Navigate to [GitHub](https://www.github.com) and login.
-* Select the repository you want to deploy from.
-* Next, go to settings and click 'Reveal Config Vars' and set the environment variables so they match the values in your env.py file (leave out the inverted commas)
-* Before deploying, ensure your Procfile is correctly set up and that you have updated your requirements.txt file
- - Enable automatic deploys 
-      ![Heroku github automatic deploys](static/images/deployment/heroku-automatic-deploys.png)
-* Once deployed, your app is now runnable
+* Within the GitHub profile, enter the name of the GitHub repository you want to deploy from and click 'search'.
+* Once Heroku has found the repository, click to connect the app.
+* Next, you will need to login to your [MongoDB Atlas](https://account.mongodb.com/account/login) account.
+* Once in, select your databse cluster on the dashboard then click 'connect'.
+* Then select 'connection your application' and copy the connection string from the 'connection string only' tab.
+* You then need to login to your [CoinMarketCap](https://coinmarketcap.com) account.
+* From the dashboard, copy the API key.
+* Next, navigate back to [Heroku](https://www.heroku.com), go to the 'settings' tab for the app and click 'Reveal Config Vars'.
+* Now set the environment variables by entering key:value pairs (leaving out any inverted commas) so that they match those in your env.py file:
+
+|  Key                  | Value        |
+|-----------------------|--------------|
+|  IP                   | 0.0.0.0      |
+|  PORT                 | 5000         |
+|  MONGO_DBNAME         | 0.0.0.0      |
+|  MONGO_URI            | 0.0.0.0      |
+|  SECRET_KEY           | 0.0.0.0      |
+|  COIN_MARKET_CAP_KEY  | 0.0.0.0      | 
+  
+* Go back to the 'deploy' tab and make sure 'enable automatic deploys' from the 'main' branch are selected. 
+* Click 'deploy'.
+* Once deployed, your app is now runnable by clicking 'view'.
+
+**How to run this project locally**
+
+1. Login to Github and navigate to this [repository](https://github.com/johnroutledge/milestone-project-3)
+1. Under the repository name, click the 'code' button.
+1. Next,choose HTTPS and copy the URL.
+1. Open Gitbash and change the current working directory to the location for the cloned directory.
+1. Type 'git clone ' and then paste the URL from step 2 above.
+1. Press 'enter' to create your clone.
+1. You can now access this new directory.
+
 
 **The project can be deployed by following these steps**
 
@@ -365,5 +407,5 @@ Pushing moves your work from the staging area to your repository.
 **Acknowledgements**
 
 - To my wife, Chonchanok Routledge, and several work colleagues for testing the app on various devices.
-- ADD
+- To Jo at Tutor Assistance, for helping me fix the Heroku Deployment bug.
 - To Brian Machiara, my Code Institute mentor, for giving me invaluable tips and insight throughout the whole process.
