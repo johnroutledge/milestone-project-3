@@ -76,7 +76,12 @@ def get_total_balance(balances, coins):
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    if "user" not in session:
+        current_user = "none"
+    else:
+        current_user = session["user"]
+    
+    return render_template("index.html", current_user=current_user)
 
 
 @app.route("/get_currencies")
@@ -98,7 +103,8 @@ def register():
             flash("email already registered")
             return redirect(url_for("register"))
 
-        date_today = datetime.now().strftime('%d-%m-%Y')
+        date_today = time_stamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+        # date_today = datetime.now().strftime('%d-%m-%Y')
         register = {
             "first_name": request.form.get("first_name").capitalize(),
             "last_name": request.form.get("last_name").capitalize(),
@@ -280,7 +286,7 @@ def portfolio():
             {"email": session["user"]})
         
         # convert member_since from string to required date format
-        member_since = datetime.strptime(member_since, '%Y-%m-%d %H:%M:%S')
+        member_since = datetime.strptime(member_since, '%d-%m-%Y %H:%M:%S')
         member_since = member_since.strftime('%d-%b-%Y')
 
         # retrieve all tradable cryptocurrencies
@@ -290,7 +296,7 @@ def portfolio():
         coins = get_latest_prices()
 
         # create a dictionary which calculates the user's
-        # balance for each cryptocurrency
+        # USD balance for each cryptocurrency
         dict = {}
         total_balance = 0
         percentage_change = 0
@@ -348,13 +354,35 @@ def trade(ticker):
         return redirect(url_for("login"))
 
     if session["user"]:
-        # retrieve user's balance for each cryptocurrency
+        # retrieve user's coin balance for each cryptocurrency
         balances = mongo.db.balances.find_one(
             {"email": session["user"]})
 
         # retrieve all tradable cryptocurrencies
         currencies = mongo.db.currencies.find()
         coins = get_latest_prices()
+
+        # create a dictionary which calculates the user's
+        # USD balance for each cryptocurrency
+        dict = {}
+        total_balance = 0
+        percentage_change = 0
+        for balance in balances:
+            if balance.upper() == "USD":
+                x = balances[balance]
+                dict[balance.upper()] = x
+                total_balance = total_balance + float(x)
+            else:
+                for coin in coins:
+                    if coin['symbol'] == balance.upper():
+                        x = coin['quote']['USD']['price'] * float(
+                            balances[balance])
+                        x = "{:.2f}".format(x)
+                        dict[balance.upper()] = x
+                        total_balance = total_balance + float(x)
+
+            percentage_change = "{:.2f}".format(
+                (total_balance - 100000) / 1000)
 
     if request.method == "POST":
         #  check to see if available balance covers trade
@@ -449,7 +477,7 @@ def trade(ticker):
 
     return render_template(
         "trade.html", selected_ticker=ticker, currencies=currencies,
-        balances=balances, coins=coins)
+        balances=balances, coins=coins, dict=dict)
 
 
 @app.route("/logout")

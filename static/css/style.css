@@ -119,7 +119,8 @@ h6 {
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
-    color: rgb(218, 113, 197);
+    color: rgb(18, 6, 247);
+    font-size: large;
     font-weight: bolder;
 }
 
@@ -155,6 +156,10 @@ button {
     font-weight: bolder;
 }
 
+.btn-large {
+    font-weight: bolder;
+}
+
 #edit-settings-buttons {
     padding-bottom: 1rem;
 }
@@ -179,6 +184,11 @@ button {
     .trade-screen-large {
         display: none;
     }
+
+    #reveal-text-header {
+        font-size: 1.25em;
+    }
+    
 }
 
 @media screen and (min-width: 701px){
