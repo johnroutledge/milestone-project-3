@@ -13,8 +13,16 @@ h6 {
     font-weight: bold;
 }
 
+nav ul a {
+    font-weight: normal;
+}
+
 .upper {
     text-transform: uppercase;
+}
+
+.footer-copyright {
+    font-weight: normal;
 }
 
 .input-field label {

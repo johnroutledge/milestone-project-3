@@ -9,14 +9,14 @@
 
 **Rationale**
 
-With the ever increasing popularity and interest in cryptocurrency, there are still a vast amount of people who are sceptical or unsure as to whether they should invest in it or not.
+With the ever increasing popularity of and interest in cryptocurrency, there are still a vast amount of people who are sceptical or unsure as to whether they should invest in it or not.
 Such people need an app that is easy to understand, simple to use and gives them clear visual feedback as to how their investment is progressing.  All of these should take place in a risk-free environment.
 
-This website meets such needs by providing them with the ability to trade and track some of the most popular crypotcurrencies without any financial investment. Having registered, users given 100,000 credits which they can spend on a selection of cryptocurrencies as they please.  
+Hashmoney meets such needs by providing them with the ability to trade and track some of the most popular crypotcurrencies without any financial investment. Having registered, users are given 100,000 USD 'credits' which they can spend on a selection of cryptocurrencies as they please.  
 
 All of the prices are up-to-the-minute accurate and taken from coinmarketcap.com via an api. Users can track the progress of their portfolio and can buy, sell and exchange cryptocurrencies as often as they wish.  There is also the option to reset their account and start from scratch.
 
-The typical user for the website would be someone:
+The typical user for the website would be someone who:
 * Is completely new to crypto and just wants to follow the prices
 * Is unsure about trading crypto and wants to try it for fun
 * Is risk-averse and wants to see how much they could make without any financial investment
@@ -26,13 +26,14 @@ The typical user for the website would be someone:
 People visiting this website are looking for:
 * Increased knowledge of trading cryptocurrencies
 * A quick, easy way to invest in crytocurrencies risk-free
-* The different profits which could be made in the short and long-term
+* The potential profits/losses which could be made in the short and long-term
 * An introduction to cryptocurrencies
 
 Hashmoney is the ideal site for such people because:
 * It includes all of the above in one place
 * It has intuitive controls and layout
 * It is both clear and concise in its layout
+* The information it provides is kept to a minimum to avoid cognitive overload
 
 ***
 
@@ -74,23 +75,24 @@ On the landing and gallery pages, I used content hinting so that users would be 
 
 **Skeleton**
 
+To make sure the app is intuitive to navigate and use, I decided to keep all of the buttons options fairly centrally placed and slightly to the right-hand side. This is very important for mobile users they are predominantly right-handed and allows for one-handed operation of the app. By minimizing the amount of visual content past the landing page, I also reduced distraction and maximized engagement.
+
 Wireframes
 
-*![Homepage Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_homepage.png "Homepage Wireframes")
-*![Register Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_register.png "Register Wireframes")
-*![Login Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_login.png "Login Wireframes")
-*![Portfolio Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_portfolio.png "Portfolio Wireframes")
-*![Prices Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_prices.png "Prices Wireframes")
-*![Trade Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_trade.png "Trade Wireframes")
-*![Transactions Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_transactions.png "Transactions Wireframes")
-*![Settings Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_settings.png "Settings Wireframes")
-*![Edit Settings Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_edit_settings.png "Edit Settings Wireframes")
+* [Homepage wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_homepage.png)
+* [Register page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_register.png)
+* [Login page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_login.png)
+* [Portfolio page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_portfolio.png)
+* [Prices page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_prices.png)
+* [Trade page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_trade.png)
+* [Transactions page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_transactions.png)
+* [Settings page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_settings.png)
+* [Edit Settings Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_edit_settings.png)
 
-To make sure the app is intuitive to navigate and use, I decided to keep all of the buttons options fairly centrally placed and slightly to the right-hand side. This is very important for mobile users they are predominantly right-handed and allows for one-handed operation of the app. By minimizing the amount of visual content past the landing page, I also reduced distraction and maximized engagement.
 
 **Surface**
 
-The 'Monserrat' Google font was chosen to give a clean and modern feel, while the grey and white colour scheme added to this style.
+The 'Monserrat' Google font was chosen to give a clean and modern feel, while the white/grey/blue colour scheme added to this style.
 
 The colour scheme was chosen as it feels sharp and modern to match the world of cryptocurrencies. At the same time, it is both visually unintimidating and easy on the eye. I wanted the app to have this look so that it appeals to users who are risk-averse and who don't want to be overloaded with unecessary information. A shade of blue was chosen for the buttons as it is perceived as being a trustworthy,dependable, and responsible color. Blue is also popular among financial institutions, as conveys trust and stability. The button color is consistent throughout the app to maintain consistency and increase intuitivity.
 
@@ -109,7 +111,7 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 * The home page incorporates content hinting by partially revealing an element just above the fold 
 * Images on homepage include reveal text functionality behind questions enouraging people to explore further 
 * People can register for free which also allocates them 100,000 dollars which they can trade with as they please 
-* Users can reset there portfolio to zero at any point should they wish to start afresh 
+* Users can reset there portfolio to zero at any point should they wish to start afresh. This also deletes their trading history
 * Users can trade 17 of the top 20 cryptocurrencies
 * A user's balance is clearly displayed on their portfolio screen and they can instantly see if they are in profit
 * Users can also access their trading history on the transactions screen so they can see what they have bought and sold
@@ -118,7 +120,7 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 
 **Future Features to Implement**
 * The ability to choose from a wider range of cryptocurrencies
-* Unlimited access to cryptocurrency rates (currently it is limited as the free API option was chosen)
+* Unlimited access to cryptocurrency rates (currently it is limited to 300 api calls per day as the free API option was chosen)
 * Give a choice of color schemes to add to the UX
 * A portfolio balance leaderboard so traders can compete with each other regiestered users
 * Add 'forgot password' functionality

@@ -6,13 +6,13 @@
             <div class="card white">
                 <div class="card-content">
                     <div class="clearfix header">
-                        Portfolio<img src="../static/images/crypto_coins_bw_min.png">
+                        Portfolio<img src="../static/images/crypto_coins_bw_min.png" alt="Silver cryptocoins">
                     </div>
                     <hr>
                     <h6 class="crypto-prices box-heading">
                         <i class="fas fa-user"></i> {{ user.first_name }} {{ user.last_name }}<br>
                         Member since: {{ member_since }}<br>
-                        Balance: {{ "{:.2f}".format(total_balance) }}<br>
+                        Balance (USD): {{ "{:.2f}".format(total_balance) }}<br>
                         Change: 
                         {% if '-' not in percentage_change|string %} <span id="positive-change">+{{ percentage_change }}%</span> {% endif %}
                         {% if '-' in percentage_change|string %} <span id="negative-change">{{ percentage_change }}%</span> {% endif %}
