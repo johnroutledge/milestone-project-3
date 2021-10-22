@@ -16,11 +16,23 @@
                         {% for coin in coins %}
                             {% if coin['symbol'] == currency.currency_symbol %}
                                 <li>
-                                    <div class="collapsible-header crypto-prices" id="full-width">
+                                    <!-- display for mobile screen sizes -->
+                                    <div class="collapsible-header crypto-prices trade-screen-small">
+                                        <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
+                                        {{ coin['symbol'] }}
+                                        <!--credit to kite.com for formatting tips - how to print float with 2 decimal places-->
+                                        {{ "{:.2f}".format(coin['quote']['USD']['price']) }}&nbsp
+                                        <!-- green for positive changes and red for negative changes  -->
+                                        {% if '-' not in "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) %} <span id="positive-change">+{{ "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) }}%</span> {% endif %}
+                                        {% if '-' in "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) %} <span id="negative-change">{{ "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) }}%</span> {% endif %}
+                                        
+                                    </div>
+                                    <!-- display for medium screen sizes and above -->
+                                    <div class="collapsible-header crypto-prices trade-screen-large">
                                         <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
                                         {{ coin['name'] }} ({{ coin['symbol'] }})&nbsp
                                         <!--credit to kite.com for formatting tips - how to print float with 2 decimal places-->
-                                        {{ "{:.2f}".format(coin['quote']['USD']['price']) }},&nbsp
+                                        {{ "{:.2f}".format(coin['quote']['USD']['price']) }} USD,&nbsp
                                         <!-- green for positive changes and red for negative changes  -->
                                         {% if '-' not in "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) %} <span id="positive-change">+{{ "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) }}%</span> {% endif %}
                                         {% if '-' in "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) %} <span id="negative-change">{{ "{:.2f}".format(coin['quote']['USD']['percent_change_24h']) }}%</span> {% endif %}

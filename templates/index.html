@@ -22,14 +22,9 @@
                 </div>
                 <div class="card-action">
                     <span class="card-title activator grey-text text-darken-4" id="reveal-text-header">Why hashmoney?<i class="fas fa-ellipsis-v right"></i></span>
-                    <!-- {% if current_user == "none" %} 
-                        <p><a href="{{ url_for('register') }}">REGISTER FOR FREE</a></p>
-                    {% endif %} -->
                     {% if current_user == "none" %} 
-                        <br><br><br><div class="row">
-                            <button href="{{ url_for('login') }}" class="col s12 btn-large grey darken-3">
-                                REGISTER FOR FREE
-                            </button>
+                        <br><hr><br><div class="row">
+                            <a href="{{ url_for('login') }}" class="col s12 btn-large grey darken-3">REGISTER FOR FREE</a>
                         </div>
                     {% endif %}
                 </div>
@@ -49,10 +44,8 @@
                 <div class="card-action">
                     <span class="card-title activator grey-text text-darken-4" id="reveal-text-header">How does it work?<i class="fas fa-ellipsis-v right"></i></span>
                     {% if current_user == "none" %} 
-                        <br><br><br><div class="row">
-                            <button href="{{ url_for('login') }}" class="col s12 btn-large blue darken-4">
-                                EXISTING USER LOGIN
-                            </button>
+                        <br><hr><br><div class="row">
+                            <a href="{{ url_for('login') }}" class="col s12 btn-large blue darken-3">EXISTING USER LOGIN</a>
                         </div>
                     {% endif %}
                 </div>

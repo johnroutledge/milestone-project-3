@@ -103,7 +103,7 @@ def register():
             flash("email already registered")
             return redirect(url_for("register"))
 
-        date_today = time_stamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+        date_today = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
         # date_today = datetime.now().strftime('%d-%m-%Y')
         register = {
             "first_name": request.form.get("first_name").capitalize(),

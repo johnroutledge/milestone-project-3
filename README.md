@@ -74,9 +74,17 @@ On the landing and gallery pages, I used content hinting so that users would be 
 
 **Skeleton**
 
-ADD IMAGE
+Wireframes
 
-![Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_index.png "Wireframes")
+*![Homepage Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_homepage.png "Homepage Wireframes")
+*![Register Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_register.png "Register Wireframes")
+*![Login Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_login.png "Login Wireframes")
+*![Portfolio Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_portfolio.png "Portfolio Wireframes")
+*![Prices Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_prices.png "Prices Wireframes")
+*![Trade Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_trade.png "Trade Wireframes")
+*![Transactions Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_transactions.png "Transactions Wireframes")
+*![Settings Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_settings.png "Settings Wireframes")
+*![Edit Settings Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_edit_settings.png "Edit Settings Wireframes")
 
 To make sure the app is intuitive to navigate and use, I decided to keep all of the buttons options fairly centrally placed and slightly to the right-hand side. This is very important for mobile users they are predominantly right-handed and allows for one-handed operation of the app. By minimizing the amount of visual content past the landing page, I also reduced distraction and maximized engagement.
 
