@@ -364,25 +364,25 @@ def trade(ticker):
 
         # create a dictionary which calculates the user's
         # USD balance for each cryptocurrency
-        dict = {}
-        total_balance = 0
-        percentage_change = 0
-        for balance in balances:
-            if balance.upper() == "USD":
-                x = balances[balance]
-                dict[balance.upper()] = x
-                total_balance = total_balance + float(x)
-            else:
-                for coin in coins:
-                    if coin['symbol'] == balance.upper():
-                        x = coin['quote']['USD']['price'] * float(
-                            balances[balance])
-                        x = "{:.2f}".format(x)
-                        dict[balance.upper()] = x
-                        total_balance = total_balance + float(x)
+        # dict = {}
+        # total_balance = 0
+        # percentage_change = 0
+        # for balance in balances:
+        #     if balance.upper() == "USD":
+        #         x = balances[balance]
+        #         dict[balance.upper()] = x
+        #         total_balance = total_balance + float(x)
+        #     else:
+        #         for coin in coins:
+        #             if coin['symbol'] == balance.upper():
+        #                 x = coin['quote']['USD']['price'] * float(
+        #                     balances[balance])
+        #                 x = "{:.2f}".format(x)
+        #                 dict[balance.upper()] = x
+        #                 total_balance = total_balance + float(x)
 
-            percentage_change = "{:.2f}".format(
-                (total_balance - 100000) / 1000)
+        #     percentage_change = "{:.2f}".format(
+        #         (total_balance - 100000) / 1000)
 
     if request.method == "POST":
         #  check to see if available balance covers trade
@@ -402,8 +402,10 @@ def trade(ticker):
 
         requested_balance = request.form.get("sold_amount")
 
-        if int(requested_balance) > int(available_balance):
-            flash(f"Insufficient funds - {currency_sold.upper()}")
+        if float(requested_balance) > float(available_balance):
+            flash(f"Insufficient {currency_sold.upper()} funds")
+            flash_balance = "{:.2f}".format(available_balance)
+            flash(f"Available {currency_sold.upper()} balance: {flash_balance} USD")
             return render_template(
                 "trade.html", selected_ticker=ticker, currencies=currencies,
                 balances=balances, coins=coins)
@@ -477,7 +479,7 @@ def trade(ticker):
 
     return render_template(
         "trade.html", selected_ticker=ticker, currencies=currencies,
-        balances=balances, coins=coins, dict=dict)
+        balances=balances)
 
 
 @app.route("/logout")
