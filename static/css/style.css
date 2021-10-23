@@ -59,6 +59,10 @@ nav ul a {
     font-weight: bolder;
 }
 
+#copyright {
+    color: white;
+}
+
 /*----------HEADER*/
 .container {
     max-width: 2000px;
