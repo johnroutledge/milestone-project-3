@@ -45,7 +45,7 @@ def get_latest_prices():
         json = requests.get(url, params=params, headers=headers).json()
         coins = json['data']
     except (ConnectionError, Timeout, TooManyRedirects) as e:
-        flash(e)
+        flash(f"Unable to connect to coinmarketcap.com - {e}")
 
     return coins
 
@@ -54,13 +54,14 @@ def get_latest_prices():
 # by taking their balance for each cryptocurrency then
 # multiplying it by its current price (taken from the api
 # call) and finally adding them together
+# it also returns a dictionary of all individual cryptocurrency balances
 def get_total_balance(balances, coins):
     total_balance = 0
     dict = {}
     for balance in balances:
         if balance.upper() == "USD":
             x = balances[balance]
-            dict[balance.upper()] = x
+            dict[balance.upper()] = "{:.2f}".format(x)
             total_balance = total_balance + float(x)
         else:
             for coin in coins:
@@ -71,7 +72,7 @@ def get_total_balance(balances, coins):
                     dict[balance.upper()] = x
                     total_balance = total_balance + float(x)
 
-    return total_balance
+    return total_balance, dict
 
 
 @app.route("/")
@@ -100,11 +101,19 @@ def register():
             {"email": request.form.get("email").lower()})
 
         if existing_user:
-            flash("email already registered")
+            flash("Email already registered")
+            return redirect(url_for("register"))
+        
+        # check if passwords match
+        password = request.form.get("password")
+        retype_password = request.form.get("retype_password")
+
+        if not password == retype_password:
+            flash("Passwords do not match")
             return redirect(url_for("register"))
 
+        #create dictionary to add record to users document in db
         date_today = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
-        # date_today = datetime.now().strftime('%d-%m-%Y')
         register = {
             "first_name": request.form.get("first_name").capitalize(),
             "last_name": request.form.get("last_name").capitalize(),
@@ -113,7 +122,8 @@ def register():
                 request.form.get("password").lower()),
             "register_date": date_today
         }
-        # need to refactor
+
+        #create dictionary to add record to balances document in db
         balances = {
             "email": request.form.get("email").lower(),
             "usd": 100000,
@@ -133,7 +143,7 @@ def register():
             "luna": 0,
             "link": 0,
             "algo": 0,
-            "shib": 0
+            "bch": 0
         }
         mongo.db.users.insert_one(register)
         mongo.db.balances.insert_one(balances)
@@ -158,7 +168,7 @@ def login():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email").lower()
-                flash("Hi {}".format(
+                flash("Welcome back {}".format(
                     existing_user["first_name"].capitalize()))
                 return redirect(
                     url_for("portfolio", username=session["user"]))
@@ -191,10 +201,10 @@ def settings():
 
     # retrieve the latest crypto prices
     coins = get_latest_prices()
-
-    # create a dictionary which calculate the user's
-    # balance for each cryptocurrency
-    total_balance = get_total_balance(balances, coins)
+    
+    # get user's total balance by calling get_total_balance
+    # function and getting the first returned value
+    total_balance = get_total_balance(balances, coins)[0]
 
     if session["user"]:
         return render_template(
@@ -213,18 +223,18 @@ def edit_settings():
         {"email": session["user"]})
 
     if request.method == "POST":
+        #update user details in db
         mongo.db.users.update(
             {"email": session["user"]},
             {"$set":
                 {
                     "first_name": request.form.get("first_name"),
                     "last_name": request.form.get("last_name"),
-                    "display_currency": request.form.get("display_currency")
                 }
              }
         )
         flash("Settings Successfully Updated")
-        # need to refactor
+
         if request.form.get("reset_account") == "on":
             # delete all transaction records for user from db
             mongo.db.transactions.remove({"email": session["user"]})
@@ -250,11 +260,11 @@ def edit_settings():
                         "luna": 0,
                         "link": 0,
                         "algo": 0,
-                        "shib": 0
+                        "bch": 0
                     }
                  }
             )
-            flash("Account reset")
+            flash("Account reset and all trading history deleted")
 
         return redirect(url_for("settings"))
 
@@ -300,22 +310,27 @@ def portfolio():
         dict = {}
         total_balance = 0
         percentage_change = 0
-        for balance in balances:
-            if balance.upper() == "USD":
-                x = balances[balance]
-                dict[balance.upper()] = x
-                total_balance = total_balance + float(x)
-            else:
-                for coin in coins:
-                    if coin['symbol'] == balance.upper():
-                        x = coin['quote']['USD']['price'] * float(
-                            balances[balance])
-                        x = "{:.2f}".format(x)
-                        dict[balance.upper()] = x
-                        total_balance = total_balance + float(x)
+        # for balance in balances:
+        #     if balance.upper() == "USD":
+        #         x = balances[balance]
+        #         dict[balance.upper()] = "{:.2f}".format(x)
+        #         total_balance = total_balance + float(x)
+        #     else:
+        #         for coin in coins:
+        #             if coin['symbol'] == balance.upper():
+        #                 x = coin['quote']['USD']['price'] * float(
+        #                     balances[balance])
+        #                 x = "{:.2f}".format(x)
+        #                 dict[balance.upper()] = x
+        #                 total_balance = total_balance + float(x)
+        
+            # percentage_change = "{:.2f}".format(
+            #     (total_balance - 100000) / 1000)
 
-            percentage_change = "{:.2f}".format(
-                (total_balance - 100000) / 1000)
+        total_balance, dict = get_total_balance(balances, coins)
+        # dict = get_total_balance(balances, coins)[1]
+        percentage_change = "{:.2f}".format(
+                 (total_balance - 100000) / 1000)
 
         return render_template(
             "portfolio.html", username=username,
@@ -425,12 +440,12 @@ def trade(ticker):
             if request.form.get("currency_sold").upper() == "USD":
                 sold_price = 1
             elif coin['symbol'] == request.form.get("currency_sold").upper():
-                sold_price = "{:.10f}".format(coin['quote']['USD']['price'])
+                sold_price = "{:.5f}".format(coin['quote']['USD']['price'])
                 # sold_price = coin['quote']['USD']['price']
             if request.form.get("currency_bought").upper() == "USD":
                 bought_price = 1
             elif coin['symbol'] == request.form.get("currency_bought"):
-                bought_price = "{:.10f}".format(coin['quote']['USD']['price'])
+                bought_price = "{:.5f}".format(coin['quote']['USD']['price'])
                 # bought_price = coin['quote']['USD']['price']
 
         # create the dictionary to be inserted into the db

@@ -32,9 +32,16 @@
                     <!--password-->
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="password" name="password" type="password" minlength="5"
-                                maxlength="15" pattern="^[A-Za-z0-9]{5,15}$" class="validate" required>
-                            <label for="password">Password</label>
+                            <input id="password" name="password" type="password" minlength="4"
+                                maxlength="14" pattern="^[A-Za-z0-9]{4,14}$" class="validate" required>
+                            <label for="password">Password (4 to 14 letters/numbers)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="retype_password" name="retype_password" type="password" minlength="4"
+                                maxlength="14" pattern="^[A-Za-z0-9]{4,14}$" class="validate" required>
+                            <label for="retype_password">Confirm password</label>
                         </div>
                     </div>
                     <!--register button-->
