@@ -174,12 +174,21 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 |  Navbar 'Transactions' 'Settings' 'Logout'    | After login    |  See only these links if user logged in                   | PASS          |
 |  Navbar links                                 | Click          |  Navigate to the corresponding pages                      | PASS          |
 |  Navbar links                                 | View on mobile |  Should be visible as hamburger icon                      | PASS          |
-|  Homepage vertical ellipsis on 'Why Hashmoney' card     | Click          |  Reveal hidden text                                       | PASS          |
-|  Homepage vertical ellipsis on 'How does it work' card  | Click          |  Reveal hidden text                                       | PASS          |
+|  Homepage ellipsis on 'Why Hashmoney' card    | Click          |  Reveal hidden text                                       | PASS          |
+|  Homepage ellipsis on 'How does it work' card | Click          |  Reveal hidden text                                       | PASS          |
+|  Homepage register now link in reveal text    | Click          |  Navigate to register page                                | PASS          |
+|  Homepage call to action register button      | Click          |  Navigate to register page                                | PASS          |
+|  Homepage registered user login button        | Click          |  Navigate to sign-in page                                 | PASS          |
 |  Social Media links in footer                 | Click          |  Navigate to the correct social media homepages           | PASS          |
+|  Register page input wrong data format        | Submit         |  Catch all incorrect data formats                         | PASS          |
+|  Register page exisiting email address in db  | Submit         |  Display email already registered flash message           | PASS          |
+|  Register page passwords not matching         | Submit         |  Display passwords do not match flash message             | PASS          |
+|  Register page successful register            | Submit         |  Display registration successful flash message                       | PASS          |
+|  Register page successful register            | Submit         |  Navigate to user's portfolio page                        | PASS          |
+|  Register page link to login page             | Click          |  Navigate to sign-in page                                 | PASS          |
 |  Sign-in page input wrong data format         | Submit         |  Catch all incorrect data formats                         | PASS          |
 |  Sign-in page input wrong login details       | Submit         |  Display incorrect email/password flash message           | PASS          |
-|  Sign-in page successful login                | Submit         |  Display user welcome flash message                       | PASS          |
+|  Sign-in page successful login                | Submit         |  Display user welcome back flash message                  | PASS          |
 |  Sign-in page successful login                | Submit         |  Navigate to user's portfolio page                        | PASS          |
 |  Sign-in page link to register page           | Click          |  Navigate to register page                                | PASS          |
 |  Portfolio page member information            | Page load      |  Display name, join date, balance, loss/gain %            | PASS          |
@@ -193,9 +202,12 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 |  Trade page 'buy'currency select list         | Page Load      |  List all cryptocurrencies in database                    | PASS          |
 |  Trade page 'purchase using' select list      | Page Load      |  List only cryptocurrencies user has positive balance of  | PASS          |
 |  Trade page input wrong data format           | Click Submit   |  Catch all incorrect data formats                         | PASS          |
-|  Trade page input duplicate currencies        | Click Submit   |  Display traded currencies must be different flash message       | PASS          |
+|  Trade page input zero amount                 | Click Submit   |  Display amount entered cannot be zero flash message      | PASS          |
+|  Trade page input duplicate currencies        | Click Submit   |  Display traded currencies must be different flash message| PASS          |
+|  Trade page not enough cryptocurrency         | Click Submit   |  Display not enough cryptocurrency flash message          | PASS          |
 |  Trade page successful trade                  | Click Submit   |  Display trade successfully processed flash message       | PASS          |
 |  Trade page successful trade                  | Click Submit   |  Navigate to portfolio page and display new balances      | PASS          |
+|  Transactions page user transactions          | Page load      |  Show no transactions text if no transaction history      | PASS          |
 |  Transactions page user transactions          | Page load      |  List all user's transactions since registered/reset      | PASS          |
 |  Transactions page user transactions          | Page load      |  Show date/time, amount bought, crypto logo & code        | PASS          |
 |  Transactions page user transactions          | Page load      |  Show bought with crypto logo & code, price per coin      | PASS          |
@@ -263,8 +275,6 @@ The first check brought back numerous errors which were all rectified and result
 
 ![HTML](https://johnroutledge.github.io/milestone-project-3/static/images/readme/pep8_check.png "Python")
 
-![IF ERROR](https://johnroutledge.github.io/milestone-project-3/static/images/readme/marquee_error.png "IF ERROR")
-
 Both the HTML and CSS were validated using the W3C Markup Validation Service. This was done using the 'Validate by Direct Input' option. For the HTML, this resulted in an error with IF ERROR (see screenshot above). This was rectified by IF FIXED .  Final checks were done resulting in no errors as per screenshot below.
 
 ![HTML](https://johnroutledge.github.io/milestone-project-3/static/images/readme/html_check.png "HTML")
@@ -275,12 +285,20 @@ All checks on the CSS file were clear on the first attempt as per screenshot bel
 
 **Testing with Lighthouse in Google Chrome Devtools**
 
-![Lighthouse](https://johnroutledge.github.io/milestone-project-3/static/images/readme/lighthouse_testing.png "Lighthouse")
+The results shown are for the homepage and portfolio pages on both mobile and desktop. These were chosen as they produced the lowest figures and best illustrate the gains made by implementing Lighthouse's recommended changes.
 
-* Performance: ADD RESULTS
-* Accessibility: ADD RESULTS
-* Best Practices: ADD RESULTS
-* SEO: ADD RESULTS.
+* Homepage (see images below): Running the test intially recommended changing the color of the copyright text to improve 'accessibility', add a meta description of the page to improve the 'SEO' and to resize of the 'Why Hash Money' image to improve the 'best practices' score. Having done all of these resulted in improvements across the board.
+
+![Homepage Mobile Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/home_mobile.png "Homepage Mobile Results")
+
+![Homepage Desktop Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/home_desktop.png "Homepage Desktop Results")
+
+* Portfolio page (see images below): Running the test intially recommended changing the color of the copyright text to improve the 'accessibility' score (as it did for all pages) and to reduce the crypto logo file sizes to improve the 'performance' score. Results improved once these changes were implemented. However, there is still room for improvement with performance by using HTTP2 which is something I would look at doing in a future version.
+
+![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_mobile.png "Portfolio Page Mobile Results")
+
+![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_desktop.png "Portfolio Page Desktop Results")
+
 
 **Notable bug fixes**
 
@@ -292,10 +310,7 @@ In an early version of the app, the portfolio screen was showing a balance which
 
 ![Portfolio Bug Code](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_bug_code.png "Portfolio Bug Fix Code")
 
-2. ADD
-3. ADD
-4. ADD
-5. Heroku Deployment Bug
+2. Heroku Deployment Bug
 
 ![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/heroku_app_error.png "Heroku Bug")
 
@@ -305,6 +320,7 @@ With the app not far from completion, I attempted to deploy it with Heroku. When
 
 ![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/requirements.png "Heroku Bug")
 
+3. If bug
 
 ***
 
