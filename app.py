@@ -347,17 +347,17 @@ def transactions():
     if "user" not in session:
         return redirect(url_for("login"))
 
-    # get users first name from db
-    username = mongo.db.users.find_one(
-        {"email": session["user"]})["first_name"]
+    # # get users first name from db
+    # username = mongo.db.users.find_one(
+    #     {"email": session["user"]})["first_name"]
 
     if session["user"]:
         # retrieve user's transaction history
-        transactions = mongo.db.transactions.find(
+        user_transactions = mongo.db.transactions.find(
             {"email": session["user"]})
 
         return render_template(
-            "transactions.html", transactions=transactions)
+            "transactions.html", user_transactions=user_transactions)
 
     return redirect(url_for("login"))
 
@@ -400,11 +400,21 @@ def trade(ticker):
         #         (total_balance - 100000) / 1000)
 
     if request.method == "POST":
-        #  check to see if available balance covers trade
+
+        # check to see if available balance covers trade
         balances = mongo.db.balances.find_one(
             {"email": session["user"]})
         currency_sold = request.form.get("currency_sold").lower()
         currency_bought = request.form.get("currency_bought").lower()
+        amount_purchased = float(request.form.get("sold_amount"))
+        
+        # make sure amount is not zero
+        if amount_purchased == 0:
+            flash("Amount cannot be zero")
+            return render_template(
+                "trade.html", selected_ticker=ticker, currencies=currencies,
+                balances=balances, coins=coins)
+
         if currency_sold.lower() == "usd":
             available_balance = balances[currency_sold]
         else:

@@ -24,13 +24,13 @@
                     <span class="card-title activator grey-text text-darken-4" id="reveal-text-header">Why hashmoney?<i class="fas fa-ellipsis-v right"></i></span>
                     {% if current_user == "none" %} 
                         <br><hr><br><div class="row">
-                            <a href="{{ url_for('login') }}" class="col s12 btn-large grey darken-3">REGISTER FOR FREE</a>
+                            <a href="{{ url_for('register') }}" class="col s12 btn-large grey darken-3">REGISTER FOR FREE</a>
                         </div>
                     {% endif %}
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4"><i class="fas fa-times right"></i></span>
-                    <p class="grey-text text-darken-4 flow-text">Hashmoney is completely free to use. Sign up now and you can be trading the most popular
+                    <p class="grey-text text-darken-4 flow-text">Hashmoney is completely free to use. <a href="{{ url_for('register') }}">Register now</a> and you can be trading the most popular
                          cryptocurrencies totally risk-free in just a couple of minutes.
                     </p>
                 </div>

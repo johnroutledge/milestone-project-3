@@ -9,8 +9,12 @@
                         Transactions<img src="../static/images/bitcoins.png" alt="Golden Bitcoins">
                     </div>
                     <hr>
+                    <!-- display message if no transactions made -->
+                    {% if not user_transactions.count() %}
+                        <div>You have not made any transactions</div>
+                    {% endif %}
                     <!--iterate through transactions listed in db to populate transaction history-->
-                    {% for transaction in transactions %}
+                    {% for transaction in user_transactions %}
                         <div class="crypto-prices">
                             {{ transaction.time_stamp }}
                             bought {{ transaction.sold_amount }} USD of &nbsp <img class="crypto-icon" src="../static/images/crypto-icons/{{ transaction.currency_bought.lower() }}.png" alt="Profile image for {{ transaction.currency_bought }}">
