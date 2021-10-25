@@ -120,7 +120,7 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 
 **Future Features to Implement**
 * The ability to choose from a wider range of cryptocurrencies
-* Unlimited access to cryptocurrency rates (currently it is limited to 300 api calls per day as the free API option was chosen)
+* Unlimited access to cryptocurrency rates (currently it is limited to 333 api calls per day as the free API option was chosen)
 * Give a choice of color schemes to add to the UX
 * A portfolio balance leaderboard so traders can compete with each other regiestered users
 * Add 'forgot password' functionality
@@ -258,7 +258,7 @@ Having gone over my ideas for the database schema with my mentor Brian Machiara,
 2. As someone who is new to cryptocurrency trading, I want an app which is intuitive to use.
 * Yes, it is very straightforward to trade on the app and users can also access all of their trades easily.
 3. As a person who is risk-averse, I want an app that allows me to trade cryptocurrencies without any financial investment.
-* Yes, it is clear from the home screen that the app is completely risk free. Once registered, users are allocated 100,000 credits which they can trade as they choose. They can also reset this balance and start from scratch at any point.
+* Yes, it is clear from the home screen that the app is completely risk free. Once registered, users are allocated 100,000 USD credits which they can trade as they choose. They can also reset this balance and start from scratch at any point.
 4. As a person who wants to invest in cryptocurrencies, but still has reservations, I want an app that shows me the realistic gains and losses that can be made.
 * Yes, this is achieved by clearly showing a user's portfolio balance as well as an indication of how much it has grown or diminished since they started. 
 
@@ -283,9 +283,19 @@ The first check brought back numerous errors which were all rectified and result
 
 ![HTML](https://johnroutledge.github.io/milestone-project-3/readme-assets/pep8_check.png "Python")
 
-Both the HTML and CSS were validated using the W3C Markup Validation Service. This was done using the 'Validate by Direct Input' option. For the HTML, this resulted in an error with IF ERROR (see screenshot above). This was rectified by IF FIXED .  Final checks were done resulting in no errors as per screenshot below.
+Both the HTML and CSS were validated using the W3C Markup Validation Service. This was done using the 'Validate by Direct Input' option.
 
-![HTML](https://johnroutledge.github.io/milestone-project-3/readme-assets/html_check.png "HTML")
+For the HTML, all pages except for the login page resulted in a warning caused by the flash messages section in the base.html template (see screenshot below). Having researched solutions on stackoverflow.com, I didn't change my code as the section already contained an h6 element as recommended by the warning (see below).
+
+![HTML Section Warning](https://johnroutledge.github.io/milestone-project-3/readme-assets/html_section_warning.png "HTML")
+![Flash Section Code](https://johnroutledge.github.io/milestone-project-3/readme-assets/flash_section_code.png "HTML")
+
+The trade screen html through up an interesting error relating to the select inputs on the page:
+![Trade screen error](https://johnroutledge.github.io/milestone-project-3/readme-assets/trade_html_error.png "HTML")
+This was fixed by adding a size property to the inputs and giving it a value of 18 which allows for the number of currencies options in the app.
+
+The login page was the only one without any errors or warnings as it doesn't reference the flash message section in base.html:
+![Login Page Checks](https://johnroutledge.github.io/milestone-project-3/readme-assets/login_page_checks.png "HTML")
 
 All checks on the CSS file were clear on the first attempt as per screenshot below.
 
@@ -385,12 +395,16 @@ Pushing moves your work from the staging area to your repository.
 
 **Values for the env.py file**
 
-os.environ.setdefault("IP", "0.0.0.0")
-os.environ.setdefault("PORT", "5000")
-os.environ.setdefault("SECRET_KEY", "paste scret key here")
-os.environ.setdefault("MONGO_URI", "paste connection string here")
-os.environ.setdefault("MONGO_DBNAME", "enter db name here")
-os.environ.setdefault("COIN_MARKET_CAP_KEY", "paste API key here")
+The finished env.py file should look as follows:
+
+        import os
+
+        os.environ.setdefault("IP", "0.0.0.0")
+        os.environ.setdefault("PORT", "5000")
+        os.environ.setdefault("SECRET_KEY", "paste scret key here")
+        os.environ.setdefault("MONGO_URI", "paste connection string here")
+        os.environ.setdefault("MONGO_DBNAME", "enter db name here")
+        os.environ.setdefault("COIN_MARKET_CAP_KEY", "paste API key here")
 
 * Set the IP key value to '0.0.0.0'
 * Set the PORT key value to '5000'

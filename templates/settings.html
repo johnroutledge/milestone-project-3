@@ -8,12 +8,12 @@
                     <div class="clearfix header">
                         Settings<img src="../static/images/crypto_coins_bw_min.png" alt="Silver cryptocoins">
                     </div><hr>
-                    <h6 class="crypto-prices">
+                    <div class="crypto-large">
                         <p class="increase-line-height">First name: {{ user_settings.first_name }}</p><br>
                         <p class="increase-line-height">Last name: {{ user_settings.last_name }}</p><br>
                         <p class="increase-line-height">Balance (USD): {{ "{:.2f}".format(portfolioBalance) }}</p><br>
                         <a href="{{ url_for('edit_settings') }}" class="waves-effect waves-light btn-small blue darken-2">Edit</a><br>
-                    </h6>
+                    </div>
                 </div>
             </div>
         </div>

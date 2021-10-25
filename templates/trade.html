@@ -9,11 +9,11 @@
                     <div class="clearfix header">
                         Trade<img src="../static/images/bitcoins.png" alt="Golden Bitcoins">
                     </div><hr>
-                    <h6 class="crypto-prices">
+                    <div class="crypto-large">
                         I want to buy:
                         <!-- populate select list with all cryptocurrencies in db -->
                         <div class="input-field inline">    
-                            <select id="currency_bought" name="currency_bought" required>
+                            <select id="currency_bought" name="currency_bought" size="18" required>
                                 {% for currency in currencies %}
                                     <!-- if coming via trade button on portfolio screen, the pre-select cryptocurrency passed through -->
                                     <option value="{{currency.currency_symbol}}" {% if currency.currency_symbol == selected_ticker %} selected {% endif %}>{{ currency.currency_symbol }}</option>
@@ -29,7 +29,7 @@
                         Purchase using:
                         <!-- populate select list by finding currencies user holds with positive balance -->
                         <div class="input-field inline">
-                            <select id="currency_sold" name="currency_sold" required>
+                            <select id="currency_sold" name="currency_sold" size="18" required>
                                 {% for balance in balances %}
                                     {% if balances[balance]|float > 0 %}
                                         {% if balance != '_id' and balance != 'email' %}
@@ -43,7 +43,7 @@
                         <div class="row">
                             <button type="submit" class="col s12 btn-large blue darken-2">Submit Trade</button>
                         </div>
-                    </h6>
+                    </div>
                 </div>
             </div>
         </form>

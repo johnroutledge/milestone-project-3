@@ -9,23 +9,22 @@
                         Portfolio<img src="../static/images/crypto_coins_bw_min.png" alt="Silver cryptocoins">
                     </div>
                     <hr>
-                    <h6 class="crypto-prices box-heading">
+                    <h6 class="crypto-large box-heading">
                         <i class="fas fa-user"></i> {{ user.first_name }} {{ user.last_name }}<br>
                         Member since: {{ member_since }}<br>
                         Balance (USD): {{ "{:.2f}".format(total_balance) }}<br>
                         Change: 
                         {% if '-' not in percentage_change|string %} <span id="positive-change">+{{ percentage_change }}%</span> {% endif %}
                         {% if '-' in percentage_change|string %} <span id="negative-change">{{ percentage_change }}%</span> {% endif %}
-                        <hr>
-                    </h6>
+                    </h6><hr>
                     <div id="trade-help">Click 'TRADE' to buy / sell</div><hr>
                     <!-- iterate through the dictionary containing crypto balances and print to screen-->
                     {% for currency in currencies %}
                         {% for item, value in dict.items() %}
                             {% if item == currency.currency_symbol %} 
                                 <!-- display for medium screen sizes and above -->
-                                <div class="crypto-prices trade-screen-large">
-                                    <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
+                                <div class="crypto-large trade-screen-large">
+                                    <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp;
                                     {{ currency.currency_name }}
                                     {{ value }} 
                                     {% for balance in balances %}
@@ -34,15 +33,15 @@
                                             {{ currency.currency_symbol }})
                                         {% endif %}
                                     {% endfor %}
-                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small blue darken-2" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
+                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small blue darken-2">Trade</a><br>
                                     <hr>
                                 </div>
                                 <!-- display for mobile screen sizes -->
-                                <div class="crypto-prices trade-screen-small">
-                                    <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp
+                                <div class="crypto-large trade-screen-small">
+                                    <img class="crypto-icon" src="../static/images/crypto-icons/{{ currency.currency_symbol.lower() }}.png" alt="Profile image for {{ currency.currency_name }}">&nbsp;
                                     {{ currency.currency_symbol }}
                                     {{ value }} 
-                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small blue darken-2" id="right-align" {{ currency.currency_symbol }}">Trade</a><br>
+                                    <a href="{{ url_for('trade', ticker = currency.currency_symbol) }}" class="waves-effect waves-light btn-small blue darken-2">Trade</a><br>
                                     <hr>
                                 </div>
                             {% endif %}

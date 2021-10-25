@@ -42,6 +42,13 @@ nav ul a {
     line-height: 150%;
 }
 
+.crypto-large {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: large;
+    color: black;
+}
+
 .update-warning {
     color: red;
     font-size: smaller;
@@ -78,17 +85,11 @@ nav ul a {
     max-width: 16px;
 }
 
-.crypto-prices {
-    font-weight: bold;
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-}
-
-#positive-change {
+.positive-change {
     color: green;
 }
 
-#negative-change {
+.negative-change {
     color: red;
 }
 
@@ -213,7 +214,7 @@ button {
         display: none;
     }
 
-    #reveal-text-header {
+    .reveal-text-header {
         font-size: 1.25em;
     }
 }
