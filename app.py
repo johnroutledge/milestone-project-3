@@ -22,12 +22,13 @@ coin_market_cap_key = os.environ.get("COIN_MARKET_CAP_KEY")
 mongo = PyMongo(app)
 
 
-# this procedure retrieves the latest cryptocurrency prices via API call from
-# coinmarketcap.com and returns it in JSON format in coins
 def get_latest_prices():
-    # code to get cryptocurrency prices adapted from Coding Under Pressure
-    # YouTube channel 'How to Use an API in Python to get Bitcoin's Price
-    # Live - Along with other Cryptocurrencies'
+    """retrieves latest cryptocurrency prices via API call from
+    coinmarketcap.com and returns it in JSON format
+    :return coins: a dictionary of all the latest crypto prices
+    for each of the cryptocurrencies available in the app
+    Credit: Coding Under Pressure YouTube channel
+    """
     headers = {
             'X-CMC_PRO_API_KEY': coin_market_cap_key,
             'Accepts': 'application/json'
@@ -50,12 +51,16 @@ def get_latest_prices():
     return coins
 
 
-# this procedure returns a user's total portfolio balance
-# by taking their balance for each cryptocurrency then
-# multiplying it by its current price (taken from the api
-# call) and finally adding them together
-# it also returns a dictionary of all individual cryptocurrency balances
 def get_total_balance(balances, coins):
+    """calculates a user's total portfolio balance
+    and puts all individual cryptocurrency balances into
+    a dictionary
+    :param balances: is the user's individual crypto balances
+    :param coins: is a list of all the latest crypto prices
+    :return total_balance: the user's total porfolio balance
+    :return dict: a dictionary containing user's individual
+    cryptocurrency balances
+    """
     total_balance = 0
     dict = {}
     for balance in balances:
@@ -81,12 +86,15 @@ def home():
         current_user = "none"
     else:
         current_user = session["user"]
-    
+
     return render_template("index.html", current_user=current_user)
 
 
 @app.route("/get_currencies")
 def get_currencies():
+    """retrieves all cryptocurrency information
+    from currencies collection in db
+    """
     currencies = mongo.db.currencies.find()
     coins = get_latest_prices()
     return render_template(
@@ -95,6 +103,9 @@ def get_currencies():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """allows a new user to register with the website
+    and creates the relevant documents
+    """
     if request.method == "POST":
         # check if email already exists in db
         existing_user = mongo.db.users.find_one(
@@ -103,7 +114,7 @@ def register():
         if existing_user:
             flash("Email already registered")
             return redirect(url_for("register"))
-        
+
         # check if passwords match
         password = request.form.get("password")
         retype_password = request.form.get("retype_password")
@@ -112,7 +123,7 @@ def register():
             flash("Passwords do not match")
             return redirect(url_for("register"))
 
-        #create dictionary to add record to users document in db
+        # create dictionary to add record to users document in db
         date_today = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
         register = {
             "first_name": request.form.get("first_name").capitalize(),
@@ -123,7 +134,7 @@ def register():
             "register_date": date_today
         }
 
-        #create dictionary to add record to balances document in db
+        # create dictionary to add record to balances document in db
         balances = {
             "email": request.form.get("email").lower(),
             "usd": 100000,
@@ -158,6 +169,10 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """checks whether a user has an account
+    and then either logs them in or redirects
+    them to register page
+    """
     if request.method == "POST":
         # check if email already exists in db
         existing_user = mongo.db.users.find_one(
@@ -187,6 +202,9 @@ def login():
 
 @app.route("/settings/")
 def settings():
+    """displays user's editable settings by retrieving
+    them from the relevant documents
+    """
     # this redirects user to login screen if not logged in
     if "user" not in session:
         return redirect(url_for("login"))
@@ -201,7 +219,7 @@ def settings():
 
     # retrieve the latest crypto prices
     coins = get_latest_prices()
-    
+
     # get user's total balance by calling get_total_balance
     # function and getting the first returned value
     total_balance = get_total_balance(balances, coins)[0]
@@ -214,6 +232,10 @@ def settings():
 
 @app.route("/edit_settings/", methods=["GET", "POST"])
 def edit_settings():
+    """allows a user to edit their details and/or
+    reset their portfolio balance along with deleting
+    all transaction history
+    """
     # this redirects user to login screen if not logged in
     if "user" not in session:
         return redirect(url_for("login"))
@@ -223,7 +245,7 @@ def edit_settings():
         {"email": session["user"]})
 
     if request.method == "POST":
-        #update user details in db
+        # update user details in db
         mongo.db.users.update(
             {"email": session["user"]},
             {"$set":
@@ -275,6 +297,10 @@ def edit_settings():
 
 @app.route("/portfolio/")
 def portfolio():
+    """retrieves data to show a user's total balance
+    and all individual cyrptocurrency balances
+    in their portfolio
+    """
     # this redirects user to login screen if not logged in
     if "user" not in session:
         return redirect(url_for("login"))
@@ -290,11 +316,11 @@ def portfolio():
 
         member_since = mongo.db.users.find_one(
             {"email": session["user"]})["register_date"]
-        
+
         # retrieve user's details from users document
         user = mongo.db.users.find_one(
             {"email": session["user"]})
-        
+
         # convert member_since from string to required date format
         member_since = datetime.strptime(member_since, '%d-%m-%Y %H:%M:%S')
         member_since = member_since.strftime('%d-%b-%Y')
@@ -310,25 +336,7 @@ def portfolio():
         dict = {}
         total_balance = 0
         percentage_change = 0
-        # for balance in balances:
-        #     if balance.upper() == "USD":
-        #         x = balances[balance]
-        #         dict[balance.upper()] = "{:.2f}".format(x)
-        #         total_balance = total_balance + float(x)
-        #     else:
-        #         for coin in coins:
-        #             if coin['symbol'] == balance.upper():
-        #                 x = coin['quote']['USD']['price'] * float(
-        #                     balances[balance])
-        #                 x = "{:.2f}".format(x)
-        #                 dict[balance.upper()] = x
-        #                 total_balance = total_balance + float(x)
-        
-            # percentage_change = "{:.2f}".format(
-            #     (total_balance - 100000) / 1000)
-
         total_balance, dict = get_total_balance(balances, coins)
-        # dict = get_total_balance(balances, coins)[1]
         percentage_change = "{:.2f}".format(
                  (total_balance - 100000) / 1000)
 
@@ -343,6 +351,10 @@ def portfolio():
 
 @app.route("/transactions/")
 def transactions():
+    """retireves a user's transaction history
+    by returning all of their documents from
+    the transactions collection in db
+    """
     # this redirects user to login screen if not logged in
     if "user" not in session:
         return redirect(url_for("login"))
@@ -364,6 +376,10 @@ def transactions():
 
 @app.route("/trade/<ticker>", methods=["GET", "POST"])
 def trade(ticker):
+    """processes buy/sell transactions and creates corresponding
+    entry in transactions collection in db
+    :param ticker: sets the value for the 'buy' cryptocurrency
+    """
     # this redirects user to login screen if not logged in
     if "user" not in session:
         return redirect(url_for("login"))
@@ -377,28 +393,6 @@ def trade(ticker):
         currencies = mongo.db.currencies.find()
         coins = get_latest_prices()
 
-        # create a dictionary which calculates the user's
-        # USD balance for each cryptocurrency
-        # dict = {}
-        # total_balance = 0
-        # percentage_change = 0
-        # for balance in balances:
-        #     if balance.upper() == "USD":
-        #         x = balances[balance]
-        #         dict[balance.upper()] = x
-        #         total_balance = total_balance + float(x)
-        #     else:
-        #         for coin in coins:
-        #             if coin['symbol'] == balance.upper():
-        #                 x = coin['quote']['USD']['price'] * float(
-        #                     balances[balance])
-        #                 x = "{:.2f}".format(x)
-        #                 dict[balance.upper()] = x
-        #                 total_balance = total_balance + float(x)
-
-        #     percentage_change = "{:.2f}".format(
-        #         (total_balance - 100000) / 1000)
-
     if request.method == "POST":
 
         # check to see if available balance covers trade
@@ -407,7 +401,7 @@ def trade(ticker):
         currency_sold = request.form.get("currency_sold").lower()
         currency_bought = request.form.get("currency_bought").lower()
         amount_purchased = float(request.form.get("sold_amount"))
-        
+
         # make sure amount is not zero
         if amount_purchased == 0:
             flash("Amount cannot be zero")
@@ -427,14 +421,16 @@ def trade(ticker):
 
         requested_balance = request.form.get("sold_amount")
 
+        # make sure user has enough funds for the trade
         if float(requested_balance) > float(available_balance):
             flash(f"Insufficient {currency_sold.upper()} funds")
             flash_balance = "{:.2f}".format(available_balance)
-            flash(f"Available {currency_sold.upper()} balance: {flash_balance} USD")
+            flash(f"Available {currency_sold.upper()}: {flash_balance} USD")
             return render_template(
                 "trade.html", selected_ticker=ticker, currencies=currencies,
                 balances=balances, coins=coins)
 
+        # checks to see if bought/sold cryptos are different
         if currency_sold.upper() == currency_bought.upper():
             flash("Traded currencies must be different")
             return render_template(
@@ -509,7 +505,9 @@ def trade(ticker):
 
 @app.route("/logout")
 def logout():
-    # delete user from session cookies
+    """logs user out from the app and also
+    deletes user from session cookies
+    """
     flash("Log out successful")
     session.pop("user")
     return redirect(url_for("login"))

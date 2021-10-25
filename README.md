@@ -1,7 +1,7 @@
 # Hashmoney
 **Backend Data Centric Milestone Project**
 
-![Main Mockup](https://johnroutledge.github.io/milestone-project-3/static/images/readme/mockup.png "Main Mockup")
+![Main Mockup](https://johnroutledge.github.io/milestone-project-3/static/images/readme/main_mockup.png "Main Mockup")
  
 [Link to Live Website](https://hash-money.herokuapp.com)
 
@@ -111,7 +111,7 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 * The home page incorporates content hinting by partially revealing an element just above the fold 
 * Images on homepage include reveal text functionality behind questions enouraging people to explore further 
 * People can register for free which also allocates them 100,000 dollars which they can trade with as they please 
-* Users can reset there portfolio to zero at any point should they wish to start afresh. This also deletes their trading history
+* Users can reset their portfolio to zero at any point should they wish to start afresh. This also deletes their trading history
 * Users can trade 17 of the top 20 cryptocurrencies
 * A user's balance is clearly displayed on their portfolio screen and they can instantly see if they are in profit
 * Users can also access their trading history on the transactions screen so they can see what they have bought and sold
@@ -154,9 +154,16 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 
 ## Database
 
-**Schema**
 
-**Model**
+Having gone over my ideas for the database schema with my mentor Brian Machiara, the data was allocated across the following tables within a MongoDB database:
+
+* Users - stores a user's personal information and undergoes CREATE, READ and UPDATE operations.
+* Transactions - stores a user's transaction history has a many-to-one relation with the users table on the email address field. It undergoes CREATE, READ and DELETE operations.
+* Balances - stores a user's current balances for each currency has a one-to-one relation with the users table on the email address field. It undergoes CREATE, READ and UPDATE operations.  
+* Currencies  - stores additional information about all of the cryptocurrencies and udergoes READ operations.
+
+
+**Schema**
 
 ![ERD](https://johnroutledge.github.io/milestone-project-3/static/images/readme/hashmoney.png "ERD")
 
@@ -257,11 +264,12 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 
 **Testing Responsiveness**
 
-![Responsiveness](https://johnroutledge.github.io/milestone-project-3/assets/images/gameplay_screenshots.png "Responsiveness")
+The website was tested on various screen sizes using Chrome DevTools, from iPhone5 up to 5k screen. The image above shows the website on iPhone 5, iPad and laptop screens.
 
-The website was tested on various screen sizes using Chrome DevTools, from iPhone5 up to 5k screen. The image above shows the website on iPhone 5, iPad and laptop screens. The app renders as per the screenshot below on a 5k screen resolution.
+It was also tested using [Am I Responsive](http://ami.responsivedesign.is/) and the results were as per the following image:
 
-![5k](https://johnroutledge.github.io/milestone-project-3/assets/images/5k_responsiveness.png "5k")
+![Responsiveness](https://johnroutledge.github.io/milestone-project-3/static/images/readme/main_mockup.png "Responsiveness")
+
 
 **Testing Browser Compatibility**
 
@@ -293,6 +301,7 @@ The results shown are for the homepage and portfolio pages on both mobile and de
 
 ![Homepage Desktop Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/home_desktop.png "Homepage Desktop Results")
 
+
 * Portfolio page (see images below): Running the test intially recommended changing the color of the copyright text to improve the 'accessibility' score (as it did for all pages) and to reduce the crypto logo file sizes to improve the 'performance' score. Results improved once these changes were implemented. However, there is still room for improvement with performance by using HTTP2 which is something I would look at doing in a future version.
 
 ![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_mobile.png "Portfolio Page Mobile Results")
@@ -320,81 +329,17 @@ With the app not far from completion, I attempted to deploy it with Heroku. When
 
 ![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/requirements.png "Heroku Bug")
 
-3. If bug
 
 ***
 
 ## Deployment 
 
-**Deploying to [Heroku](https://dashboard.heroku.com/)**
 
-* Go to your Gitpod CLI and create a requirements file by typing 'pip3 freeze --local > requirements.txt' in the root directory.
-* Next, create the Procfile by typing 'echo web: python app.py > Procfile' into the CLI root directory.
-* Open this new file and type the line 'web: python3 app.py'. Make sure you delete any blank lines at the bottom, then save the file.
-* Add, commit and push your newly created files to your Github repository.
-* Then, go to [Heroku](https://www.heroku.com) and create an account. 
-* After logging in, click on 'create new app'.
-* Select the closest region to your location and give the app a name.
-* Select 'GitHub' as the deployment method.
-* Within the GitHub profile, enter the name of the GitHub repository you want to deploy from and click 'search'.
-* Once Heroku has found the repository, click to connect the app.
-* Next, you will need to login to your [MongoDB Atlas](https://account.mongodb.com/account/login) account.
-* Once in, select your databse cluster on the dashboard then click 'connect'.
-* Then select 'connection your application' and copy the connection string from the 'connection string only' tab.
-* You then need to login to your [CoinMarketCap](https://coinmarketcap.com) account.
-* From the dashboard, copy the API key.
-* Next, navigate back to [Heroku](https://www.heroku.com), go to the 'settings' tab for the app and click 'Reveal Config Vars'.
-* Now set the environment variables by entering key:value pairs (leaving out any inverted commas) so that they match those in your env.py file:
+**Creation on GitHub**
 
-|  Key                  | Value        |
-|-----------------------|--------------|
-|  IP                   | 0.0.0.0      |
-|  PORT                 | 5000         |
-|  MONGO_DBNAME         | 0.0.0.0      |
-|  MONGO_URI            | 0.0.0.0      |
-|  SECRET_KEY           | 0.0.0.0      |
-|  COIN_MARKET_CAP_KEY  | 0.0.0.0      | 
-  
-* Go back to the 'deploy' tab and make sure 'enable automatic deploys' from the 'main' branch are selected. 
-* Click 'deploy'.
-* Once deployed, your app is now runnable by clicking 'view'.
-
-**How to run this project locally**
-
-1. Login to Github and navigate to this [repository](https://github.com/johnroutledge/milestone-project-3)
-1. Under the repository name, click the 'code' button.
-1. Next,choose HTTPS and copy the URL.
-1. Open Gitbash and change the current working directory to the location for the cloned directory.
-1. Type 'git clone ' and then paste the URL from step 2 above.
-1. Press 'enter' to create your clone.
-1. You can now access this new directory.
-
-
-**The project can be deployed by following these steps**
-
-1. Log into GitHub
-1. Click "Settings" in the menu above the Repository.
-1. Scroll down through the settings to the "GitHub Pages" Section.
-1. Underneath "Source", click the dropdown labelled "None" and then select "Master Branch".
-1. The page should refresh automatically and then deploy the website.
-1. If the page refuses to load, scroll down to "template" and select a template underneath "source". 
-1. Scroll back down to the section entitled "GitHub Pages" and the link to the deployed website should be available.
-
-**How to run this project locally**
-
-To clone this project into Gitpod you will need:
-* A Github account. [Create a Github account here](https://github.com/)
-* Use the Chrome browser 
-
-Then follow these steps:
-1. Install the [Gitpod Browser Extensions for Chrome](https://www.gitpod.io/docs/browser-extension/)
-1. After installation, restart your browser
-1. Log into your [Gitpod](https://gitpod.com) account.
-1. Navigate to the [Project GitHub repository](https://github.com/johnroutledge/milestone-project-1)
-1. Click the green "Gitpod" button located on the right of the repository
-1. This initiates a fresh gitpod workspace allowing you to work locally on the code.
-
-**Adding and committing files**
+1. Login to [GitHub](https://github.com/)
+1. Create a new repository by clicking the green 'new' button and choose the Code Institute full template
+1. Click on the green 'Gitpod' button to initiates a fresh workspace
 
 Adding files to the Github repository is done as follows:
 
@@ -408,6 +353,53 @@ Using the '.' will add all files to the repository staging area. Single files ar
 Be clear and consistent with your commit comments - it's a good idea to use imperatives to explain your changes. 
 Pushing moves your work from the staging area to your repository.
 
+
+**Deploying to [Heroku](https://dashboard.heroku.com/)**
+
+1. Go to your Gitpod CLI and create a requirements file by typing 'pip3 freeze --local > requirements.txt' in the root directory.
+1. Next, create the Procfile by typing 'echo web: python app.py > Procfile' into the CLI root directory.
+1. Open this file and type the line 'web: python3 app.py'. Make sure you delete any blank lines at the bottom, then save the file.
+1. Add, commit and push your newly created files to your Github repository.
+1. Then, go to [Heroku](https://www.heroku.com) and create an account. 
+1. After logging in, click on 'create new app'.
+1. Select the closest region to your location and give the app a name.
+1. Select 'GitHub' as the deployment method.
+1. Within the GitHub profile, enter the name of the GitHub repository you want to deploy from and click 'search'.
+1. Once Heroku has found the repository, click to connect the app.
+1. Go to the 'settings' tab for the app and click 'Reveal Config Vars'.
+1. Set the environment variables by entering key:value pairs (leaving out any inverted commas) so that they match those in your env.py file.
+1. Go back to the 'deploy' tab and make sure 'enable automatic deploys' from the 'main' branch are selected. 
+1. Click 'deploy'.
+1. Once deployed, your app is now runnable by clicking 'view'.
+
+**Connecting to [MongoDB](https://account.mongodb.com/account/login)**
+
+1. Login to your [MongoDB Atlas](https://account.mongodb.com/account/login) account.
+1. Once in, select your databse cluster on the dashboard then click 'connect'.
+1. Then select 'connection your application' and copy the connection string from the 'connection string only' tab.
+1. You then need to login to your [CoinMarketCap](https://coinmarketcap.com) account.
+1. From the dashboard, copy the API key.
+
+|  Key                  | Value        |
+|-----------------------|--------------|
+|  IP                   | 0.0.0.0      |
+|  PORT                 | 5000         |
+|  MONGO_DBNAME         | 0.0.0.0      |
+|  MONGO_URI            | 0.0.0.0      |
+|  SECRET_KEY           | 0.0.0.0      |
+|  COIN_MARKET_CAP_KEY  | 0.0.0.0      | 
+  
+
+**How to run this project locally**
+
+1. Login to Github and navigate to this [repository](https://github.com/johnroutledge/milestone-project-3)
+1. Under the repository name, click the 'code' button.
+1. Next, choose HTTPS and copy the URL.
+1. Open Gitbash and change the current working directory to the location for the cloned directory.
+1. Type 'git clone ' and then paste the URL from step 2 above.
+1. Press 'enter' to create your clone.
+1. You can now access this new directory.
+
 ***
 
 ## Credits
@@ -419,7 +411,9 @@ Pushing moves your work from the staging area to your repository.
 
 **Media**
 
-- The background arcade image was downloaded from INSERT
+- The homepage hero cryptocoins image was taken from pngwing.com and then edited
+- The two reveal text card images were re-formatted from photos by Art Rachen and Michael Förtsch on Unsplash.com
+- The cryptocoin images used in the title cards on portfolio, prices, trade, transactions and settings pages were taken from pngegg.com and citypng.com and have also been edited
 - Cryptocurrency icons taken from cryptologos.cc and iconarchive.com
 - All other icons used in the app are from FontAwesome.com
 
@@ -432,6 +426,6 @@ Pushing moves your work from the staging area to your repository.
 
 **Acknowledgements**
 
-- To my wife, Chonchanok Routledge, and several work colleagues for testing the app on various devices.
+- To my wife, Chonchanok Routledge, my sister, Julie Jobburn and several work colleagues for testing the app on various devices.
 - To Jo at Tutor Assistance, for helping me fix the Heroku Deployment bug.
 - To Brian Machiara, my Code Institute mentor, for giving me invaluable tips and insight throughout the whole process.
