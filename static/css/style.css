@@ -217,6 +217,10 @@ button {
     .reveal-text-header {
         font-size: 1.25em;
     }
+
+    .card .card-title {
+        font-size: 1.25em;
+    }
 }
 
 @media screen and (min-width: 701px){
