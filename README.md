@@ -1,7 +1,7 @@
 # Hashmoney
 **Backend Data Centric Milestone Project**
 
-![Main Mockup](https://johnroutledge.github.io/milestone-project-3/static/images/readme/main_mockup.png "Main Mockup")
+![Main Mockup](https://johnroutledge.github.io/milestone-project-3/readme-assets/main_ mockup.png "Main Mockup")
  
 [Link to Live Website](https://hash-money.herokuapp.com)
 
@@ -79,15 +79,15 @@ To make sure the app is intuitive to navigate and use, I decided to keep all of 
 
 Wireframes
 
-* [Homepage wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_homepage.png)
-* [Register page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_register.png)
-* [Login page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_login.png)
-* [Portfolio page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_portfolio.png)
-* [Prices page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_prices.png)
-* [Trade page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_trade.png)
-* [Transactions page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_transactions.png)
-* [Settings page wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_settings.png)
-* [Edit Settings Wireframes](https://johnroutledge.github.io/milestone-project-3/static/images/readme/wf_edit_settings.png)
+* [Homepage wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_homepage.png)
+* [Register page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_register.png)
+* [Login page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_login.png)
+* [Portfolio page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_portfolio.png)
+* [Prices page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_prices.png)
+* [Trade page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_trade.png)
+* [Transactions page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_transactions.png)
+* [Settings page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_settings.png)
+* [Edit Settings Wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_edit_settings.png)
 
 
 **Surface**
@@ -165,7 +165,7 @@ Having gone over my ideas for the database schema with my mentor Brian Machiara,
 
 **Schema**
 
-![ERD](https://johnroutledge.github.io/milestone-project-3/static/images/readme/hashmoney.png "ERD")
+![ERD](https://johnroutledge.github.io/milestone-project-3/readme-assets/hashmoney.png "ERD")
 
 
 ***
@@ -268,7 +268,7 @@ The website was tested on various screen sizes using Chrome DevTools, from iPhon
 
 It was also tested using [Am I Responsive](http://ami.responsivedesign.is/) and the results were as per the following image:
 
-![Responsiveness](https://johnroutledge.github.io/milestone-project-3/static/images/readme/main_mockup.png "Responsiveness")
+![Responsiveness](https://johnroutledge.github.io/milestone-project-3/readme-assets/main_mockup.png "Responsiveness")
 
 
 **Testing Browser Compatibility**
@@ -281,15 +281,15 @@ The Python code from the app.py file was checked using [Pep8online](https://www.
 
 The first check brought back numerous errors which were all rectified and resulted with a clear check as per the screenshot below.
 
-![HTML](https://johnroutledge.github.io/milestone-project-3/static/images/readme/pep8_check.png "Python")
+![HTML](https://johnroutledge.github.io/milestone-project-3/readme-assets/pep8_check.png "Python")
 
 Both the HTML and CSS were validated using the W3C Markup Validation Service. This was done using the 'Validate by Direct Input' option. For the HTML, this resulted in an error with IF ERROR (see screenshot above). This was rectified by IF FIXED .  Final checks were done resulting in no errors as per screenshot below.
 
-![HTML](https://johnroutledge.github.io/milestone-project-3/static/images/readme/html_check.png "HTML")
+![HTML](https://johnroutledge.github.io/milestone-project-3/readme-assets/html_check.png "HTML")
 
 All checks on the CSS file were clear on the first attempt as per screenshot below.
 
-![CSS](https://johnroutledge.github.io/milestone-project-3/static/images/readme/css_check.png "CSS")
+![CSS](https://johnroutledge.github.io/milestone-project-3/readme-assets/css_check.png "CSS")
 
 **Testing with Lighthouse in Google Chrome Devtools**
 
@@ -297,16 +297,16 @@ The results shown are for the homepage and portfolio pages on both mobile and de
 
 * Homepage (see images below): Running the test intially recommended changing the color of the copyright text to improve 'accessibility', add a meta description of the page to improve the 'SEO' and to resize of the 'Why Hash Money' image to improve the 'best practices' score. Having done all of these resulted in improvements across the board.
 
-![Homepage Mobile Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/home_mobile.png "Homepage Mobile Results")
+![Homepage Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/home_mobile.png "Homepage Mobile Results")
 
-![Homepage Desktop Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/home_desktop.png "Homepage Desktop Results")
+![Homepage Desktop Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/home_desktop.png "Homepage Desktop Results")
 
 
 * Portfolio page (see images below): Running the test intially recommended changing the color of the copyright text to improve the 'accessibility' score (as it did for all pages) and to reduce the crypto logo file sizes to improve the 'performance' score. Results improved once these changes were implemented. However, there is still room for improvement with performance by using HTTP2 which is something I would look at doing in a future version.
 
-![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_mobile.png "Portfolio Page Mobile Results")
+![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_mobile.png "Portfolio Page Mobile Results")
 
-![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_desktop.png "Portfolio Page Desktop Results")
+![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_desktop.png "Portfolio Page Desktop Results")
 
 
 **Notable bug fixes**
@@ -315,19 +315,19 @@ The results shown are for the homepage and portfolio pages on both mobile and de
 
 In an early version of the app, the portfolio screen was showing a balance which multiplied the USD amount by twenty. This resulted in an incorrect balance. Having examined the code within the app.py file, I discovered that there was an error within the loop that iterates through a user's currency balances to produce the total balance (see screenshots below). By moving the totalBalance variable outside of the else statement (but still within the loop), the bug was fixed. In the screenshots, the left image is with the bug and the right image is after the fix had been applied. Line numbers are different from what they are in the final version as much more code has been added.
 
-![Portfolio Bug Screen](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_bug_screen.png "Portfolio Bug")
+![Portfolio Bug Screen](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_bug_screen.png "Portfolio Bug")
 
-![Portfolio Bug Code](https://johnroutledge.github.io/milestone-project-3/static/images/readme/portfolio_bug_code.png "Portfolio Bug Fix Code")
+![Portfolio Bug Code](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_bug_code.png "Portfolio Bug Fix Code")
 
 2. Heroku Deployment Bug
 
-![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/heroku_app_error.png "Heroku Bug")
+![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_app_error.png "Heroku Bug")
 
 With the app not far from completion, I attempted to deploy it with Heroku. When trying to run the app, it produced the error is per the screenshot above. Having followed the onscreen instructions, I took a look at the application logs (shown below) and determined the error lay with importing requests. Having tried numerous suggestions from various webpages (which included freezing the requirements file) without success, I turned to tutor support for help. They also struggled, but suggested typing 'requests' directly into the requirements.txt file (no version number required - see second image below). Having done this and then re-deplying on Heroku again, the app ran as expected.
 
-![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/heroku_error_log.png "Heroku Bug")
+![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_error_log.png "Heroku Bug")
 
-![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/static/images/readme/requirements.png "Heroku Bug")
+![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/requirements.png "Heroku Bug")
 
 
 ***
@@ -367,28 +367,11 @@ Pushing moves your work from the staging area to your repository.
 1. Within the GitHub profile, enter the name of the GitHub repository you want to deploy from and click 'search'.
 1. Once Heroku has found the repository, click to connect the app.
 1. Go to the 'settings' tab for the app and click 'Reveal Config Vars'.
-1. Set the environment variables by entering key:value pairs (leaving out any inverted commas) so that they match those in your env.py file.
+1. Set the environment variables by entering key:value pairs (leaving out any inverted commas) so that they match those in your env.py file (see section below for further details).
 1. Go back to the 'deploy' tab and make sure 'enable automatic deploys' from the 'main' branch are selected. 
 1. Click 'deploy'.
 1. Once deployed, your app is now runnable by clicking 'view'.
 
-**Connecting to [MongoDB](https://account.mongodb.com/account/login)**
-
-1. Login to your [MongoDB Atlas](https://account.mongodb.com/account/login) account.
-1. Once in, select your databse cluster on the dashboard then click 'connect'.
-1. Then select 'connection your application' and copy the connection string from the 'connection string only' tab.
-1. You then need to login to your [CoinMarketCap](https://coinmarketcap.com) account.
-1. From the dashboard, copy the API key.
-
-|  Key                  | Value        |
-|-----------------------|--------------|
-|  IP                   | 0.0.0.0      |
-|  PORT                 | 5000         |
-|  MONGO_DBNAME         | 0.0.0.0      |
-|  MONGO_URI            | 0.0.0.0      |
-|  SECRET_KEY           | 0.0.0.0      |
-|  COIN_MARKET_CAP_KEY  | 0.0.0.0      | 
-  
 
 **How to run this project locally**
 
@@ -399,6 +382,43 @@ Pushing moves your work from the staging area to your repository.
 1. Type 'git clone ' and then paste the URL from step 2 above.
 1. Press 'enter' to create your clone.
 1. You can now access this new directory.
+
+**Values for the env.py file**
+
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", "paste scret key here")
+os.environ.setdefault("MONGO_URI", "paste connection string here")
+os.environ.setdefault("MONGO_DBNAME", "enter db name here")
+os.environ.setdefault("COIN_MARKET_CAP_KEY", "paste API key here")
+
+* Set the IP key value to '0.0.0.0'
+* Set the PORT key value to '5000'
+* Navigate to [Randomkeygen.com](https://https://randomkeygen.com/) and copy one of the Fort Knox Passwords.
+* Paste it into the key value for SECRET_KEY.
+
+MONGO DB KEYS
+
+* Login to your [MongoDB Atlas](https://account.mongodb.com/account/login) account.
+* Once in, select your databse cluster on the dashboard then click 'connect'.
+* Then select 'connect your application' and copy the connection string from the 'connection string only' tab as per the screenshot below:
+
+![Mongo URI](https://johnroutledge.github.io/milestone-project-3/readme-assets/mongo_uri.png "Mongo URI")
+
+* Paste the string into the value for the MONGO_URI key.
+* Make sure to replace PASSWORD with your database password and replace 'myFirstDatabase' with the name of the database (in this case, 'hashmoney')
+* Set the MONGO_DBNAME key value to the name of the database ('hashmoney' in this case).
+* Save the file.
+
+COIN_MARKET_CAP_KEY
+
+* Navigate to [CoinMarketCap](https://coinmarketcap.com) and create a free account.
+* Once logged in, go to the dashboard and copy the api key as shown in the image below:
+
+![Coinmarketcap API Key](https://johnroutledge.github.io/milestone-project-3/readme-assets/coinmarketcap_api.png "Coinmarketcap API Key")
+
+* Paste the key into the value for the COIN_MARKET_CAP_KEY in the env.py file.
+* Save the file
 
 ***
 
