@@ -1,7 +1,7 @@
 # Hashmoney
 **Backend Data Centric Milestone Project**
 
-![Main Mockup](https://johnroutledge.github.io/milestone-project-3/readme-assets/main_ mockup.png "Main Mockup")
+![Main Mockup](https://johnroutledge.github.io/milestone-project-3/readme-assets/main_mockup.png "Main Mockup")
  
 [Link to Live Website](https://hash-money.herokuapp.com)
 
@@ -9,10 +9,10 @@
 
 **Rationale**
 
-With the ever increasing popularity of and interest in cryptocurrency, there are still a vast amount of people who are sceptical or unsure as to whether they should invest in it or not.
+With the ever increasing popularity of and interest in cryptocurrency, there are still a vast amount of people who are skeptical or unsure as to whether they should invest in it or not.
 Such people need an app that is easy to understand, simple to use and gives them clear visual feedback as to how their investment is progressing.  All of these should take place in a risk-free environment.
 
-Hashmoney meets such needs by providing them with the ability to trade and track some of the most popular crypotcurrencies without any financial investment. Having registered, users are given 100,000 USD 'credits' which they can spend on a selection of cryptocurrencies as they please.  
+Hashmoney meets such needs by providing them with the ability to trade and track some of the most popular cryptocurrencies without any financial investment. Having registered, users are given 100,000 USD 'credits' which they can spend on a selection of cryptocurrencies as they please.  
 
 All of the prices are up-to-the-minute accurate and taken from coinmarketcap.com via an api. Users can track the progress of their portfolio and can buy, sell and exchange cryptocurrencies as often as they wish.  There is also the option to reset their account and start from scratch.
 
@@ -25,7 +25,7 @@ The typical user for the website would be someone who:
 
 People visiting this website are looking for:
 * Increased knowledge of trading cryptocurrencies
-* A quick, easy way to invest in crytocurrencies risk-free
+* A quick, easy way to invest in cryptocurrencies risk-free
 * The potential profits/losses which could be made in the short and long-term
 * An introduction to cryptocurrencies
 
@@ -55,7 +55,7 @@ Hashmoney is the ideal site for such people because:
 
 User needs:  simple to navigate, quick to register, straightforward to trade, intuitive design, unintimidating and modern appearance.
 
-Being a cryptocurrency trader myself, I remember the uncertainty and scepticism I had before I began. With that in mind, I decided to write an app that would enable people to dip into cryptocurrency trading risk-free. Along with that, I wanted it to be straightforward with clear feedback as to how their portfolio was growing (or not, as the case may be). I also wanted to give people the confidence to be able to make mistakes and to start from scratch again without financial penalties, hence the 'reset portfolio' option.
+Being a cryptocurrency trader myself, I remember the uncertainty and skepticism I had before I began. With that in mind, I decided to write an app that would enable people to dip into cryptocurrency trading risk-free. Along with that, I wanted it to be straightforward with clear feedback as to how their portfolio was growing (or not, as the case may be). I also wanted to give people the confidence to be able to make mistakes and to start from scratch again without financial penalties, hence the 'reset portfolio' option.
 
 
 **Scope**
@@ -92,9 +92,9 @@ Wireframes
 
 **Surface**
 
-The 'Monserrat' Google font was chosen to give a clean and modern feel, while the white/grey/blue colour scheme added to this style.
+The 'Monserrat' Google font was chosen to give a clean and modern feel, while the white/grey/blue color scheme added to this style.
 
-The colour scheme was chosen as it feels sharp and modern to match the world of cryptocurrencies. At the same time, it is both visually unintimidating and easy on the eye. I wanted the app to have this look so that it appeals to users who are risk-averse and who don't want to be overloaded with unecessary information. A shade of blue was chosen for the buttons as it is perceived as being a trustworthy,dependable, and responsible color. Blue is also popular among financial institutions, as conveys trust and stability. The button color is consistent throughout the app to maintain consistency and increase intuitivity.
+The color scheme was chosen as it feels sharp and modern to match the world of cryptocurrencies. At the same time, it is both visually unintimidating and easy on the eye. I wanted the app to have this look so that it appeals to users who are risk-averse and who don't want to be overloaded with unnecessary information. A shade of blue was chosen for the buttons as it is perceived as being a trustworthy, dependable, and responsible color. Blue is also popular among financial institutions, as conveys trust and stability. The button color is consistent throughout the app to maintain consistency and increase the intuitiveness of the page.
 
 The cryptocoin hero image was chosen for the landing page to make it immediately apparent that this is a financial app dealing with cryptocurrency. The large two sentence message underneath the hero image was used to give a clear, unambiguous description of what the app is about.
 
@@ -109,7 +109,7 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 * The navbar collapses to a burger menu on smaller screens to increase the available screen area
 * The same footer appears on every page to maintain consistency and give quick access to relevant social media links 
 * The home page incorporates content hinting by partially revealing an element just above the fold 
-* Images on homepage include reveal text functionality behind questions enouraging people to explore further 
+* Images on homepage include reveal text functionality behind questions encouraging people to explore further 
 * People can register for free which also allocates them 100,000 dollars which they can trade with as they please 
 * Users can reset their portfolio to zero at any point should they wish to start afresh. This also deletes their trading history
 * Users can trade 17 of the top 20 cryptocurrencies
@@ -122,7 +122,7 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 * The ability to choose from a wider range of cryptocurrencies
 * Unlimited access to cryptocurrency rates (currently it is limited to 333 api calls per day as the free API option was chosen)
 * Give a choice of color schemes to add to the UX
-* A portfolio balance leaderboard so traders can compete with each other regiestered users
+* A portfolio balance leaderboard so traders can compete with each other registered users
 * Add 'forgot password' functionality
 * Price charts for prices and portfolio history to add to the UX
 * Links to real-money cryptocurrency exchanges so the site can earn commission
@@ -155,12 +155,12 @@ The cryptocoin images used in the title bars of all other pages were used to mai
 ## Database
 
 
-Having gone over my ideas for the database schema with my mentor Brian Machiara, the data was allocated across the following tables within a MongoDB database:
+Having gone over my ideas for the database schema with my mentor Brian Macharia, the data was allocated across the following tables within a MongoDB database:
 
 * Users - stores a user's personal information and undergoes CREATE, READ and UPDATE operations.
 * Transactions - stores a user's transaction history has a many-to-one relation with the users table on the email address field. It undergoes CREATE, READ and DELETE operations.
 * Balances - stores a user's current balances for each currency has a one-to-one relation with the users table on the email address field. It undergoes CREATE, READ and UPDATE operations.  
-* Currencies  - stores additional information about all of the cryptocurrencies and udergoes READ operations.
+* Currencies - stores additional information about all of the cryptocurrencies and undergoes READ operations.
 
 
 **Schema**
@@ -177,7 +177,7 @@ Having gone over my ideas for the database schema with my mentor Brian Machiara,
 |-----------------------------------------------|----------------|-----------------------------------------------------------|---------------|
 |  Hashmoney navbar logo                        | Click          |  Navigate to homepage from all pages                      | PASS          |
 |  Navbar 'Home' 'Sign In' 'Register' links     | Before login   |  See only these links if user not logged in               | PASS          |
-|  Navbar 'Porftfolio' 'Prices' 'Trade' links   | After login    |  See only these links if user logged in                   | PASS          |
+|  Navbar 'Portfolio' 'Prices' 'Trade' links   | After login    |  See only these links if user logged in                   | PASS          |
 |  Navbar 'Transactions' 'Settings' 'Logout'    | After login    |  See only these links if user logged in                   | PASS          |
 |  Navbar links                                 | Click          |  Navigate to the corresponding pages                      | PASS          |
 |  Navbar links                                 | View on mobile |  Should be visible as hamburger icon                      | PASS          |
@@ -188,7 +188,7 @@ Having gone over my ideas for the database schema with my mentor Brian Machiara,
 |  Homepage registered user login button        | Click          |  Navigate to sign-in page                                 | PASS          |
 |  Social Media links in footer                 | Click          |  Navigate to the correct social media homepages           | PASS          |
 |  Register page input wrong data format        | Submit         |  Catch all incorrect data formats                         | PASS          |
-|  Register page exisiting email address in db  | Submit         |  Display email already registered flash message           | PASS          |
+|  Register page existing email address in db  | Submit         |  Display email already registered flash message           | PASS          |
 |  Register page passwords not matching         | Submit         |  Display passwords do not match flash message             | PASS          |
 |  Register page successful register            | Submit         |  Display registration successful flash message                       | PASS          |
 |  Register page successful register            | Submit         |  Navigate to user's portfolio page                        | PASS          |
@@ -206,7 +206,7 @@ Having gone over my ideas for the database schema with my mentor Brian Machiara,
 |  Prices page cryptocurrency change %          | Page load      |  Render in green text if gain, red text if loss           | PASS          |
 |  Prices page extra cryptocurrency information | Click          |  Reveal/Hide hidden text when clicking on cryptocurrency  | PASS          |
 |  Trade page (via portfolio 'trade' button)    | Page Load      |  Display correct 'buy' currency                           | PASS          |
-|  Trade page 'buy'currency select list         | Page Load      |  List all cryptocurrencies in database                    | PASS          |
+|  Trade page 'buy' currency select list         | Page Load      |  List all cryptocurrencies in database                    | PASS          |
 |  Trade page 'purchase using' select list      | Page Load      |  List only cryptocurrencies user has positive balance of  | PASS          |
 |  Trade page input wrong data format           | Click Submit   |  Catch all incorrect data formats                         | PASS          |
 |  Trade page input zero amount                 | Click Submit   |  Display amount entered cannot be zero flash message      | PASS          |
@@ -277,42 +277,50 @@ The website was successfully opened and rendered correctly in Chrome (both deskt
 
 **Code Validation**
 
-The Python code from the app.py file was checked using [Pep8online](https://www.pep8online.com)
+Python code from the app.py file was checked using [Pep8online](https://www.pep8online.com)
 
 The first check brought back numerous errors which were all rectified and resulted with a clear check as per the screenshot below.
 
 ![HTML](https://johnroutledge.github.io/milestone-project-3/readme-assets/pep8_check.png "Python")
 
-Both the HTML and CSS were validated using the W3C Markup Validation Service. This was done using the 'Validate by Direct Input' option.
+
+HTML and CSS were validated using the W3C Markup Validation Service. This was done using the 'Validate by Direct Input' option.
 
 For the HTML, all pages except for the login page resulted in a warning caused by the flash messages section in the base.html template (see screenshot below). Having researched solutions on stackoverflow.com, I didn't change my code as the section already contained an h6 element as recommended by the warning (see below).
 
 ![HTML Section Warning](https://johnroutledge.github.io/milestone-project-3/readme-assets/html_section_warning.png "HTML")
+
 ![Flash Section Code](https://johnroutledge.github.io/milestone-project-3/readme-assets/flash_section_code.png "HTML")
 
-The trade screen html through up an interesting error relating to the select inputs on the page:
+
+The trade screen html threw up an interesting error relating to the select inputs:
 ![Trade screen error](https://johnroutledge.github.io/milestone-project-3/readme-assets/trade_html_error.png "HTML")
+
 This was fixed by adding a size property to the inputs and giving it a value of 18 which allows for the number of currencies options in the app.
 
+
 The login page was the only one without any errors or warnings as it doesn't reference the flash message section in base.html:
-![Login Page Checks](https://johnroutledge.github.io/milestone-project-3/readme-assets/login_page_checks.png "HTML")
+
+![Login Page Checks](https://johnroutledge.github.io/milestone-project-3/readme-assets/login_html_checks.png "HTML")
+
 
 All checks on the CSS file were clear on the first attempt as per screenshot below.
 
 ![CSS](https://johnroutledge.github.io/milestone-project-3/readme-assets/css_check.png "CSS")
 
+
 **Testing with Lighthouse in Google Chrome Devtools**
 
 The results shown are for the homepage and portfolio pages on both mobile and desktop. These were chosen as they produced the lowest figures and best illustrate the gains made by implementing Lighthouse's recommended changes.
 
-* Homepage (see images below): Running the test intially recommended changing the color of the copyright text to improve 'accessibility', add a meta description of the page to improve the 'SEO' and to resize of the 'Why Hash Money' image to improve the 'best practices' score. Having done all of these resulted in improvements across the board.
+* Homepage (see images below): Running the test initially recommended changing the color of the copyright text to improve 'accessibility', add a meta description of the page to improve the 'SEO' and to resize of the 'Why Hash Money' image to improve the 'best practices' score. Having done all of these resulted in improvements across the board.
 
 ![Homepage Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/home_mobile.png "Homepage Mobile Results")
 
 ![Homepage Desktop Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/home_desktop.png "Homepage Desktop Results")
 
 
-* Portfolio page (see images below): Running the test intially recommended changing the color of the copyright text to improve the 'accessibility' score (as it did for all pages) and to reduce the crypto logo file sizes to improve the 'performance' score. Results improved once these changes were implemented. However, there is still room for improvement with performance by using HTTP2 which is something I would look at doing in a future version.
+* Portfolio page (see images below): Running the test initially recommended changing the color of the copyright text to improve the 'accessibility' score (as it did for all pages) and to reduce the crypto logo file sizes to improve the 'performance' score. Results improved once these changes were implemented. However, there is still room for improvement with performance by using HTTP2 which is something I would look at doing in a future version.
 
 ![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_mobile.png "Portfolio Page Mobile Results")
 
@@ -333,7 +341,7 @@ In an early version of the app, the portfolio screen was showing a balance which
 
 ![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_app_error.png "Heroku Bug")
 
-With the app not far from completion, I attempted to deploy it with Heroku. When trying to run the app, it produced the error is per the screenshot above. Having followed the onscreen instructions, I took a look at the application logs (shown below) and determined the error lay with importing requests. Having tried numerous suggestions from various webpages (which included freezing the requirements file) without success, I turned to tutor support for help. They also struggled, but suggested typing 'requests' directly into the requirements.txt file (no version number required - see second image below). Having done this and then re-deplying on Heroku again, the app ran as expected.
+With the app not far from completion, I attempted to deploy it with Heroku. When trying to run the app, it produced the error is per the screenshot above. Having followed the onscreen instructions, I took a look at the application logs (shown below) and determined the error lay with importing requests. Having tried numerous suggestions from various webpages (which included freezing the requirements file) without success, I turned to tutor support for help. They also struggled, but suggested typing 'requests' directly into the requirements.txt file (no version number required - see second image below). Having done this and then re-deploying on Heroku again, the app ran as expected.
 
 ![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_error_log.png "Heroku Bug")
 
@@ -377,7 +385,7 @@ Pushing moves your work from the staging area to your repository.
 1. Within the GitHub profile, enter the name of the GitHub repository you want to deploy from and click 'search'.
 1. Once Heroku has found the repository, click to connect the app.
 1. Go to the 'settings' tab for the app and click 'Reveal Config Vars'.
-1. Set the environment variables by entering key:value pairs (leaving out any inverted commas) so that they match those in your env.py file (see section below for further details).
+1. Set the environment variables by entering key-value pairs (leaving out any inverted commas) so that they match those in your env.py file (see section below for further details).
 1. Go back to the 'deploy' tab and make sure 'enable automatic deploys' from the 'main' branch are selected. 
 1. Click 'deploy'.
 1. Once deployed, your app is now runnable by clicking 'view'.
@@ -401,7 +409,7 @@ The finished env.py file should look as follows:
 
         os.environ.setdefault("IP", "0.0.0.0")
         os.environ.setdefault("PORT", "5000")
-        os.environ.setdefault("SECRET_KEY", "paste scret key here")
+        os.environ.setdefault("SECRET_KEY", "paste secret key here")
         os.environ.setdefault("MONGO_URI", "paste connection string here")
         os.environ.setdefault("MONGO_DBNAME", "enter db name here")
         os.environ.setdefault("COIN_MARKET_CAP_KEY", "paste API key here")
@@ -414,7 +422,7 @@ The finished env.py file should look as follows:
 MONGO DB KEYS
 
 * Login to your [MongoDB Atlas](https://account.mongodb.com/account/login) account.
-* Once in, select your databse cluster on the dashboard then click 'connect'.
+* Once in, select your database cluster on the dashboard then click 'connect'.
 * Then select 'connect your application' and copy the connection string from the 'connection string only' tab as per the screenshot below:
 
 ![Mongo URI](https://johnroutledge.github.io/milestone-project-3/readme-assets/mongo_uri.png "Mongo URI")
@@ -426,7 +434,7 @@ MONGO DB KEYS
 
 COIN_MARKET_CAP_KEY
 
-* Navigate to [CoinMarketCap](https://coinmarketcap.com) and create a free account.
+* Navigate to [Coinmarketcap](https://coinmarketcap.com) and create a free account.
 * Once logged in, go to the dashboard and copy the api key as shown in the image below:
 
 ![Coinmarketcap API Key](https://johnroutledge.github.io/milestone-project-3/readme-assets/coinmarketcap_api.png "Coinmarketcap API Key")
@@ -455,11 +463,11 @@ COIN_MARKET_CAP_KEY
 
 - Basic template setup, use of Flask, linking to MongoDB and Heroku taken from the Code Institute's Backend Development Task-Manager Mini-Project
 - Code for Materialize elements taken and modified from materialize.com
-- Pretty Printed's YouTube channel video 'Adding a Favivon to a Flask App'
+- Pretty Printed's YouTube channel video 'Adding a Favicon to a Flask App'
 - How to float an image to right of div taken from stackoverflow.com
 
 **Acknowledgements**
 
 - To my wife, Chonchanok Routledge, my sister, Julie Jobburn and several work colleagues for testing the app on various devices.
 - To Jo at Tutor Assistance, for helping me fix the Heroku Deployment bug.
-- To Brian Machiara, my Code Institute mentor, for giving me invaluable tips and insight throughout the whole process.
+- To Brian Macharia, my Code Institute mentor, for giving me invaluable tips and insight throughout the whole process.
