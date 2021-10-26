@@ -165,7 +165,7 @@ Having gone over my ideas for the database schema with my mentor Brian Macharia,
 
 **Schema**
 
-![ERD](https://johnroutledge.github.io/milestone-project-3/readme-assets/hashmoney.png "ERD")
+![ERD](https://johnroutledge.github.io/milestone-project-3/readme-assets/hashmoney_erd.png "ERD")
 
 
 ***
@@ -389,7 +389,15 @@ Pushing moves your work from the staging area to your repository.
 1. Once deployed, your app is now runnable by clicking 'view'.
 
 
-**How to run this project locally**
+**Forking this project**
+
+This creates a copy of the original repository in your GitHub account so you can make changes without impacting the original.
+
+1. Log in to GitHub and navigate to this [repository](https://github.com/johnroutledge/milestone-project-3)
+1. Click the 'fork' button located at the top of the repository.
+1. A copy of the repository will be created in your own GitHub account.
+
+**How to clone this project locally**
 
 1. Login to Github and navigate to this [repository](https://github.com/johnroutledge/milestone-project-3)
 1. Under the repository name, click the 'code' button.
