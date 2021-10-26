@@ -79,15 +79,15 @@ To make sure the app is intuitive to navigate and use, I decided to keep all of 
 
 Wireframes
 
-* [Homepage wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_homepage.png)
-* [Register page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_register.png)
-* [Login page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_login.png)
-* [Portfolio page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_portfolio.png)
-* [Prices page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_prices.png)
-* [Trade page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_trade.png)
-* [Transactions page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_transactions.png)
-* [Settings page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_settings.png)
-* [Edit Settings Wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wf_edit_settings.png)
+* [Homepage wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wireframes_homepage.png)
+* [Register page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wireframes_register.png)
+* [Login page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wireframes_login.png)
+* [Portfolio page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wireframes_portfolio.png)
+* [Prices page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wireframes_prices.png)
+* [Trade page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wireframes_trade.png)
+* [Transactions page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wireframes_transactions.png)
+* [Settings page wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wireframes_settings.png)
+* [Edit Settings Wireframes](https://johnroutledge.github.io/milestone-project-3/readme-assets/wireframes_edit_settings.png)
 
 
 **Surface**
