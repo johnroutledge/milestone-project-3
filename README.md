@@ -335,6 +335,7 @@ In an early version of the app, the portfolio screen was showing a balance which
 
 ![Portfolio Bug Code](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_bug_code.png "Portfolio Bug Fix Code")
 
+
 2. Heroku Deployment Bug
 
 ![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_app_error.png "Heroku Bug")
@@ -345,6 +346,12 @@ With the app not far from completion, I attempted to deploy it with Heroku. When
 
 ![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/requirements.png "Heroku Bug")
 
+
+3. Available Balance Bug
+
+As a result of user testing, a bug was discovered in the flash message on the trade screen. It was displaying a zero available balance for DOGE when in reality, the balance was over 5000 USD. Having examined the code, the error was found in line 419 of app.py where additional number formatting was resulting in a balance being multiplied by zero. Removing the conversion to integer resulted in the correct format being applied. Running the fixed code confirmed the correct balance is now displayed in the flash message. See below images for all details:
+
+![Avilable Balance Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/available_balance_bug.png "Heroku Bug")
 
 ***
 

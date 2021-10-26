@@ -416,8 +416,7 @@ def trade(ticker):
                 if coin['symbol'] == currency_sold.upper():
                     sold_price = "{:.2f}".format(coin['quote']['USD']['price'])
 
-            available_balance = balances[currency_sold] * int(
-                float(sold_price))
+            available_balance = balances[currency_sold] * float(sold_price)
 
         requested_balance = request.form.get("sold_amount")
 
