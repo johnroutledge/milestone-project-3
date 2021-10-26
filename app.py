@@ -359,10 +359,6 @@ def transactions():
     if "user" not in session:
         return redirect(url_for("login"))
 
-    # # get users first name from db
-    # username = mongo.db.users.find_one(
-    #     {"email": session["user"]})["first_name"]
-
     if session["user"]:
         # retrieve user's transaction history
         user_transactions = mongo.db.transactions.find(
@@ -446,12 +442,10 @@ def trade(ticker):
                 sold_price = 1
             elif coin['symbol'] == request.form.get("currency_sold").upper():
                 sold_price = "{:.5f}".format(coin['quote']['USD']['price'])
-                # sold_price = coin['quote']['USD']['price']
             if request.form.get("currency_bought").upper() == "USD":
                 bought_price = 1
             elif coin['symbol'] == request.form.get("currency_bought"):
                 bought_price = "{:.5f}".format(coin['quote']['USD']['price'])
-                # bought_price = coin['quote']['USD']['price']
 
         # create the dictionary to be inserted into the db
         transaction = {
