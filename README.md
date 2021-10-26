@@ -1,7 +1,7 @@
 # Hashmoney
 **Backend Data Centric Milestone Project**
 
-![Main Mockup](https://johnroutledge.github.io/milestone-project-3/readme-assets/main_mockup.png "Main Mockup")
+![Main Mockup](https://johnroutledge.github.io/milestone-project-3/readme-assets/hashmoney_mockup.png "Main Mockup")
  
 [Link to Live Website](https://hash-money.herokuapp.com)
 
@@ -266,7 +266,7 @@ Having gone over my ideas for the database schema with my mentor Brian Macharia,
 
 The website was tested on various screen sizes using Chrome DevTools, from iPhone5 up to 5k screen. It was also tested using [Am I Responsive](http://ami.responsivedesign.is/) and the results were as per the following image:
 
-![Responsiveness](https://johnroutledge.github.io/milestone-project-3/readme-assets/main_mockup.png "Responsiveness")
+![Responsiveness](https://johnroutledge.github.io/milestone-project-3/readme-assets/hashmoney_mockup.png "Responsiveness")
 
 
 **Testing Browser Compatibility**
@@ -279,7 +279,7 @@ Python code from the app.py file was checked using [Pep8online](https://www.pep8
 
 The first check brought back numerous errors which were all rectified and resulted with a clear check as per the screenshot below.
 
-![HTML](https://johnroutledge.github.io/milestone-project-3/readme-assets/pep8_check.png "Python")
+![HTML](https://johnroutledge.github.io/milestone-project-3/readme-assets/pep8_validation.png "Python")
 
 
 HTML and CSS were validated using the W3C Markup Validation Service. This was done using the 'Validate by Direct Input' option.
@@ -304,7 +304,7 @@ The login page was the only one without any errors or warnings as it doesn't ref
 
 All checks on the CSS file were clear on the first attempt as per screenshot below.
 
-![CSS](https://johnroutledge.github.io/milestone-project-3/readme-assets/css_check.png "CSS")
+![CSS](https://johnroutledge.github.io/milestone-project-3/readme-assets/css_validation.png "CSS")
 
 
 **Testing with Lighthouse in Google Chrome Devtools**
@@ -313,16 +313,16 @@ The results shown are for the homepage and portfolio pages on both mobile and de
 
 * Homepage (see images below): Running the test initially recommended changing the color of the copyright text to improve 'accessibility', add a meta description of the page to improve the 'SEO' and to resize of the 'Why Hash Money' image to improve the 'best practices' score. Having done all of these resulted in improvements across the board.
 
-![Homepage Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/home_mobile.png "Homepage Mobile Results")
+![Homepage Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/lighthouse_home_mob.png "Homepage Mobile Results")
 
-![Homepage Desktop Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/home_desktop.png "Homepage Desktop Results")
+![Homepage Desktop Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/lighthouse_home_desk.png "Homepage Desktop Results")
 
 
 * Portfolio page (see images below): Running the test initially recommended changing the color of the copyright text to improve the 'accessibility' score (as it did for all pages) and to reduce the crypto logo file sizes to improve the 'performance' score. Results improved once these changes were implemented. However, there is still room for improvement with performance by using HTTP2 which is something I would look at doing in a future version.
 
-![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_mobile.png "Portfolio Page Mobile Results")
+![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/lighthouse_portfolio_mob.png "Portfolio Page Mobile Results")
 
-![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_desktop.png "Portfolio Page Desktop Results")
+![Portfolio Page Mobile Results](https://johnroutledge.github.io/milestone-project-3/readme-assets/lighthouse_portfolio_desk.png "Portfolio Page Desktop Results")
 
 
 **Notable bug fixes**
@@ -331,20 +331,20 @@ The results shown are for the homepage and portfolio pages on both mobile and de
 
 In an early version of the app, the portfolio screen was showing a balance which multiplied the USD amount by twenty. This resulted in an incorrect balance. Having examined the code within the app.py file, I discovered that there was an error within the loop that iterates through a user's currency balances to produce the total balance (see screenshots below). By moving the totalBalance variable outside of the else statement (but still within the loop), the bug was fixed. In the screenshots, the left image is with the bug and the right image is after the fix had been applied. Line numbers are different from what they are in the final version as much more code has been added.
 
-![Portfolio Bug Screen](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_bug_screen.png "Portfolio Bug")
+![Portfolio Bug Screen](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_page_screens.png "Portfolio Bug")
 
-![Portfolio Bug Code](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_bug_code.png "Portfolio Bug Fix Code")
+![Portfolio Bug Code](https://johnroutledge.github.io/milestone-project-3/readme-assets/portfolio_page_code.png "Portfolio Bug Code")
 
 
 2. Heroku Deployment Bug
 
-![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_app_error.png "Heroku Bug")
+![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_bug.png "Heroku Bug")
 
 With the app not far from completion, I attempted to deploy it with Heroku. When trying to run the app, it produced the error is per the screenshot above. Having followed the onscreen instructions, I took a look at the application logs (shown below) and determined the error lay with importing requests. Having tried numerous suggestions from various webpages (which included freezing the requirements file) without success, I turned to tutor support for help. They also struggled, but suggested typing 'requests' directly into the requirements.txt file (see second image below). They also stated I did not have to include a version number. Having done this and then re-deploying on Heroku again, the app ran as expected.
 
-![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_error_log.png "Heroku Bug")
+![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_log.png "Heroku Bug")
 
-![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/requirements.png "Heroku Bug")
+![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/requirements_file.png "Heroku Bug")
 
 
 3. Available Balance Bug
@@ -438,7 +438,7 @@ MONGO DB KEYS
 * Once in, select your database cluster on the dashboard then click 'connect'.
 * Then select 'connect your application' and copy the connection string from the 'connection string only' tab as per the screenshot below:
 
-![Mongo URI](https://johnroutledge.github.io/milestone-project-3/readme-assets/mongo_uri.png "Mongo URI")
+![Mongo URI](https://johnroutledge.github.io/milestone-project-3/readme-assets/mongodb_uri.png "Mongo URI")
 
 * Paste the string into the value for the MONGO_URI key.
 * Make sure to replace PASSWORD with your database password and replace 'myFirstDatabase' with the name of the database (in this case, 'hashmoney')
@@ -450,7 +450,7 @@ COIN_MARKET_CAP_KEY
 * Navigate to [Coinmarketcap](https://coinmarketcap.com) and create a free account.
 * Once logged in, go to the dashboard and copy the api key by hovering over it and clicking the blue 'copy key' button as shown in the image below:
 
-![Coinmarketcap API Key](https://johnroutledge.github.io/milestone-project-3/readme-assets/coinmarketcap_api.png "Coinmarketcap API Key")
+![Coinmarketcap API Key](https://johnroutledge.github.io/milestone-project-3/readme-assets/coinmarketcap_dashboard.png "Coinmarketcap API Key")
 
 * Paste the key into the value for the COIN_MARKET_CAP_KEY in the env.py file.
 * Save the file.
