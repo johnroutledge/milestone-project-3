@@ -258,15 +258,13 @@ Having gone over my ideas for the database schema with my mentor Brian Macharia,
 2. As someone who is new to cryptocurrency trading, I want an app which is intuitive to use.
 * Yes, it is very straightforward to trade on the app and users can also access all of their trades easily.
 3. As a person who is risk-averse, I want an app that allows me to trade cryptocurrencies without any financial investment.
-* Yes, it is clear from the home screen that the app is completely risk free. Once registered, users are allocated 100,000 USD credits which they can trade as they choose. They can also reset this balance and start from scratch at any point.
+* Yes, it is clear from the home screen that the app is completely risk free. Once registered, users are allocated 100,000 USD credits which they use to buy and sell any of the listed cryptocurrencies they wish. They can also reset this balance and start from scratch at any point.
 4. As a person who wants to invest in cryptocurrencies, but still has reservations, I want an app that shows me the realistic gains and losses that can be made.
 * Yes, this is achieved by clearly showing a user's portfolio balance as well as an indication of how much it has grown or diminished since they started. 
 
 **Testing Responsiveness**
 
-The website was tested on various screen sizes using Chrome DevTools, from iPhone5 up to 5k screen. The image above shows the website on iPhone 5, iPad and laptop screens.
-
-It was also tested using [Am I Responsive](http://ami.responsivedesign.is/) and the results were as per the following image:
+The website was tested on various screen sizes using Chrome DevTools, from iPhone5 up to 5k screen. It was also tested using [Am I Responsive](http://ami.responsivedesign.is/) and the results were as per the following image:
 
 ![Responsiveness](https://johnroutledge.github.io/milestone-project-3/readme-assets/main_mockup.png "Responsiveness")
 
@@ -301,7 +299,7 @@ This was fixed by adding a size property to the inputs and giving it a value of 
 
 The login page was the only one without any errors or warnings as it doesn't reference the flash message section in base.html:
 
-![Login Page Checks](https://johnroutledge.github.io/milestone-project-3/readme-assets/login_html_checks.png "HTML")
+![Login Page Checks](https://johnroutledge.github.io/milestone-project-3/readme-assets/login_html_check.png "HTML")
 
 
 All checks on the CSS file were clear on the first attempt as per screenshot below.
@@ -341,7 +339,7 @@ In an early version of the app, the portfolio screen was showing a balance which
 
 ![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_app_error.png "Heroku Bug")
 
-With the app not far from completion, I attempted to deploy it with Heroku. When trying to run the app, it produced the error is per the screenshot above. Having followed the onscreen instructions, I took a look at the application logs (shown below) and determined the error lay with importing requests. Having tried numerous suggestions from various webpages (which included freezing the requirements file) without success, I turned to tutor support for help. They also struggled, but suggested typing 'requests' directly into the requirements.txt file (no version number required - see second image below). Having done this and then re-deploying on Heroku again, the app ran as expected.
+With the app not far from completion, I attempted to deploy it with Heroku. When trying to run the app, it produced the error is per the screenshot above. Having followed the onscreen instructions, I took a look at the application logs (shown below) and determined the error lay with importing requests. Having tried numerous suggestions from various webpages (which included freezing the requirements file) without success, I turned to tutor support for help. They also struggled, but suggested typing 'requests' directly into the requirements.txt file (see second image below). They also stated I did not have to include a version number. Having done this and then re-deploying on Heroku again, the app ran as expected.
 
 ![Heroku Bug](https://johnroutledge.github.io/milestone-project-3/readme-assets/heroku_error_log.png "Heroku Bug")
 
@@ -397,9 +395,9 @@ Pushing moves your work from the staging area to your repository.
 1. Under the repository name, click the 'code' button.
 1. Next, choose HTTPS and copy the URL.
 1. Open Gitbash and change the current working directory to the location for the cloned directory.
-1. Type 'git clone ' and then paste the URL from step 2 above.
+1. Type 'git clone ' and then paste the URL from step 3 above.
 1. Press 'enter' to create your clone.
-1. You can now access this new directory.
+1. You can now access this new directory and run the project locally.
 
 **Values for the env.py file**
 
@@ -435,12 +433,12 @@ MONGO DB KEYS
 COIN_MARKET_CAP_KEY
 
 * Navigate to [Coinmarketcap](https://coinmarketcap.com) and create a free account.
-* Once logged in, go to the dashboard and copy the api key as shown in the image below:
+* Once logged in, go to the dashboard and copy the api key by hovering over it and clicking the blue 'copy key' button as shown in the image below:
 
 ![Coinmarketcap API Key](https://johnroutledge.github.io/milestone-project-3/readme-assets/coinmarketcap_api.png "Coinmarketcap API Key")
 
 * Paste the key into the value for the COIN_MARKET_CAP_KEY in the env.py file.
-* Save the file
+* Save the file.
 
 ***
 

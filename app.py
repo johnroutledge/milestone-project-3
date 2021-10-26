@@ -65,17 +65,17 @@ def get_total_balance(balances, coins):
     dict = {}
     for balance in balances:
         if balance.upper() == "USD":
-            x = balances[balance]
-            dict[balance.upper()] = "{:.2f}".format(x)
-            total_balance = total_balance + float(x)
+            running_balance = balances[balance]
+            dict[balance.upper()] = "{:.2f}".format(running_balance)
+            total_balance = total_balance + float(running_balance)
         else:
             for coin in coins:
                 if coin['symbol'] == balance.upper():
-                    x = coin['quote']['USD']['price'] * float(
+                    running_balance = coin['quote']['USD']['price'] * float(
                         balances[balance])
-                    x = "{:.2f}".format(x)
-                    dict[balance.upper()] = x
-                    total_balance = total_balance + float(x)
+                    running_balance = "{:.2f}".format(running_balance)
+                    dict[balance.upper()] = running_balance
+                    total_balance = total_balance + float(running_balance)
 
     return total_balance, dict
 
